@@ -10,8 +10,7 @@
 		$masterPassword = null;
 		$computationIntensity = 3;
 
-		localStorage.removeItem('passwordManagerSites');
-		localStorage.removeItem('computationIntensity');
+		localStorage.clear();
 
 		goto('/');
 	}
