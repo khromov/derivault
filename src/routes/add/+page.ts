@@ -1,9 +1,17 @@
 import type { PageLoad } from './$types';
 import { get } from 'svelte/store';
-import { sites } from '$lib/stores';
-import { error } from '@sveltejs/kit';
+import { masterPassword, sites } from '$lib/stores';
+import { deriveMasterKey, generatePassword } from '$lib/crypto';
+import { error, redirect } from '@sveltejs/kit';
 
-export const load: PageLoad = ({ url }) => {
+export const load: PageLoad = async ({ url }) => {
+	const currentMasterPassword = get(masterPassword);
+
+	if (!currentMasterPassword) {
+		throw redirect(302, '/');
+	}
+
+	const derivedKey = await deriveMasterKey(currentMasterPassword);
 	const editParam = url.searchParams.get('edit');
 
 	if (editParam !== null) {
@@ -15,17 +23,22 @@ export const load: PageLoad = ({ url }) => {
 		}
 
 		const siteToEdit = allSites[editIndex];
+		const generatedPassword = await generatePassword(derivedKey, siteToEdit);
 
 		return {
 			editMode: true,
 			editIndex,
-			site: siteToEdit
+			site: siteToEdit,
+			generatedPassword,
+			derivedKey
 		};
 	}
 
 	return {
 		editMode: false,
 		editIndex: null,
-		site: null
+		site: null,
+		generatedPassword: '',
+		derivedKey
 	};
 };

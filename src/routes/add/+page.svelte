@@ -1,46 +1,26 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { masterPassword, sites } from '$lib/stores';
+	import { sites } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { Slider } from '$lib/components/ui/slider';
-	import { deriveMasterKey, generatePassword } from '$lib/crypto';
+	import { generatePassword } from '$lib/crypto';
 
 	export let data;
 
 	let newSite = data.site ? { ...data.site } : { email: '', domain: '', rotationRounds: 1 };
 	let editingIndex = data.editIndex;
-	let generatedPassword = '';
-	let derivedMasterKey: Uint8Array | null = null;
+	let generatedPassword = data.generatedPassword;
 
-	onMount(() => {
-		if (!$masterPassword) {
-			goto('/');
-		} else {
-			deriveMasterKey($masterPassword).then((key) => {
-				derivedMasterKey = key;
-				return updateGeneratedPassword();
-			});
-		}
-	});
-
-	function updateGeneratedPassword() {
-		if (derivedMasterKey && newSite.email && newSite.domain) {
-			return generatePassword(derivedMasterKey, newSite).then((password) => {
+	$: {
+		if (newSite.email && newSite.domain) {
+			generatePassword(data.derivedKey, newSite).then((password) => {
 				generatedPassword = password;
 			});
 		} else {
 			generatedPassword = '';
-			return Promise.resolve();
-		}
-	}
-
-	$: {
-		if (derivedMasterKey && newSite.email && newSite.domain) {
-			updateGeneratedPassword();
 		}
 	}
 
@@ -82,7 +62,6 @@
 						value={[newSite.rotationRounds]}
 						onValueChange={(e) => {
 							newSite.rotationRounds = e[0];
-							updateGeneratedPassword();
 						}}
 					/>
 				</div>
