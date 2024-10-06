@@ -11,7 +11,6 @@
 	let passwords: Record<string, string> = {};
 	let derivedMasterKey: Uint8Array | null = null;
 
-  // TODO: Can't be async like this
 	onMount(async () => {
 		if (!$masterPassword) {
 			goto('/');
@@ -73,11 +72,12 @@
 										<div class="text-xs text-gray-400">Rotation: {site.rotationRounds}</div>
 									</div>
 									<div class="flex items-center space-x-2">
-										{#if hoveredSite === index}
-											<div class="rounded bg-gray-100 p-1 font-mono text-sm">
-												{passwords[site.email] || 'Generating...'}
-											</div>
-										{/if}
+										<div
+											class="rounded bg-gray-100 p-1 font-mono text-sm transition-opacity duration-200"
+											style="opacity: {hoveredSite === index ? '1' : '0'};"
+										>
+											{passwords[site.email] || 'Generating...'}
+										</div>
 										<Button
 											on:click={() => copyToClipboard(passwords[site.email])}
 											size="sm"

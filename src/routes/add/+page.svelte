@@ -9,25 +9,20 @@
 	import { Slider } from '$lib/components/ui/slider';
 	import { deriveMasterKey, generatePassword } from '$lib/crypto';
 
-	let newSite = { email: '', domain: '', rotationRounds: 1 };
-	let editingIndex: number | null = null;
+	export let data;
+
+	let newSite = data.site ? { ...data.site } : { email: '', domain: '', rotationRounds: 1 };
+	let editingIndex = data.editIndex;
 	let generatedPassword = '';
 	let derivedMasterKey: Uint8Array | null = null;
 
-      // TODO: Can't be async like this
 	onMount(async () => {
 		if (!$masterPassword) {
 			goto('/');
 		} else {
 			derivedMasterKey = await deriveMasterKey($masterPassword);
+			updateGeneratedPassword();
 		}
-		const urlParams = new URLSearchParams(window.location.search);
-		const editParam = urlParams.get('edit');
-		if (editParam !== null) {
-			editingIndex = parseInt(editParam, 10);
-			newSite = { ...$sites[editingIndex] };
-		}
-		updateGeneratedPassword();
 	});
 
 	async function updateGeneratedPassword() {
@@ -46,7 +41,7 @@
 
 	function addOrUpdateSite() {
 		if (newSite.email && newSite.domain) {
-			if (editingIndex !== null) {
+			if (data.editMode) {
 				$sites[editingIndex] = newSite;
 				$sites = $sites;
 			} else {
@@ -60,8 +55,7 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
-			<CardTitle>Offline Password Manager - {editingIndex !== null ? 'Edit' : 'Add'} Site</CardTitle
-			>
+			<CardTitle>Offline Password Manager - {data.editMode ? 'Edit' : 'Add'} Site</CardTitle>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
@@ -96,7 +90,7 @@
 					</div>
 				{/if}
 				<Button on:click={addOrUpdateSite}>
-					{editingIndex !== null ? 'Update Site' : 'Add Site'}
+					{data.editMode ? 'Update Site' : 'Add Site'}
 				</Button>
 				<Button on:click={() => goto('/vault')} variant="outline">Cancel</Button>
 			</div>
