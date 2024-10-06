@@ -34,7 +34,11 @@
 					/>
 				</div>
 				<div class="flex flex-col space-y-1.5">
-					<Label for="computationIntensity">Computation Intensity: {$computationIntensity}</Label>
+					<Label for="computationIntensity">
+						Computation Intensity: {$computationIntensity}{$computationIntensity === 3
+							? ' (default)'
+							: ''}
+					</Label>
 					<Slider
 						id="computationIntensity"
 						min={1}
