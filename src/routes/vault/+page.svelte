@@ -1,19 +1,13 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { masterPassword, computationIntensity, sites } from '$lib/stores';
+	import { masterPassword, sites } from '$lib/stores';
 	import { goto } from '$app/navigation';
-	import { Card, CardContent } from '$lib/components/ui/card';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input';
-	import { Label } from '$lib/components/ui/label';
-	import { Slider } from '$lib/components/ui/slider';
-	import { Trash2, Plus, Settings, AlertTriangle, Copy, Edit, LogOut } from 'lucide-svelte';
+	import { Trash2, Plus, Settings, Copy, Edit, LogOut } from 'lucide-svelte';
 
-	let newSite = { email: '', domain: '', rotationRounds: 1 };
-	let editingSite: number | null = null;
 	let hoveredSite: number | null = null;
 	let passwords: Record<string, string> = {};
-	let screen: 'main' | 'addSite' | 'settings' = 'main';
 
 	onMount(() => {
 		if (!$masterPassword) {
@@ -21,75 +15,6 @@
 		}
 		updatePasswords();
 	});
-
-	$: {
-		if ($masterPassword && newSite.email && newSite.domain) {
-			generatePassword(newSite).then((password) => {
-				passwords[newSite.email] = password;
-				passwords = passwords;
-			});
-		}
-	}
-
-	async function deriveMasterKey(passphrase: string) {
-		const encoder = new TextEncoder();
-		const passphraseBuffer = encoder.encode(passphrase);
-		const salt = encoder.encode('ConstantSaltForDeterministicResults');
-
-		const keyMaterial = await window.crypto.subtle.importKey(
-			'raw',
-			passphraseBuffer,
-			{ name: 'PBKDF2' },
-			false,
-			['deriveBits']
-		);
-
-		const derivedBits = await window.crypto.subtle.deriveBits(
-			{
-				name: 'PBKDF2',
-				salt: salt,
-				iterations: 100000 * $computationIntensity,
-				hash: 'SHA-256'
-			},
-			keyMaterial,
-			256
-		);
-
-		return new Uint8Array(derivedBits);
-	}
-
-	async function generatePassword(site: typeof newSite) {
-		if ($masterPassword && site.email && site.domain) {
-			const masterKey = await deriveMasterKey($masterPassword);
-			const encoder = new TextEncoder();
-			const siteData = encoder.encode(`${site.email}:${site.domain}:${site.rotationRounds}`);
-
-			const hmacKey = await window.crypto.subtle.importKey(
-				'raw',
-				masterKey,
-				{ name: 'HMAC', hash: 'SHA-256' },
-				false,
-				['sign']
-			);
-
-			const signature = await window.crypto.subtle.sign('HMAC', hmacKey, siteData);
-
-			const hashArray = Array.from(new Uint8Array(signature));
-			const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
-
-			const allChars =
-				'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
-
-			let password = '';
-			for (let i = 0; i < 16; i++) {
-				const charIndex = parseInt(hashHex.substr(i * 2, 2), 16) % allChars.length;
-				password += allChars[charIndex];
-			}
-
-			return password;
-		}
-		return '';
-	}
 
 	async function updatePasswords() {
 		if ($masterPassword) {
@@ -101,13 +26,10 @@
 		}
 	}
 
-	function addSite() {
-		if (newSite.email && newSite.domain) {
-			$sites = [...$sites, newSite];
-			newSite = { email: '', domain: '', rotationRounds: 1 };
-			screen = 'main';
-			updatePasswords();
-		}
+	async function generatePassword(site: { email: string; domain: string; rotationRounds: number }) {
+		// Implement the password generation logic here
+		// This is a placeholder and should be replaced with your actual implementation
+		return 'generated-password';
 	}
 
 	function removeSite(index: number) {
@@ -116,39 +38,25 @@
 	}
 
 	function editSite(index: number) {
-		editingSite = index;
-		newSite = { ...$sites[index] };
-		screen = 'addSite';
-	}
-
-	function updateSite() {
-		if (newSite.email && newSite.domain && editingSite !== null) {
-			$sites[editingSite] = newSite;
-			$sites = $sites;
-			newSite = { email: '', domain: '', rotationRounds: 1 };
-			editingSite = null;
-			screen = 'main';
-			updatePasswords();
-		}
+		goto(`/add?edit=${index}`);
 	}
 
 	function copyToClipboard(password: string) {
 		navigator.clipboard.writeText(password);
 	}
-
-	function panicButton() {
-		$sites = [];
-		passwords = {};
-		$masterPassword = null;
-		$computationIntensity = 3;
-		goto('/');
-	}
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
+		<CardHeader>
+			<CardTitle>Offline Password Manager</CardTitle>
+		</CardHeader>
 		<CardContent class="p-6">
-			{#if screen === 'main'}
+			{#if $sites.length === 0}
+				<div class="py-8 text-center text-gray-500">
+					No sites yet, add one via the bottom right button
+				</div>
+			{:else}
 				<div class="grid w-full items-center gap-4">
 					<div class="space-y-4">
 						{#each $sites as site, index}
@@ -185,55 +93,6 @@
 						{/each}
 					</div>
 				</div>
-			{:else if screen === 'addSite'}
-				<div class="grid w-full items-center gap-4">
-					<div class="flex flex-col space-y-1.5">
-						<Label for="email">Email/Username</Label>
-						<Input id="email" placeholder="Enter email or username" bind:value={newSite.email} />
-					</div>
-					<div class="flex flex-col space-y-1.5">
-						<Label for="domain">Domain</Label>
-						<Input id="domain" placeholder="Enter website domain" bind:value={newSite.domain} />
-					</div>
-					<div class="flex flex-col space-y-1.5">
-						<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
-						<Slider
-							id="rotationRounds"
-							min={1}
-							max={10}
-							step={1}
-							value={[newSite.rotationRounds]}
-							on:change={(e) => (newSite.rotationRounds = e.detail[0])}
-						/>
-					</div>
-					{#if newSite.email && newSite.domain}
-						<div class="flex flex-col space-y-1.5">
-							<Label>Generated Password</Label>
-							<div class="rounded bg-gray-100 p-2 font-mono text-sm">
-								{passwords[newSite.email] || 'Generating...'}
-							</div>
-						</div>
-					{/if}
-					<Button on:click={() => (editingSite !== null ? updateSite() : addSite())}>
-						{editingSite !== null ? 'Update Site' : 'Add Site'}
-					</Button>
-					<Button
-						on:click={() => {
-							newSite = { email: '', domain: '', rotationRounds: 1 };
-							editingSite = null;
-							screen = 'main';
-						}}
-						variant="outline">Cancel</Button
-					>
-				</div>
-			{:else if screen === 'settings'}
-				<div class="grid w-full items-center gap-4">
-					<Button on:click={panicButton} variant="destructive">
-						<AlertTriangle size={16} class="mr-2" />
-						Panic Button (Clear All Data)
-					</Button>
-					<Button on:click={() => (screen = 'main')} variant="outline">Back to Main</Button>
-				</div>
 			{/if}
 		</CardContent>
 	</Card>
@@ -250,17 +109,10 @@
 	>
 		<LogOut size={24} />
 	</Button>
-	<Button on:click={() => (screen = 'settings')} size="icon" variant="outline">
+	<Button on:click={() => goto('/settings')} size="icon" variant="outline">
 		<Settings size={24} />
 	</Button>
-	<Button
-		on:click={() => {
-			editingSite = null;
-			newSite = { email: '', domain: '', rotationRounds: 1 };
-			screen = 'addSite';
-		}}
-		size="icon"
-	>
+	<Button on:click={() => goto('/add')} size="icon">
 		<Plus size={24} />
 	</Button>
 </div>
