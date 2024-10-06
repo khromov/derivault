@@ -7,6 +7,8 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Slider } from '$lib/components/ui/slider';
 	import { generatePassword } from '$lib/crypto';
+	import { Copy } from 'lucide-svelte';
+	import toast from 'svelte-french-toast';
 
 	export let data;
 
@@ -33,6 +35,13 @@
 				$sites = [...$sites, newSite];
 			}
 			goto('/vault');
+		}
+	}
+
+	function copyToClipboard() {
+		if (generatedPassword) {
+			navigator.clipboard.writeText(generatedPassword);
+			toast.success('Password copied to clipboard!');
 		}
 	}
 </script>
@@ -67,12 +76,19 @@
 				</div>
 				<div class="flex flex-col space-y-1.5">
 					<Label>Generated Password</Label>
-					<div class="flex h-[2.5rem] items-center rounded bg-gray-100 p-2 font-mono text-sm">
-						{#if newSite.email && newSite.domain}
-							{generatedPassword || 'Generating...'}
-						{:else}
-							<span class="text-gray-400">Please fill in the Email / Username and Domain</span>
-						{/if}
+					<div class="flex items-center">
+						<div
+							class="flex h-[2.5rem] flex-grow items-center rounded bg-gray-100 p-2 font-mono text-sm"
+						>
+							{#if newSite.email && newSite.domain}
+								{generatedPassword || 'Generating...'}
+							{:else}
+								<span class="text-gray-400">Please fill in the Email / Username and Domain</span>
+							{/if}
+						</div>
+						<Button on:click={copyToClipboard} size="sm" class="ml-2" disabled={!generatedPassword}>
+							<Copy size={16} />
+						</Button>
 					</div>
 				</div>
 				<Button on:click={addOrUpdateSite} disabled={!newSite.email || !newSite.domain}>

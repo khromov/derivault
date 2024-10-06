@@ -4,6 +4,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Trash2, Plus, Settings, Copy, Edit, LogOut } from 'lucide-svelte';
+	import toast from 'svelte-french-toast';
 
 	export let data;
 
@@ -22,6 +23,7 @@
 
 	function copyToClipboard(password: string) {
 		navigator.clipboard.writeText(password);
+		toast.success('Password copied to clipboard!');
 	}
 </script>
 
