@@ -65,15 +65,17 @@
 						}}
 					/>
 				</div>
-				{#if newSite.email && newSite.domain}
-					<div class="flex flex-col space-y-1.5">
-						<Label>Generated Password</Label>
-						<div class="rounded bg-gray-100 p-2 font-mono text-sm">
+				<div class="flex flex-col space-y-1.5">
+					<Label>Generated Password</Label>
+					<div class="flex h-[2.5rem] items-center rounded bg-gray-100 p-2 font-mono text-sm">
+						{#if newSite.email && newSite.domain}
 							{generatedPassword || 'Generating...'}
-						</div>
+						{:else}
+							<span class="text-gray-400">Please fill in the Email / Username and Domain</span>
+						{/if}
 					</div>
-				{/if}
-				<Button on:click={addOrUpdateSite}>
+				</div>
+				<Button on:click={addOrUpdateSite} disabled={!newSite.email || !newSite.domain}>
 					{data.editMode ? 'Update Site' : 'Add Site'}
 				</Button>
 				<Button on:click={() => goto('/vault')} variant="outline">Cancel</Button>
