@@ -83,7 +83,7 @@
 <div class="fixed bottom-4 right-4 flex space-x-2">
 	<Button
 		on:click={() => {
-      $masterPassword = '';
+			$masterPassword = '';
 			goto('/');
 		}}
 		size="icon"

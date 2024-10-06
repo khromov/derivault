@@ -8,20 +8,20 @@ import { deriveMasterKey } from '$lib/crypto';
 import { redirect } from '@sveltejs/kit';
 
 export const load: LayoutLoad = async ({ route }) => {
-  const currentMasterPassword = get(masterPassword);
+	const currentMasterPassword = get(masterPassword);
 
-  if (route.id === '/' && currentMasterPassword) {
-    throw redirect(302, '/vault');
-  } else if (route.id !== '/' && !currentMasterPassword) {
-    throw redirect(302, '/');
-  }
+	if (route.id === '/' && currentMasterPassword) {
+		throw redirect(302, '/vault');
+	} else if (route.id !== '/' && !currentMasterPassword) {
+		throw redirect(302, '/');
+	}
 
-  let derivedKey = null;
-  if (currentMasterPassword) {
-    derivedKey = await deriveMasterKey(currentMasterPassword);
-  }
+	let derivedKey = null;
+	if (currentMasterPassword) {
+		derivedKey = await deriveMasterKey(currentMasterPassword);
+	}
 
-  return {
-    derivedKey
-  };
+	return {
+		derivedKey
+	};
 };
