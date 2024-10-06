@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { sites } from '$lib/stores';
+	import { masterPassword, sites } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
@@ -83,6 +83,7 @@
 <div class="fixed bottom-4 right-4 flex space-x-2">
 	<Button
 		on:click={() => {
+      $masterPassword = '';
 			goto('/');
 		}}
 		size="icon"

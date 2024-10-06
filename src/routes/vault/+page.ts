@@ -1,27 +1,20 @@
 import type { PageLoad } from './$types';
 import { get } from 'svelte/store';
-import { masterPassword, sites } from '$lib/stores';
-import { deriveMasterKey, generatePassword } from '$lib/crypto';
-import { redirect } from '@sveltejs/kit';
+import { sites } from '$lib/stores';
+import { generatePassword } from '$lib/crypto';
 
-export const load: PageLoad = async () => {
-  const currentMasterPassword = get(masterPassword);
+export const load: PageLoad = async ({ parent }) => {
+	const { derivedKey } = await parent();
+	const allSites = get(sites);
 
-  if (!currentMasterPassword) {
-    throw redirect(302, '/');
-  }
+	const passwords = await Promise.all(
+		allSites.map(async (site) => {
+			const password = await generatePassword(derivedKey, site);
+			return { ...site, password };
+		})
+	);
 
-  const derivedKey = await deriveMasterKey(currentMasterPassword);
-  const allSites = get(sites);
-
-  const passwords = await Promise.all(
-    allSites.map(async (site) => {
-      const password = await generatePassword(derivedKey, site);
-      return { ...site, password };
-    })
-  );
-
-  return {
-    sites: passwords
-  };
+	return {
+		sites: passwords
+	};
 };

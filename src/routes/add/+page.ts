@@ -1,17 +1,11 @@
 import type { PageLoad } from './$types';
 import { get } from 'svelte/store';
-import { masterPassword, sites } from '$lib/stores';
-import { deriveMasterKey, generatePassword } from '$lib/crypto';
-import { error, redirect } from '@sveltejs/kit';
+import { sites } from '$lib/stores';
+import { generatePassword } from '$lib/crypto';
+import { error } from '@sveltejs/kit';
 
-export const load: PageLoad = async ({ url }) => {
-	const currentMasterPassword = get(masterPassword);
-
-	if (!currentMasterPassword) {
-		throw redirect(302, '/');
-	}
-
-	const derivedKey = await deriveMasterKey(currentMasterPassword);
+export const load: PageLoad = async ({ url, parent }) => {
+	const { derivedKey } = await parent();
 	const editParam = url.searchParams.get('edit');
 
 	if (editParam !== null) {
