@@ -1,20 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { masterPassword, sites, computationIntensity } from '$lib/stores';
+	import { masterPassword, sites } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import { Slider } from '$lib/components/ui/slider';
+	import { deriveMasterKey, generatePassword } from '$lib/crypto';
 
 	let newSite = { email: '', domain: '', rotationRounds: 1 };
 	let editingIndex: number | null = null;
 	let generatedPassword = '';
+	let derivedMasterKey: Uint8Array | null = null;
 
-	onMount(() => {
+      // TODO: Can't be async like this
+	onMount(async () => {
 		if (!$masterPassword) {
 			goto('/');
+		} else {
+			derivedMasterKey = await deriveMasterKey($masterPassword);
 		}
 		const urlParams = new URLSearchParams(window.location.search);
 		const editParam = urlParams.get('edit');
@@ -26,23 +31,17 @@
 	});
 
 	async function updateGeneratedPassword() {
-		if ($masterPassword && newSite.email && newSite.domain) {
-			generatedPassword = await generatePassword(newSite);
+		if (derivedMasterKey && newSite.email && newSite.domain) {
+			generatedPassword = await generatePassword(derivedMasterKey, newSite);
 		} else {
 			generatedPassword = '';
 		}
 	}
 
 	$: {
-		if ($masterPassword && newSite.email && newSite.domain) {
+		if (derivedMasterKey && newSite.email && newSite.domain) {
 			updateGeneratedPassword();
 		}
-	}
-
-	async function generatePassword(site: typeof newSite) {
-		// Implement the password generation logic here
-		// This is a placeholder and should be replaced with your actual implementation
-		return 'generated-password';
 	}
 
 	function addOrUpdateSite() {
@@ -82,7 +81,10 @@
 						max={10}
 						step={1}
 						value={[newSite.rotationRounds]}
-						onValueChange={(e) => (newSite.rotationRounds = e[0])}
+						onValueChange={(e) => {
+							newSite.rotationRounds = e[0];
+							updateGeneratedPassword();
+						}}
 					/>
 				</div>
 				{#if newSite.email && newSite.domain}

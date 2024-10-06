@@ -5,31 +5,30 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Trash2, Plus, Settings, Copy, Edit, LogOut } from 'lucide-svelte';
+	import { deriveMasterKey, generatePassword } from '$lib/crypto';
 
 	let hoveredSite: number | null = null;
 	let passwords: Record<string, string> = {};
+	let derivedMasterKey: Uint8Array | null = null;
 
-	onMount(() => {
+  // TODO: Can't be async like this
+	onMount(async () => {
 		if (!$masterPassword) {
 			goto('/');
+		} else {
+			derivedMasterKey = await deriveMasterKey($masterPassword);
+			await updatePasswords();
 		}
-		updatePasswords();
 	});
 
 	async function updatePasswords() {
-		if ($masterPassword) {
+		if (derivedMasterKey) {
 			const newPasswords: Record<string, string> = {};
 			for (const site of $sites) {
-				newPasswords[site.email] = await generatePassword(site);
+				newPasswords[site.email] = await generatePassword(derivedMasterKey, site);
 			}
 			passwords = newPasswords;
 		}
-	}
-
-	async function generatePassword(site: { email: string; domain: string; rotationRounds: number }) {
-		// Implement the password generation logic here
-		// This is a placeholder and should be replaced with your actual implementation
-		return 'generated-password';
 	}
 
 	function removeSite(index: number) {
@@ -43,6 +42,12 @@
 
 	function copyToClipboard(password: string) {
 		navigator.clipboard.writeText(password);
+	}
+
+	$: {
+		if (derivedMasterKey && $sites) {
+			updatePasswords();
+		}
 	}
 </script>
 
