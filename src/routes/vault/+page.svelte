@@ -11,23 +11,30 @@
 	let passwords: Record<string, string> = {};
 	let derivedMasterKey: Uint8Array | null = null;
 
-	onMount(async () => {
+	onMount(() => {
 		if (!$masterPassword) {
 			goto('/');
 		} else {
-			derivedMasterKey = await deriveMasterKey($masterPassword);
-			await updatePasswords();
+			deriveMasterKey($masterPassword).then((key) => {
+				derivedMasterKey = key;
+				return updatePasswords();
+			});
 		}
 	});
 
-	async function updatePasswords() {
+	function updatePasswords() {
 		if (derivedMasterKey) {
-			const newPasswords: Record<string, string> = {};
-			for (const site of $sites) {
-				newPasswords[site.email] = await generatePassword(derivedMasterKey, site);
-			}
-			passwords = newPasswords;
+			const passwordPromises = $sites.map((site) =>
+				generatePassword(derivedMasterKey!, site).then(
+					(password) => [site.email, password] as [string, string]
+				)
+			);
+
+			return Promise.all(passwordPromises).then((results) => {
+				passwords = Object.fromEntries(results);
+			});
 		}
+		return Promise.resolve();
 	}
 
 	function removeSite(index: number) {

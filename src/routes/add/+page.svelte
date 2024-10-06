@@ -16,20 +16,25 @@
 	let generatedPassword = '';
 	let derivedMasterKey: Uint8Array | null = null;
 
-	onMount(async () => {
+	onMount(() => {
 		if (!$masterPassword) {
 			goto('/');
 		} else {
-			derivedMasterKey = await deriveMasterKey($masterPassword);
-			updateGeneratedPassword();
+			deriveMasterKey($masterPassword).then((key) => {
+				derivedMasterKey = key;
+				return updateGeneratedPassword();
+			});
 		}
 	});
 
-	async function updateGeneratedPassword() {
+	function updateGeneratedPassword() {
 		if (derivedMasterKey && newSite.email && newSite.domain) {
-			generatedPassword = await generatePassword(derivedMasterKey, newSite);
+			return generatePassword(derivedMasterKey, newSite).then((password) => {
+				generatedPassword = password;
+			});
 		} else {
 			generatedPassword = '';
+			return Promise.resolve();
 		}
 	}
 
