@@ -50,7 +50,8 @@
 			newSite.email &&
 			parsedDomain &&
 			parsedDomain !== 'not entered' &&
-			parsedDomain !== 'invalid'
+			parsedDomain !== 'invalid' &&
+			data.derivedKey
 		) {
 			generatePassword(data.derivedKey, { ...newSite, domain: parsedDomain }).then((password) => {
 				generatedPassword = password;
