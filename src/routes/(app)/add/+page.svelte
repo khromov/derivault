@@ -26,28 +26,18 @@
 	let showAdvanced = false;
 	let parsedDomain = 'not entered';
 
-	function parseDomain(input: string) {
+	function parseDomain(input: string): string {
 		if (!input) {
 			return 'not entered';
 		}
 
 		try {
-			// Prepend 'https://' if no protocol is specified
+			// Ensure the input has a protocol
 			const url = new URL(input.includes('://') ? input : `https://${input}`);
 
-			// Extract the domain and remove 'www.' if present
-			let domain = url.hostname.replace(/^www\./, '');
-
-			// Split the domain into parts
-			const parts = domain.split('.');
-
-			// If we have more than 2 parts, take the last two
-			// This handles cases like 'foo.example.com' or 'bar.foo.example.com'
-			if (parts.length > 2) {
-				domain = parts.slice(-2).join('.');
-			}
-
-			return domain;
+			console.log(url);
+			// Get the full hostname
+			return url.host;
 		} catch (error) {
 			return 'invalid';
 		}
