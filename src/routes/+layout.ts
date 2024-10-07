@@ -5,15 +5,26 @@ import type { LayoutLoad } from './$types';
 import { get } from 'svelte/store';
 import { masterPassword } from '$lib/stores';
 import { deriveMasterKey } from '$lib/crypto';
-import { redirect } from '@sveltejs/kit';
+import { redirect, error } from '@sveltejs/kit';
+import { browser } from '$app/environment';
 
 export const load: LayoutLoad = async ({ route }) => {
+	if (
+		browser ||
+		typeof window.crypto === 'undefined' ||
+		typeof window.crypto.subtle === 'undefined' ||
+		typeof window.crypto.subtle.importKey === 'undefined' ||
+		typeof window.crypto.subtle.deriveBits === 'undefined'
+	) {
+		error(500, 'Required cryptographic functions are not available in this browser.');
+	}
+
 	const currentMasterPassword = get(masterPassword);
 
 	if (route.id === '/' && currentMasterPassword) {
-		throw redirect(302, '/vault');
+		redirect(302, '/vault');
 	} else if (route.id !== '/' && !currentMasterPassword) {
-		throw redirect(302, '/');
+		redirect(302, '/');
 	}
 
 	let derivedKey = null;
