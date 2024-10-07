@@ -2,7 +2,6 @@
 	import { page } from '$app/stores';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { AlertTriangle } from 'lucide-svelte';
-	export let form;
 
 	$: console.warn('Error: ', $page.error?.message);
 	$: isCryptoError = $page.error?.message?.includes('cryptographic functions') ?? false;
