@@ -24,10 +24,45 @@
 	let editingIndex = data.editIndex;
 	let generatedPassword = data.generatedPassword || '';
 	let showAdvanced = false;
+	let parsedDomain = 'not entered';
+
+	function parseDomain(input: string) {
+		if (!input) {
+			return 'not entered';
+		}
+
+		try {
+			// Prepend 'https://' if no protocol is specified
+			const url = new URL(input.includes('://') ? input : `https://${input}`);
+
+			// Extract the domain and remove 'www.' if present
+			let domain = url.hostname.replace(/^www\./, '');
+
+			// Split the domain into parts
+			const parts = domain.split('.');
+
+			// If we have more than 2 parts, take the last two
+			// This handles cases like 'foo.example.com' or 'bar.foo.example.com'
+			if (parts.length > 2) {
+				domain = parts.slice(-2).join('.');
+			}
+
+			return domain;
+		} catch (error) {
+			return 'invalid';
+		}
+	}
+
+	$: parsedDomain = parseDomain(newSite.domain);
 
 	$: {
-		if (newSite.email && newSite.domain) {
-			generatePassword(data.derivedKey, newSite).then((password) => {
+		if (
+			newSite.email &&
+			parsedDomain &&
+			parsedDomain !== 'not entered' &&
+			parsedDomain !== 'invalid'
+		) {
+			generatePassword(data.derivedKey, { ...newSite, domain: parsedDomain }).then((password) => {
 				generatedPassword = password;
 			});
 		} else {
@@ -36,14 +71,22 @@
 	}
 
 	function addOrUpdateSite() {
-		if (newSite.email && newSite.domain) {
+		if (
+			newSite.email &&
+			parsedDomain &&
+			parsedDomain !== 'not entered' &&
+			parsedDomain !== 'invalid'
+		) {
+			const siteToSave = { ...newSite, domain: parsedDomain };
 			if (data.editMode) {
-				$sites[editingIndex] = newSite;
+				$sites[editingIndex] = siteToSave;
 				$sites = $sites;
 			} else {
-				$sites = [...$sites, newSite];
+				$sites = [...$sites, siteToSave];
 			}
 			goto('/vault');
+		} else {
+			toast.error('Please enter a valid email and domain.');
 		}
 	}
 
@@ -73,6 +116,7 @@
 				<div class="flex flex-col space-y-1.5">
 					<Label for="domain">Domain</Label>
 					<Input id="domain" placeholder="Enter website domain" bind:value={newSite.domain} />
+					<p class="text-sm text-gray-500">Domain: {parsedDomain}</p>
 				</div>
 				<div class="flex flex-col space-y-1.5">
 					<Label>Generated Password</Label>
@@ -80,10 +124,11 @@
 						<div
 							class="flex h-[2.5rem] flex-grow items-center rounded bg-gray-100 p-2 font-mono text-sm"
 						>
-							{#if newSite.email && newSite.domain}
+							{#if newSite.email && parsedDomain && parsedDomain !== 'not entered' && parsedDomain !== 'invalid'}
 								{generatedPassword || 'Generating...'}
 							{:else}
-								<span class="text-gray-400">Please fill in the Email / Username and Domain</span>
+								<span class="text-gray-400">Please fill in a valid Email / Username and Domain</span
+								>
 							{/if}
 						</div>
 						<Button on:click={copyToClipboard} size="sm" class="ml-2" disabled={!generatedPassword}>
@@ -130,7 +175,10 @@
 						</div>
 					{/if}
 				</div>
-				<Button on:click={addOrUpdateSite} disabled={!newSite.email || !newSite.domain}>
+				<Button
+					on:click={addOrUpdateSite}
+					disabled={!newSite.email || parsedDomain === 'not entered' || parsedDomain === 'invalid'}
+				>
 					{data.editMode ? 'Update Site' : 'Add Site'}
 				</Button>
 				<Button on:click={() => goto('/vault')} variant="outline">Cancel</Button>
