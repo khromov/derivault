@@ -4,7 +4,6 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Upload } from 'lucide-svelte';
-	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
 	import toast from 'svelte-french-toast';
 	import { validateMnemonic, mnemonicToSeed } from 'web-bip39';
@@ -20,7 +19,9 @@
 			const file = (event.target as HTMLInputElement).files?.[0];
 			if (file) {
 				try {
-					const isValid = await validateMnemonic(mnemonic, wordlist);
+					// Normalize the mnemonic by trimming whitespace and ensuring single spaces between words
+					const normalizedMnemonic = mnemonic.trim().replace(/\s+/g, ' ');
+					const isValid = await validateMnemonic(normalizedMnemonic, wordlist);
 					if (!isValid) {
 						throw new Error('Invalid mnemonic phrase');
 					}
@@ -32,7 +33,7 @@
 					const iv = encrypted.slice(0, 12);
 					const encryptedData = encrypted.slice(12);
 
-					const seed = await mnemonicToSeed(mnemonic);
+					const seed = await mnemonicToSeed(normalizedMnemonic);
 
 					// Convert the seed to a CryptoKey
 					const key = await window.crypto.subtle.importKey(
@@ -81,11 +82,13 @@
 			<div class="grid w-full items-center gap-4">
 				<div class="flex flex-col space-y-1.5">
 					<Label for="mnemonic">Encryption Key</Label>
-					<Input
+					<textarea
 						id="mnemonic"
 						bind:value={mnemonic}
 						placeholder="Enter your 24-word encryption key"
-					/>
+						rows="3"
+						class="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+					></textarea>
 				</div>
 				<Button on:click={importSites}>
 					<Upload size={16} class="mr-2" />

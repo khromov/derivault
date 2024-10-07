@@ -48,8 +48,11 @@
 			const a = document.createElement('a');
 			a.href = url;
 
-			const date = new Date().toISOString().split('T')[0];
-			a.download = `plausible-pass-sites-${date}.encrypted`;
+			// Use ISO 8601 format for the timestamp
+			const now = new Date();
+			const isoString = now.toISOString().replace(/[:\.]/g, '-').replace('T', '_').slice(0, -5);
+
+			a.download = `plausible-pass-sites-${isoString}.encrypted`;
 
 			document.body.appendChild(a);
 			a.click();
