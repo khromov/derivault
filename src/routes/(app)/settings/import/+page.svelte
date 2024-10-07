@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { sites } from '$lib/stores';
+	import type { Site } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
@@ -10,6 +11,15 @@
 	import wordlist from 'web-bip39/wordlists/english';
 
 	let mnemonic = '';
+
+	function isSiteEqual(site1: Site, site2: Site): boolean {
+		return (
+			site1.email === site2.email &&
+			site1.domain === site2.domain &&
+			site1.rotationRounds === site2.rotationRounds &&
+			site1.comment === site2.comment
+		);
+	}
 
 	async function importSites() {
 		const input = document.createElement('input');
@@ -55,11 +65,29 @@
 					);
 
 					const decrypted = new TextDecoder().decode(decryptedBuffer);
-					const importedSites = JSON.parse(decrypted);
+					const importedSites = JSON.parse(decrypted) as Site[];
 
 					if (Array.isArray(importedSites)) {
-						$sites = [...$sites, ...importedSites];
-						toast.success('Sites imported successfully');
+						const currentSites = $sites;
+						let newSitesCount = 0;
+
+						const updatedSites = [...currentSites];
+						importedSites.forEach((importedSite) => {
+							if (!currentSites.some((site) => isSiteEqual(site, importedSite))) {
+								updatedSites.push(importedSite);
+								newSitesCount++;
+							}
+						});
+
+						$sites = updatedSites;
+
+						if (newSitesCount > 0) {
+							toast.success(
+								`${newSitesCount} new site${newSitesCount > 1 ? 's' : ''} imported successfully`
+							);
+						} else {
+							toast.error('No new sites to import. All imported sites already exist.');
+						}
 						goto('/settings');
 					} else {
 						throw new Error('Invalid file format');
