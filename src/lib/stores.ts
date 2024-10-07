@@ -8,6 +8,7 @@ interface Site {
 	email: string;
 	domain: string;
 	rotationRounds: number;
+	comment: string;
 }
 
 export const sites = persisted<Site[]>('passwordManagerSites', []);

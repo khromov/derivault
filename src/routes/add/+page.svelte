@@ -7,14 +7,18 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Slider } from '$lib/components/ui/slider';
 	import { generatePassword } from '$lib/crypto';
-	import { Copy } from 'lucide-svelte';
+	import { Copy, ChevronDown, ChevronUp } from 'lucide-svelte';
 	import toast from 'svelte-french-toast';
+	import { slide } from 'svelte/transition';
 
 	export let data;
 
-	let newSite = data.site ? { ...data.site } : { email: '', domain: '', rotationRounds: 1 };
+	let newSite = data.site
+		? { ...data.site, comment: data.site.comment || '' }
+		: { email: '', domain: '', rotationRounds: 1, comment: '' };
 	let editingIndex = data.editIndex;
 	let generatedPassword = data.generatedPassword;
+	let showAdvanced = false;
 
 	$: {
 		if (newSite.email && newSite.domain) {
@@ -44,6 +48,10 @@
 			toast.success('Password copied to clipboard!');
 		}
 	}
+
+	function toggleAdvanced() {
+		showAdvanced = !showAdvanced;
+	}
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
@@ -62,19 +70,6 @@
 					<Input id="domain" placeholder="Enter website domain" bind:value={newSite.domain} />
 				</div>
 				<div class="flex flex-col space-y-1.5">
-					<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
-					<Slider
-						id="rotationRounds"
-						min={1}
-						max={10}
-						step={1}
-						value={[newSite.rotationRounds]}
-						onValueChange={(e) => {
-							newSite.rotationRounds = e[0];
-						}}
-					/>
-				</div>
-				<div class="flex flex-col space-y-1.5">
 					<Label>Generated Password</Label>
 					<div class="flex items-center">
 						<div
@@ -90,6 +85,43 @@
 							<Copy size={16} />
 						</Button>
 					</div>
+				</div>
+				<div>
+					<Button on:click={toggleAdvanced} variant="outline" class="w-full justify-between">
+						Advanced
+						{#if showAdvanced}
+							<ChevronUp size={16} />
+						{:else}
+							<ChevronDown size={16} />
+						{/if}
+					</Button>
+					{#if showAdvanced}
+						<div transition:slide={{ duration: 300 }} class="mt-4 space-y-4">
+							<div class="flex flex-col space-y-1.5">
+								<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
+								<Slider
+									id="rotationRounds"
+									min={1}
+									max={10}
+									step={1}
+									value={[newSite.rotationRounds]}
+									onValueChange={(e) => {
+										newSite.rotationRounds = e[0];
+									}}
+								/>
+							</div>
+							<div class="flex flex-col space-y-1.5">
+								<Label for="comment">Comment</Label>
+								<textarea
+									id="comment"
+									bind:value={newSite.comment}
+									rows="3"
+									class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+									placeholder="Add an optional comment (note: this is not encrypted)"
+								/>
+							</div>
+						</div>
+					{/if}
 				</div>
 				<Button on:click={addOrUpdateSite} disabled={!newSite.email || !newSite.domain}>
 					{data.editMode ? 'Update Site' : 'Add Site'}
