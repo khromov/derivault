@@ -14,10 +14,15 @@
 	export let data;
 
 	let newSite = data.site
-		? { ...data.site, comment: data.site.comment || '' }
+		? {
+				email: data.site.email || '',
+				domain: data.site.domain || '',
+				rotationRounds: data.site.rotationRounds || 1,
+				comment: data.site.comment || ''
+			}
 		: { email: '', domain: '', rotationRounds: 1, comment: '' };
 	let editingIndex = data.editIndex;
-	let generatedPassword = data.generatedPassword;
+	let generatedPassword = data.generatedPassword || '';
 	let showAdvanced = false;
 
 	$: {
