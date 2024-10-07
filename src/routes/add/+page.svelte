@@ -99,16 +99,18 @@
 						<div transition:slide={{ duration: 300 }} class="mt-4 space-y-4">
 							<div class="flex flex-col space-y-1.5">
 								<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
-								<Slider
-									id="rotationRounds"
-									min={1}
-									max={10}
-									step={1}
-									value={[newSite.rotationRounds]}
-									onValueChange={(e) => {
-										newSite.rotationRounds = e[0];
-									}}
-								/>
+								<div class="px-3 py-4">
+									<Slider
+										id="rotationRounds"
+										min={1}
+										max={10}
+										step={1}
+										value={[newSite.rotationRounds]}
+										onValueChange={(e) => {
+											newSite.rotationRounds = e[0];
+										}}
+									/>
+								</div>
 							</div>
 							<div class="flex flex-col space-y-1.5">
 								<Label for="comment">Comment</Label>
