@@ -10,20 +10,18 @@ import { browser } from '$app/environment';
 
 export const load: LayoutLoad = async ({ route }) => {
 	if (
-		browser ||
+		!browser ||
 		typeof window.crypto === 'undefined' ||
-		typeof window.crypto.subtle === 'undefined' ||
-		typeof window.crypto.subtle.importKey === 'undefined' ||
-		typeof window.crypto.subtle.deriveBits === 'undefined'
+		typeof window.crypto.subtle === 'undefined'
 	) {
 		error(500, 'Required cryptographic functions are not available in this browser.');
 	}
 
 	const currentMasterPassword = get(masterPassword);
 
-	if (route.id === '/' && currentMasterPassword) {
+	if (route.id === '/(app)' && currentMasterPassword) {
 		redirect(302, '/vault');
-	} else if (route.id !== '/' && !currentMasterPassword) {
+	} else if (route.id !== '/(app)' && !currentMasterPassword) {
 		redirect(302, '/');
 	}
 
