@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
-	import { Download } from 'lucide-svelte';
+	import { Download, Copy } from 'lucide-svelte';
 	import toast from 'svelte-french-toast';
 	import { mnemonicToSeed } from 'web-bip39';
 
@@ -60,6 +60,17 @@
 			toast.error('Error exporting sites: ' + (error as Error).message);
 		}
 	}
+
+	function copyMnemonic() {
+		navigator.clipboard
+			.writeText(mnemonic)
+			.then(() => {
+				toast.success('Mnemonic copied to clipboard');
+			})
+			.catch((err) => {
+				toast.error('Failed to copy mnemonic: ' + err);
+			});
+	}
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
@@ -73,8 +84,18 @@
 					Here is your encryption key. Please save it securely, as you'll need it to import your
 					vault:
 				</p>
-				<pre
-					class="overflow-x-auto whitespace-pre-wrap break-words rounded bg-gray-100 p-4">{mnemonic}</pre>
+				<div class="relative">
+					<pre
+						class="overflow-x-auto whitespace-pre-wrap break-words rounded bg-gray-100 p-4">{mnemonic}</pre>
+					<Button
+						class="absolute right-2 top-2"
+						size="sm"
+						variant="outline"
+						on:click={copyMnemonic}
+					>
+						<Copy size={16} />
+					</Button>
+				</div>
 				<Button on:click={exportSites}>
 					<Download size={16} class="mr-2" />
 					Export Encrypted Vault
