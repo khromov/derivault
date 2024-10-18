@@ -13,6 +13,7 @@
 	import { RefreshCw } from 'lucide-svelte';
 	import { createAvatar } from '@dicebear/core';
 	import { identicon } from '@dicebear/collection';
+	import { deriveMasterKey } from '$lib/crypto';
 
 	let passphrase = '';
 	let mnemonic = '';
@@ -40,7 +41,7 @@
 					toast.error('Please enter a passphrase');
 					return;
 				}
-				derivedKey = await deriveKeyFromPassword(passphrase);
+				derivedKey = await deriveMasterKey(passphrase);
 			} else {
 				if (!mnemonic) {
 					toast.error('Please enter a BIP39 mnemonic');
@@ -64,29 +65,6 @@
 			toast.error('Error deriving key: ' + (error as Error).message);
 		}
 	};
-
-	async function deriveKeyFromPassword(password: string): Promise<Uint8Array> {
-		const encoder = new TextEncoder();
-		const data = encoder.encode(password);
-		const salt = encoder.encode('ConstantSaltForDeterministicResults');
-
-		const keyMaterial = await window.crypto.subtle.importKey('raw', data, 'PBKDF2', false, [
-			'deriveBits'
-		]);
-
-		const derivedBits = await window.crypto.subtle.deriveBits(
-			{
-				name: 'PBKDF2',
-				salt,
-				iterations: 100000 * $computationIntensity,
-				hash: 'SHA-256'
-			},
-			keyMaterial,
-			256
-		);
-
-		return new Uint8Array(derivedBits);
-	}
 
 	async function createMnemonic() {
 		try {
@@ -128,7 +106,7 @@
 								class="flex-grow"
 							/>
 							{#if avatarSvg}
-								<img src={avatarSvg} alt="Identicon" class="ml-2 h-8 w-8 rounded-full" />
+								<img src={avatarSvg} alt="Identicon" class="ml-2 h-8 w-8" />
 							{/if}
 						</div>
 					</div>
