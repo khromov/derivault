@@ -2,7 +2,7 @@
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { Trash2 } from 'lucide-svelte';
 
-	export let duration = 2000; // 4 seconds in milliseconds
+	export let duration = 2000; // 2 seconds in milliseconds
 
 	let pressed = false;
 	let progress = 0;
@@ -10,6 +10,10 @@
 	let startTime: number;
 
 	const dispatch = createEventDispatcher();
+
+	function easeOutQuad(t: number): number {
+		return t * (2 - t);
+	}
 
 	function handleMouseDown() {
 		pressed = true;
@@ -31,9 +35,10 @@
 	function updateProgress() {
 		if (pressed) {
 			const elapsed = Date.now() - startTime;
-			progress = Math.min(elapsed / duration, 1);
+			const rawProgress = Math.min(elapsed / duration, 1);
+			progress = easeOutQuad(rawProgress);
 
-			if (progress < 1) {
+			if (rawProgress < 1) {
 				requestAnimationFrame(updateProgress);
 			} else {
 				dispatch('delete');
@@ -64,7 +69,7 @@
 	</div>
 	{#if pressed}
 		<div
-			class="absolute bottom-0 left-0 right-0 bg-red-700 transition-all duration-100 ease-linear"
+			class="absolute bottom-0 left-0 right-0 bg-red-700 transition-none"
 			style="height: {progress * 100}%;"
 		/>
 	{/if}
