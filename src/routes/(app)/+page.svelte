@@ -10,7 +10,7 @@
 	import { validateMnemonic, mnemonicToSeed, generateMnemonic } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
 	import toast from 'svelte-french-toast';
-	import { RefreshCw } from 'lucide-svelte';
+	import { RefreshCw, Copy } from 'lucide-svelte';
 	import { createAvatar } from '@dicebear/core';
 	import { identicon } from '@dicebear/collection';
 	import { deriveMasterKey } from '$lib/crypto';
@@ -19,6 +19,7 @@
 	let mnemonic = '';
 	let authType: 'password' | 'bip39' = 'password';
 	let avatarSvg = '';
+	let isMnemonicValid = false;
 
 	$: {
 		if (passphrase) {
@@ -30,6 +31,12 @@
 		} else {
 			avatarSvg = '';
 		}
+	}
+
+	$: {
+		validateMnemonic(mnemonic.trim(), wordlist).then((valid) => {
+			isMnemonicValid = valid;
+		});
 	}
 
 	const handleEnter = async () => {
@@ -72,6 +79,15 @@
 			toast.success('New mnemonic generated');
 		} catch (error) {
 			toast.error('Error generating mnemonic: ' + (error as Error).message);
+		}
+	}
+
+	function copyMnemonic() {
+		if (isMnemonicValid) {
+			navigator.clipboard
+				.writeText(mnemonic.trim())
+				.then(() => toast.success('Mnemonic copied to clipboard'))
+				.catch(() => toast.error('Failed to copy mnemonic'));
 		}
 	}
 </script>
@@ -136,17 +152,23 @@
 								placeholder="Enter your 24 word BIP39 mnemonic"
 								bind:value={mnemonic}
 								rows="3"
-								class="w-full rounded-md border border-input bg-transparent px-3 py-2 pr-10 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+								class="w-full rounded-md border border-input bg-transparent px-3 py-2 pr-20 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
 							/>
-							<Button
-								class="absolute bottom-2 right-2"
-								size="sm"
-								variant="ghost"
-								on:click={createMnemonic}
-								title="Create new mnemonic"
-							>
-								<RefreshCw size={16} />
-							</Button>
+							<div class="absolute bottom-2 right-2 flex space-x-1">
+								{#if isMnemonicValid}
+									<Button size="sm" variant="ghost" on:click={copyMnemonic} title="Copy mnemonic">
+										<Copy size={16} />
+									</Button>
+								{/if}
+								<Button
+									size="sm"
+									variant="ghost"
+									on:click={createMnemonic}
+									title="Create new mnemonic"
+								>
+									<RefreshCw size={16} />
+								</Button>
+							</div>
 						</div>
 					</div>
 				{/if}
