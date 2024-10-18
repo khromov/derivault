@@ -14,7 +14,10 @@ export const load: LayoutLoad = async ({ route }) => {
 		typeof window.crypto === 'undefined' ||
 		typeof window.crypto.subtle === 'undefined'
 	) {
-		error(500, 'Required cryptographic functions are not available in this browser.');
+		error(
+			500,
+			'Required cryptographic functions are not available in this browser. Keep in mind that web crypto APIs require a secure origin, so the page has to be served over SSL.'
+		);
 	}
 
 	const currentMasterPassword = get(masterPassword);
