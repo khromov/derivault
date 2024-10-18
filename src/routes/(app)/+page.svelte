@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { masterPassword, computationIntensity } from '$lib/stores';
+	import { masterPassword, computationIntensity, lastAuthType } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Input } from '$lib/components/ui/input';
@@ -15,9 +15,11 @@
 	import { identicon } from '@dicebear/collection';
 	import { deriveMasterKey } from '$lib/crypto';
 
+	export let data;
+
 	let passphrase = '';
 	let mnemonic = '';
-	let authType: 'password' | 'bip39' = 'password';
+	let authType: 'password' | 'bip39' = data.authType;
 	let avatarSvg = '';
 	let isMnemonicValid = false;
 
@@ -37,6 +39,11 @@
 		validateMnemonic(mnemonic.trim(), wordlist).then((valid) => {
 			isMnemonicValid = valid;
 		});
+	}
+
+	$: {
+		// Save the auth type whenever it changes
+		$lastAuthType = authType;
 	}
 
 	const handleEnter = async () => {

@@ -12,3 +12,5 @@ export interface Site {
 }
 
 export const sites = persisted<Site[]>('passwordManagerSites', []);
+
+export const lastAuthType = persisted<'password' | 'bip39'>('lastAuthType', 'password');
