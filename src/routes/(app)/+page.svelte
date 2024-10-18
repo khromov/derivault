@@ -19,7 +19,7 @@
 
 	let passphrase = '';
 	let mnemonic = '';
-	let authType: 'password' | 'bip39' = data.authType;
+	let currentAuthType: 'password' | 'bip39' = data.authType;
 	let avatarSvg = '';
 	let isMnemonicValid = false;
 
@@ -41,16 +41,15 @@
 		});
 	}
 
-	$: {
-		// Save the auth type whenever it changes
-		$lastAuthType = authType;
+	function handleAuthTypeChange(newType: 'password' | 'bip39') {
+		$lastAuthType = newType;
 	}
 
 	const handleEnter = async () => {
 		try {
 			let derivedKey: Uint8Array;
 
-			if (authType === 'password') {
+			if (currentAuthType === 'password') {
 				if (!passphrase) {
 					toast.error('Please enter a passphrase');
 					return;
@@ -106,7 +105,7 @@
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
-				<RadioGroup bind:value={authType}>
+				<RadioGroup bind:value={currentAuthType} onValueChange={(e) => handleAuthTypeChange(e)}>
 					<div class="flex items-center space-x-2">
 						<RadioGroupItem value="password" id="password" />
 						<Label for="password">Passphrase</Label>
@@ -117,7 +116,7 @@
 					</div>
 				</RadioGroup>
 
-				{#if authType === 'password'}
+				{#if currentAuthType === 'password'}
 					<div class="flex flex-col space-y-1.5">
 						<Label for="passphrase">Passphrase</Label>
 						<div class="flex items-center">
@@ -180,7 +179,10 @@
 					</div>
 				{/if}
 
-				<Button on:click={handleEnter} disabled={authType === 'password' ? !passphrase : !mnemonic}>
+				<Button
+					on:click={handleEnter}
+					disabled={currentAuthType === 'password' ? !passphrase : !mnemonic}
+				>
 					Enter
 				</Button>
 			</div>
