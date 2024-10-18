@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { Trash2 } from 'lucide-svelte';
+	import { sineInOut } from 'svelte/easing';
 
-	export let duration = 2000; // 2 seconds in milliseconds
+	export let duration = 2500; // 2 seconds in milliseconds
 
 	let pressed = false;
 	let progress = 0;
@@ -10,10 +11,6 @@
 	let startTime: number;
 
 	const dispatch = createEventDispatcher();
-
-	function easeOutQuad(t: number): number {
-		return t * (2 - t);
-	}
 
 	function handleMouseDown() {
 		pressed = true;
@@ -36,7 +33,7 @@
 		if (pressed) {
 			const elapsed = Date.now() - startTime;
 			const rawProgress = Math.min(elapsed / duration, 1);
-			progress = easeOutQuad(rawProgress);
+			progress = sineInOut(rawProgress);
 
 			if (rawProgress < 1) {
 				requestAnimationFrame(updateProgress);
