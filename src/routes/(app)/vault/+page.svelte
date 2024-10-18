@@ -50,12 +50,12 @@
 		: sitePasswords.map((site, index) => ({ ...site, score: 0, index }));
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100">
-	<Card class="m-4 w-full max-w-[600px]">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+	<Card class="w-full max-w-[500px]">
 		<CardHeader>
 			<CardTitle>Offline Password Manager</CardTitle>
 		</CardHeader>
-		<CardContent class="p-6">
+		<CardContent class="p-4">
 			<div class="mb-4">
 				<div class="relative">
 					<Search
@@ -74,8 +74,8 @@
 				<div class="grid w-full items-center gap-4">
 					<div class="space-y-4">
 						{#each filteredSites as site}
-							<Card class="p-4">
-								<div class="flex items-center justify-between">
+							<Card class="p-3">
+								<div class="flex flex-col space-y-2">
 									<div>
 										<div class="font-semibold">{site.domain}</div>
 										<div class="text-sm text-gray-500">{site.email}</div>
@@ -84,13 +84,13 @@
 											<div class="text-xs text-gray-400">Comment: {site.comment}</div>
 										{/if}
 									</div>
-									<div class="flex items-center space-x-2">
-										<div
-											class="rounded bg-gray-100 p-1 font-mono text-sm transition-opacity duration-200"
-											style="opacity: {hoveredSite === site.index ? '1' : '0'};"
-										>
-											{site.password}
-										</div>
+									<div class="flex items-center justify-end space-x-2">
+										<Button on:click={() => removeSite(site.index)} size="sm" variant="destructive">
+											<Trash2 size={16} />
+										</Button>
+										<Button on:click={() => editSite(site.index)} size="sm" variant="outline">
+											<Edit size={16} />
+										</Button>
 										<Button
 											on:click={() => copyToClipboard(site.password)}
 											size="sm"
@@ -98,12 +98,6 @@
 											on:mouseleave={() => (hoveredSite = null)}
 										>
 											<Copy size={16} />
-										</Button>
-										<Button on:click={() => editSite(site.index)} size="sm" variant="outline">
-											<Edit size={16} />
-										</Button>
-										<Button on:click={() => removeSite(site.index)} size="sm" variant="destructive">
-											<Trash2 size={16} />
 										</Button>
 									</div>
 								</div>
