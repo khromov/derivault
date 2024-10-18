@@ -4,7 +4,8 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import { Trash2, Plus, Settings, Copy, Edit, LogOut, Search } from 'lucide-svelte';
+	import { Plus, Settings, Copy, Edit, LogOut, Search } from 'lucide-svelte';
+	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 
 	export let data;
@@ -17,6 +18,7 @@
 	function removeSite(index: number) {
 		$sites = $sites.filter((_, i) => i !== index);
 		sitePasswords = sitePasswords.filter((_, i) => i !== index);
+		toast.success('Site removed successfully');
 	}
 
 	function editSite(index: number) {
@@ -85,9 +87,7 @@
 										{/if}
 									</div>
 									<div class="flex items-center justify-end space-x-2">
-										<Button on:click={() => removeSite(site.index)} size="sm" variant="destructive">
-											<Trash2 size={16} />
-										</Button>
+										<DeletionButton on:delete={() => removeSite(site.index)} />
 										<Button on:click={() => editSite(site.index)} size="sm" variant="outline">
 											<Edit size={16} />
 										</Button>
