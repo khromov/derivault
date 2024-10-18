@@ -2,7 +2,7 @@
 	import { onMount, createEventDispatcher } from 'svelte';
 	import { Trash2 } from 'lucide-svelte';
 
-	export let duration = 4000; // 4 seconds in milliseconds
+	export let duration = 2000; // 4 seconds in milliseconds
 
 	let pressed = false;
 	let progress = 0;
@@ -59,7 +59,9 @@
 	on:touchstart|preventDefault={handleMouseDown}
 	on:touchend|preventDefault={handleMouseUp}
 >
-	<Trash2 size={16} />
+	<div class="relative z-10">
+		<Trash2 size={16} />
+	</div>
 	{#if pressed}
 		<div
 			class="absolute bottom-0 left-0 right-0 bg-red-700 transition-all duration-100 ease-linear"
