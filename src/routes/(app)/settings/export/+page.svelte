@@ -52,7 +52,7 @@
 			const now = new Date();
 			const isoString = now.toISOString().replace(/[:\.]/g, '-').replace('T', '_').slice(0, -5);
 
-			a.download = `plausible-pass-sites-${isoString}.encrypted`;
+			a.download = `derivault-sites-${isoString}.encrypted`;
 
 			document.body.appendChild(a);
 			a.click();

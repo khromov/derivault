@@ -1,38 +1,33 @@
-# create-svelte
+# Derivault
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Deterministic password manager that runs entirely in your browser. Passwords are derived using PBKDF2 and AES-GCM from either a master passphrase or BIP39 mnemonic. No passwords are ever stored; they are generated on-demand using cryptographic hash functions.
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This application is built with SvelteKit, TypeScript, and Tailwind CSS using the shadcn-svelte component library. Install dependencies with `npm install`, then start the development server:
 
 ```bash
+nvm use # install nvm first
+npm i
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
 
-To create a production version of your app:
+Create a production version with:
 
 ```bash
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+## Previewing
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Preview the production build with `npm run preview`.
+
+## Security
+
+Cryptographic operations are performed using the Web Crypto API. All password generation happens client-side - no data is ever transmitted to any server. The vault data (domains and usernames) is stored encrypted in localStorage, with the option to export/import using AES-GCM encryption.
+
+## License
+
+MIT License
