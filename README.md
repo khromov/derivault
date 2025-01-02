@@ -1,4 +1,4 @@
-# Derivault
+# DeriVault
 
 Deterministic password manager that runs entirely in your browser. Passwords are derived using PBKDF2 and AES-GCM from either a master passphrase or BIP39 mnemonic. No passwords are ever stored; they are generated on-demand using cryptographic hash functions.
 
