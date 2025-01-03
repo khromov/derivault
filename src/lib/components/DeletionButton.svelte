@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, createEventDispatcher } from 'svelte';
-	import { Trash2 } from 'lucide-svelte';
+	import Trash2 from 'lucide-svelte/icons/trash-2';
 	import { sineInOut } from 'svelte/easing';
 
 	export let duration = 2500; // 2 seconds in milliseconds

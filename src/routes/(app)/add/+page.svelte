@@ -7,7 +7,9 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Slider } from '$lib/components/ui/slider';
 	import { generatePassword } from '$lib/crypto';
-	import { Copy, ChevronDown, ChevronUp } from 'lucide-svelte';
+	import Copy from 'lucide-svelte/icons/copy';
+	import ChevronDown from 'lucide-svelte/icons/chevron-down';
+	import ChevronUp from 'lucide-svelte/icons/chevron-up';
 	import toast from 'svelte-french-toast';
 	import { slide } from 'svelte/transition';
 	import { base } from '$app/paths';

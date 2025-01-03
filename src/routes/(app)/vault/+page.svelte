@@ -4,7 +4,12 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
-	import { Plus, Settings, Copy, Edit, LogOut, Search } from 'lucide-svelte';
+	import Plus from 'lucide-svelte/icons/plus';
+	import Settings from 'lucide-svelte/icons/settings';
+	import Copy from 'lucide-svelte/icons/copy';
+	import Edit from 'lucide-svelte/icons/square-pen';
+	import LogOut from 'lucide-svelte/icons/log-out';
+	import Search from 'lucide-svelte/icons/search';
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 	import { base } from '$app/paths';

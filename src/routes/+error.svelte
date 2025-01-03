@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import { AlertTriangle } from 'lucide-svelte';
+	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
 
 	$: console.warn('Error: ', $page.error?.message);
 	$: isCryptoError = $page.error?.message?.includes('cryptographic functions') ?? false;

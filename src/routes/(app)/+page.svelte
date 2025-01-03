@@ -10,7 +10,8 @@
 	import { validateMnemonic, mnemonicToSeed, generateMnemonic } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
 	import toast from 'svelte-french-toast';
-	import { RefreshCw, Copy } from 'lucide-svelte';
+	import RefreshCw from 'lucide-svelte/icons/refresh-cw';
+	import Copy from 'lucide-svelte/icons/copy';
 	import { createAvatar } from '@dicebear/core';
 	import { identicon } from '@dicebear/collection';
 	import { deriveMasterKey } from '$lib/crypto';

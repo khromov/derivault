@@ -3,7 +3,9 @@
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
-	import { AlertTriangle, Download, Upload } from 'lucide-svelte';
+	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
+	import Download from 'lucide-svelte/icons/download';
+	import Upload from 'lucide-svelte/icons/upload';
 	import { base } from '$app/paths';
 
 	function panicButton() {

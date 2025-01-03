@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
-	import { Upload } from 'lucide-svelte';
+	import Upload from 'lucide-svelte/icons/upload';
 	import { Label } from '$lib/components/ui/label';
 	import toast from 'svelte-french-toast';
 	import { validateMnemonic, mnemonicToSeed } from 'web-bip39';
