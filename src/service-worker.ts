@@ -13,10 +13,12 @@ const CACHE = `cache-${version}`;
 const ASSETS = [
 	// ...build, // Not needed, since we use bundleStrategy: 'inline'
 	...files,
-	base // For the base index.html
+	base, // For the base index.html
+	base + '/' // with trailing slash
 ];
 
 sw.addEventListener('install', (event) => {
+	console.log('installing with files', ASSETS);
 	// Create a new cache and add all files to it
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
@@ -69,14 +71,6 @@ sw.addEventListener('fetch', (event) => {
 				cache.put(event.request, response.clone());
 			}
 
-			// If we get a 404, return the index.html file
-			if (response.status === 404) {
-				const indexResponse = await cache.match(base);
-				if (indexResponse) {
-					return indexResponse;
-				}
-			}
-
 			return response;
 		} catch (err) {
 			const response = await cache.match(event.request);
@@ -84,10 +78,13 @@ sw.addEventListener('fetch', (event) => {
 				return response;
 			}
 
+			console.log('error on fetch', err);
+
 			// For any failed requests (including network errors),
 			// return the index.html file if it's in the cache
 			const indexResponse = await cache.match(base);
 			if (indexResponse) {
+				console.log('returning index', indexResponse);
 				return indexResponse;
 			}
 
