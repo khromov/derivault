@@ -73,7 +73,7 @@
 				.map((b) => b.toString(16).padStart(2, '0'))
 				.join('');
 
-			console.log('$masterPassword', $masterPassword);
+			// console.log('$masterPassword', $masterPassword);
 			goto(`${base}/vault`);
 		} catch (error) {
 			toast.error('Error deriving key: ' + (error as Error).message);

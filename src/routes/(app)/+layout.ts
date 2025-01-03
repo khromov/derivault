@@ -7,6 +7,7 @@ import { masterPassword } from '$lib/stores';
 import { deriveMasterKey } from '$lib/crypto';
 import { redirect, error } from '@sveltejs/kit';
 import { browser } from '$app/environment';
+import { base } from '$app/paths';
 
 export const load: LayoutLoad = async ({ route }) => {
 	if (
@@ -23,9 +24,9 @@ export const load: LayoutLoad = async ({ route }) => {
 	const currentMasterPassword = get(masterPassword);
 
 	if (route.id === '/(app)' && currentMasterPassword) {
-		redirect(302, '/vault');
+		redirect(302, `${base}/vault`);
 	} else if (route.id !== '/(app)' && !currentMasterPassword) {
-		redirect(302, '/');
+		redirect(302, `${base}/`);
 	}
 
 	let derivedKey = null;
