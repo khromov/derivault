@@ -56,7 +56,7 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">
 	<Card class="w-full max-w-[500px]">
 		<CardHeader>
-			<CardTitle>Offline Password Manager</CardTitle>
+			<CardTitle>DeriVault</CardTitle>
 		</CardHeader>
 		<CardContent class="p-4">
 			<div class="mb-4">

@@ -102,7 +102,7 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
-			<CardTitle>Offline Password Manager</CardTitle>
+			<CardTitle>DeriVault</CardTitle>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
@@ -160,7 +160,7 @@
 								bind:value={mnemonic}
 								rows="3"
 								class="w-full rounded-md border border-input bg-transparent px-3 py-2 pr-20 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
-							/>
+							></textarea>
 							<div class="absolute bottom-2 right-2 flex space-x-1">
 								{#if isMnemonicValid}
 									<Button size="sm" variant="ghost" on:click={copyMnemonic} title="Copy mnemonic">

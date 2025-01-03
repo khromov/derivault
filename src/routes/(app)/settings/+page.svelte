@@ -20,7 +20,7 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
-			<CardTitle>Offline Password Manager - Settings</CardTitle>
+			<CardTitle>DeriVault - Settings</CardTitle>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">

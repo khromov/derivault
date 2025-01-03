@@ -97,7 +97,7 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
-			<CardTitle>Offline Password Manager - {data.editMode ? 'Edit' : 'Add'} Site</CardTitle>
+			<CardTitle>DeriVault - {data.editMode ? 'Edit' : 'Add'} Site</CardTitle>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
@@ -162,7 +162,7 @@
 									rows="3"
 									class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
 									placeholder="Add an optional comment (note: this is not encrypted)"
-								/>
+								></textarea>
 							</div>
 						</div>
 					{/if}
