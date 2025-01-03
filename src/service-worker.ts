@@ -13,7 +13,7 @@ const CACHE = `cache-${version}`;
 const ASSETS = [
 	// ...build, // Not needed, since we use bundleStrategy: 'inline'
 	...files,
-	base, // For the base index.html
+	// base, // For the base index.html. GH Pages always redirects to trailing slash
 	base + '/' // with trailing slash
 ];
 
