@@ -14,7 +14,7 @@ const ASSETS = [
 	// ...build, // Not needed, since we use bundleStrategy: 'inline'
 	...files,
 	// base, // For the base index.html. GH Pages always redirects to trailing slash
-	base + '/' // with trailing slash
+	base + '/' // with trailing slash,
 ];
 
 sw.addEventListener('install', (event) => {
@@ -59,6 +59,7 @@ sw.addEventListener('fetch', (event) => {
 		// for everything else, try the network first, but
 		// fall back to the cache if we're offline
 		try {
+			console.log('trying network for fetch', event.request.url);
 			const response = await fetch(event.request);
 
 			// if we're offline, fetch can return a value that is not a Response
@@ -78,14 +79,12 @@ sw.addEventListener('fetch', (event) => {
 				return response;
 			}
 
-			console.log('error on fetch', err);
-
 			// For any failed requests (including network errors),
 			// return the index.html file if it's in the cache
-			const indexResponse = await cache.match(base);
-			if (indexResponse) {
-				console.log('returning index', indexResponse);
-				return indexResponse;
+			const errorResponse = await cache.match(base + '/error.html');
+			if (errorResponse) {
+				console.log('returning error', errorResponse);
+				return errorResponse;
 			}
 
 			// Only throw if we couldn't even serve the index.html
