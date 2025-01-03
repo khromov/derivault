@@ -10,6 +10,7 @@
 	import { Copy, ChevronDown, ChevronUp } from 'lucide-svelte';
 	import toast from 'svelte-french-toast';
 	import { slide } from 'svelte/transition';
+	import { base } from '$app/paths';
 
 	export let data;
 
@@ -75,7 +76,7 @@
 			} else {
 				$sites = [...$sites, siteToSave];
 			}
-			goto('/vault');
+			goto(`${base}/vault`);
 		} else {
 			toast.error('Please enter a valid email and domain.');
 		}
@@ -172,7 +173,7 @@
 				>
 					{data.editMode ? 'Update Site' : 'Add Site'}
 				</Button>
-				<Button on:click={() => goto('/vault')} variant="outline">Cancel</Button>
+				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Cancel</Button>
 			</div>
 		</CardContent>
 	</Card>

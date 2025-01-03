@@ -14,6 +14,7 @@
 	import { createAvatar } from '@dicebear/core';
 	import { identicon } from '@dicebear/collection';
 	import { deriveMasterKey } from '$lib/crypto';
+	import { base } from '$app/paths';
 
 	export let data;
 
@@ -73,7 +74,7 @@
 				.join('');
 
 			console.log('$masterPassword', $masterPassword);
-			goto('/vault');
+			goto(`${base}/vault`);
 		} catch (error) {
 			toast.error('Error deriving key: ' + (error as Error).message);
 		}

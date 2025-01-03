@@ -6,6 +6,7 @@
 	import { Download, Copy } from 'lucide-svelte';
 	import toast from 'svelte-french-toast';
 	import { mnemonicToSeed } from 'web-bip39';
+	import { base } from '$app/paths';
 
 	export let data;
 
@@ -103,7 +104,7 @@
 					<Download size={16} class="mr-2" />
 					Export Encrypted Vault
 				</Button>
-				<Button on:click={() => goto('/settings')} variant="outline">Back</Button>
+				<Button on:click={() => goto(`${base}/settings`)} variant="outline">Back</Button>
 			</div>
 		</CardContent>
 	</Card>

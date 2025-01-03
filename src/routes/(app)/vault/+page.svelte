@@ -7,6 +7,7 @@
 	import { Plus, Settings, Copy, Edit, LogOut, Search } from 'lucide-svelte';
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
+	import { base } from '$app/paths';
 
 	export let data;
 
@@ -22,7 +23,7 @@
 	}
 
 	function editSite(index: number) {
-		goto(`/add?edit=${index}`);
+		goto(`${base}/add?edit=${index}`);
 	}
 
 	function copyToClipboard(password: string) {
@@ -114,17 +115,17 @@
 	<Button
 		on:click={() => {
 			$masterPassword = '';
-			goto('/');
+			goto(`${base}/`);
 		}}
 		size="icon"
 		variant="outline"
 	>
 		<LogOut size={24} />
 	</Button>
-	<Button on:click={() => goto('/settings')} size="icon" variant="outline">
+	<Button on:click={() => goto(`${base}/settings`)} size="icon" variant="outline">
 		<Settings size={24} />
 	</Button>
-	<Button on:click={() => goto('/add')} size="icon">
+	<Button on:click={() => goto(`${base}/add`)} size="icon">
 		<Plus size={24} />
 	</Button>
 </div>

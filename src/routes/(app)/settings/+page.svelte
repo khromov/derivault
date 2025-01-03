@@ -4,7 +4,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { AlertTriangle, Download, Upload } from 'lucide-svelte';
-	import toast from 'svelte-french-toast';
+	import { base } from '$app/paths';
 
 	function panicButton() {
 		$sites = [];
@@ -13,7 +13,7 @@
 
 		localStorage.clear();
 
-		goto('/');
+		goto(`${base}/`);
 	}
 </script>
 
@@ -24,11 +24,11 @@
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
-				<Button on:click={() => goto('/settings/export')} variant="outline">
+				<Button on:click={() => goto(`${base}/settings/export`)} variant="outline">
 					<Download size={16} class="mr-2" />
 					Export Vault
 				</Button>
-				<Button on:click={() => goto('/settings/import')} variant="outline">
+				<Button on:click={() => goto(`${base}/settings/import`)} variant="outline">
 					<Upload size={16} class="mr-2" />
 					Import Vault
 				</Button>
@@ -36,7 +36,7 @@
 					<AlertTriangle size={16} class="mr-2" />
 					Panic Button (Clear All Data)
 				</Button>
-				<Button on:click={() => goto('/vault')} variant="outline">Back to Vault</Button>
+				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Back to Vault</Button>
 			</div>
 		</CardContent>
 	</Card>
