@@ -5,7 +5,7 @@
 
 const sw = self as unknown as ServiceWorkerGlobalScope;
 
-import { /* build */, files, version, base } from '$service-worker';
+import { /* build , */ files, version, base } from '$service-worker';
 
 // Create a unique cache name for this deployment
 const CACHE = `cache-${version}`;
@@ -21,6 +21,7 @@ sw.addEventListener('install', (event) => {
 	async function addFilesToCache() {
 		const cache = await caches.open(CACHE);
 		await cache.addAll(ASSETS);
+		await sw.skipWaiting();
 	}
 
 	event.waitUntil(addFilesToCache());
@@ -48,7 +49,6 @@ sw.addEventListener('fetch', (event) => {
 		// `build`/`files` can always be served from the cache
 		if (ASSETS.includes(url.pathname)) {
 			const response = await cache.match(url.pathname);
-
 			if (response) {
 				return response;
 			}
@@ -69,16 +69,29 @@ sw.addEventListener('fetch', (event) => {
 				cache.put(event.request, response.clone());
 			}
 
+			// If we get a 404, return the index.html file
+			if (response.status === 404) {
+				const indexResponse = await cache.match(base);
+				if (indexResponse) {
+					return indexResponse;
+				}
+			}
+
 			return response;
 		} catch (err) {
 			const response = await cache.match(event.request);
-
 			if (response) {
 				return response;
 			}
 
-			// if there's no cache, then just error out
-			// as there is nothing we can do to respond to this request
+			// For any failed requests (including network errors),
+			// return the index.html file if it's in the cache
+			const indexResponse = await cache.match(base);
+			if (indexResponse) {
+				return indexResponse;
+			}
+
+			// Only throw if we couldn't even serve the index.html
 			throw err;
 		}
 	}
