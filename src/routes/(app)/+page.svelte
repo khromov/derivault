@@ -28,7 +28,7 @@
 	$: {
 		if (passphrase) {
 			const avatar = createAvatar(identicon, {
-				seed: passphrase,
+				seed: `${passphrase}-${$computationIntensity}`, // Include computation intensity in the seed
 				size: 32
 			});
 			avatarSvg = avatar.toDataUri();
