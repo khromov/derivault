@@ -13,7 +13,11 @@ export const load: PageLoad = async ({ url, parent }) => {
 		const allSites = get(sites);
 
 		if (isNaN(editIndex) || editIndex < 0 || editIndex >= allSites.length) {
-			throw error(404, 'Site not found');
+			error(404, 'Site not found');
+		}
+
+		if (!derivedKey) {
+			error(400, 'Encryption key not available');
 		}
 
 		const siteToEdit = allSites[editIndex];

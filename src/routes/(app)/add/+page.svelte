@@ -72,7 +72,7 @@
 			parsedDomain !== 'invalid'
 		) {
 			const siteToSave = { ...newSite, domain: parsedDomain };
-			if (data.editMode) {
+			if (data.editMode && editingIndex !== null) {
 				$sites[editingIndex] = siteToSave;
 				$sites = $sites;
 			} else {

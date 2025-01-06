@@ -37,7 +37,13 @@
 	}
 
 	function searchSites(
-		sites: Array<{ domain: string; email: string; comment?: string }>,
+		sites: Array<{
+			domain: string;
+			email: string;
+			comment?: string;
+			rotationRounds: number;
+			password?: string;
+		}>,
 		term: string
 	) {
 		const lowercaseTerm = term.toLowerCase();
@@ -98,7 +104,7 @@
 											<Edit size={16} />
 										</Button>
 										<Button
-											on:click={() => copyToClipboard(site.password)}
+											on:click={() => copyToClipboard(site.password ?? '')}
 											size="sm"
 											on:mouseenter={() => (hoveredSite = site.index)}
 											on:mouseleave={() => (hoveredSite = null)}

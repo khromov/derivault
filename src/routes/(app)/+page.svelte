@@ -107,7 +107,10 @@
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
-				<RadioGroup bind:value={currentAuthType} onValueChange={(e) => handleAuthTypeChange(e)}>
+				<RadioGroup
+					bind:value={currentAuthType}
+					onValueChange={(value: string) => handleAuthTypeChange(value as 'password' | 'bip39')}
+				>
 					<div class="flex items-center space-x-2">
 						<RadioGroupItem value="password" id="password" />
 						<Label for="password">Passphrase</Label>
