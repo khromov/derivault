@@ -18,7 +18,7 @@
 <Card class="w-full max-w-[600px]">
 	<CardContent class="p-6">
 		<div class="mb-8">
-			<div class="mb-4 flex justify-center">
+			<div class="mb-6 flex justify-center">
 				{#each steps as _, index}
 					<div
 						class={cn(
@@ -29,9 +29,9 @@
 				{/each}
 			</div>
 
-			<div class="mb-8 text-center">
-				<div class="mb-4 flex justify-center">
-					<svelte:component this={steps[currentStep].icon} class="h-8 w-8" />
+			<div class="text-center">
+				<div class="mb-3 flex justify-center">
+					<svelte:component this={steps[currentStep].icon} class="h-10 w-10" />
 				</div>
 				<h2 class="mb-2 text-2xl font-semibold">{steps[currentStep].title}</h2>
 				<p class="text-muted-foreground">{steps[currentStep].description}</p>
