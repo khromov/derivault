@@ -28,6 +28,14 @@ Preview the production build with `npm run preview`.
 
 Cryptographic operations are performed using the Web Crypto API. All password generation happens client-side - no data is ever transmitted to any server. The vault data (domains and usernames) is stored encrypted in localStorage, with the option to export/import using AES-GCM encryption.
 
+## Updating snapshots
+
+```
+npm run test:unit -- -u
+```
+
+However, keep in mind that the generatePassword tests should not change under any circumstances, as that messes up the password generation!
+
 ## License
 
 MIT License
