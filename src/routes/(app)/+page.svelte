@@ -139,7 +139,7 @@
 					</div>
 					<div class="flex flex-col space-y-1.5">
 						<Label for="computationIntensity">
-							Computation Intensity: {$computationIntensity}{$computationIntensity === 3
+							Computation Intensity: {$computationIntensity}{$computationIntensity === 7
 								? ' (default)'
 								: ''}
 						</Label>

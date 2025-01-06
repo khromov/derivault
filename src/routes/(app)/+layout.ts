@@ -8,6 +8,7 @@ import { deriveMasterKey } from '$lib/crypto';
 import { redirect, error } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { base } from '$app/paths';
+import { cachedMasterKey } from '$lib/stores';
 
 export const load: LayoutLoad = async ({ route }) => {
 	if (
@@ -30,8 +31,12 @@ export const load: LayoutLoad = async ({ route }) => {
 	}
 
 	let derivedKey = null;
-	if (currentMasterPassword) {
+	let cached = get(cachedMasterKey);
+	if (cached) {
+		derivedKey = cached;
+	} else if (currentMasterPassword) {
 		derivedKey = await deriveMasterKey(currentMasterPassword);
+		cachedMasterKey.set(derivedKey);
 	}
 
 	return {

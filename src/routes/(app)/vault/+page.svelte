@@ -13,6 +13,7 @@
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 	import { base } from '$app/paths';
+	import { cachedMasterKey } from '$lib/stores';
 
 	export let data;
 
@@ -126,17 +127,19 @@
 	<Button
 		on:click={() => {
 			$masterPassword = '';
+			cachedMasterKey.set(null);
 			goto(`${base}/`);
 		}}
 		size="icon"
 		variant="outline"
+		title="Log out"
 	>
 		<LogOut size={24} />
 	</Button>
-	<Button on:click={() => goto(`${base}/settings`)} size="icon" variant="outline">
+	<Button on:click={() => goto(`${base}/settings`)} size="icon" variant="outline" title="Settings">
 		<Settings size={24} />
 	</Button>
-	<Button on:click={() => goto(`${base}/add`)} size="icon">
+	<Button on:click={() => goto(`${base}/add`)} size="icon" title="Add site">
 		<Plus size={24} />
 	</Button>
 </div>

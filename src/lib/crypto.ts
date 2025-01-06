@@ -1,7 +1,10 @@
 import { get } from 'svelte/store';
 import { computationIntensity } from './stores';
 
-export async function deriveMasterKey(passphrase: string): Promise<Uint8Array> {
+export async function deriveMasterKey(
+	passphrase: string,
+	intensityOverride?: number
+): Promise<Uint8Array> {
 	const encoder = new TextEncoder();
 	const passphraseBuffer = encoder.encode(passphrase);
 	const salt = encoder.encode('ConstantSaltForDeterministicResults');
@@ -14,13 +17,13 @@ export async function deriveMasterKey(passphrase: string): Promise<Uint8Array> {
 		['deriveBits']
 	);
 
-	const intensity = get(computationIntensity);
+	const intensity = intensityOverride ?? get(computationIntensity);
 	const derivedBits = await window.crypto.subtle.deriveBits(
 		{
 			name: 'PBKDF2',
 			salt: salt,
 			iterations: 100000 * intensity,
-			hash: 'SHA-256'
+			hash: 'SHA-512'
 		},
 		keyMaterial,
 		256
