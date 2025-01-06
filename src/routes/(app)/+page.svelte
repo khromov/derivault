@@ -184,12 +184,23 @@
 					</div>
 				{/if}
 
-				<Button
-					on:click={handleEnter}
-					disabled={currentAuthType === 'password' ? !passphrase : !mnemonic}
-				>
-					Enter
-				</Button>
+				<div class="flex flex-col space-y-2">
+					<Button
+						on:click={handleEnter}
+						disabled={currentAuthType === 'password' ? !passphrase : !mnemonic}
+					>
+						Enter vault
+					</Button>
+					<Button
+						on:click={() => {
+							goto(`${base}/onboarding`);
+						}}
+						variant="outline"
+						class="mt-4"
+					>
+						How do you use DeriVault?
+					</Button>
+				</div>
 			</div>
 		</CardContent>
 	</Card>
