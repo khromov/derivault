@@ -5,7 +5,7 @@
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import { cn } from '$lib/utils';
 
-	export let steps = [];
+	export let steps: string | any[] = [];
 	export let currentStep: number = 0;
 	export let onNext: () => void = () => {};
 	export let onPrevious: () => void = () => {};
