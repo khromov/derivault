@@ -51,6 +51,9 @@
 	"overrides": {
 		"svelte-french-toast": {
 			"svelte": "^5.16.2"
+		},
+		"@melt-ui/svelte": {
+			"svelte": "^5.16.2"
 		}
 	},
 	"type": "module"
