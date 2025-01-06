@@ -54,6 +54,9 @@
 		},
 		"@melt-ui/svelte": {
 			"svelte": "^5.16.2"
+		},
+		"vitest": {
+			"vite": "^6.0.0"
 		}
 	},
 	"type": "module"
