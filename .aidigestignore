@@ -1,0 +1,13 @@
+.github
+.svelte-kit
+build
+test-results
+.aidigestignore
+.gitignore
+.npmrc
+.nvmrc
+.prettierrc
+components.json
+eslint.config.js
+LICENSE
+postcss.config.js
