@@ -43,7 +43,7 @@
 			try {
 				// Run multiple iterations
 				for (let i = 0; i < ITERATIONS; i++) {
-					await deriveMasterKey(TEST_PASSWORD, intensity);
+					await deriveMasterKey(TEST_PASSWORD + Math.random().toString(), intensity);
 				}
 
 				const endTime = performance.now();

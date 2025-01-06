@@ -2,7 +2,7 @@ import { persisted } from 'svelte-persisted-store';
 import { writable } from 'svelte/store';
 
 export const masterPassword = writable<string | null>(null);
-export const computationIntensity = persisted<number>('computationIntensity', 7);
+export const computationIntensity = persisted<number>('computationIntensity', 5);
 
 export interface Site {
 	email: string;
