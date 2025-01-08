@@ -15,6 +15,12 @@
 			icon: Key
 		},
 		{
+			title: 'What happens if I enter the wrong passphrase?',
+			description:
+				'In DeriVault, there are no "right" or "wrong" passphrases. The master passphrase is used to derive a unique password for each of your sites. If you enter the wrong passphrase, DeriVault will generate passwords for your stored sites, but they won\'t be the correct. That\'s why we call DeriVault a "plausible deniability" password manager.',
+			icon: Key
+		},
+		{
 			title: 'Backups are optional',
 			description:
 				'As long as you remember your master passphrase, your username and the site you are logging in to, you don\'t need to back anything up, as the passwords are generated on-demand in a deterministic fashion. That\'s why we call DeriVault a "plausible deniability" password manager.',
@@ -29,7 +35,7 @@
 		{
 			title: 'Password rotation',
 			description:
-				'Need to rotate a password? Increment the rotation counter for that site under the Advanced tab.',
+				'Need to rotate a password for a site? Increment the rotation counter for that site under the Advanced tab.',
 			icon: RefreshCw
 		},
 		{
