@@ -8,8 +8,8 @@ export const prerender = true;
 const baseOrRoot = base ? base : '/';
 
 const manifest: WebAppManifest = {
-	theme_color: '#ffffff',
-	background_color: '#f3f4f6',
+	theme_color: '#020817', // hsl(222, 84%, 5%)
+	background_color: '#f3f4f6', // rgb(243, 244, 246)
 	display: 'standalone',
 	scope: `${baseOrRoot}`,
 	start_url: `${baseOrRoot}`,
