@@ -22,6 +22,13 @@ const manifest: WebAppManifest = {
 	shortcuts: [],
 	icons: [
 		{
+			purpose: 'maskable',
+			src: `${baseOrRoot}${base ? '/' : ''}icon-512-maskable.png`,
+			sizes: '512x512',
+			type: 'image/png'
+		},
+		{
+			purpose: 'any',
 			src: `${baseOrRoot}${base ? '/' : ''}icon-512.png`,
 			sizes: '512x512',
 			type: 'image/png'
