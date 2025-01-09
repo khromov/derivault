@@ -134,7 +134,6 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			console.log('generated password', password);
 			expect(password).toMatchInlineSnapshot(`"|J@OE)MPLIW**QCk"`);
 		});
 
