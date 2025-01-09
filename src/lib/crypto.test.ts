@@ -132,7 +132,6 @@ describe('generatePassword', () => {
 				domain: 'example.com',
 				rotationRounds: 1
 			};
-
 			const password = await generatePassword(masterKey, site);
 			expect(password).toMatchInlineSnapshot(`"|J@OE)MPLIW**QCk"`);
 		});
