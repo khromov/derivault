@@ -1,5 +1,6 @@
 import { get } from 'svelte/store';
 import { computationIntensity } from './stores';
+import { mnemonicToSeed } from 'web-bip39';
 
 const ITERATIONS_PER_INTENSITY = 1000000;
 
@@ -32,6 +33,38 @@ export async function deriveMasterKey(
 	);
 
 	return new Uint8Array(derivedBits);
+}
+
+export async function deriveBip39MasterKey(
+	mnemonic: string,
+	intensityOverride?: number
+): Promise<Uint8Array> {
+	// First get the BIP39 seed (this already uses PBKDF2 with 2048 iterations)
+	const bip39Seed = await mnemonicToSeed(mnemonic.trim());
+
+	// Import the seed for additional key stretching
+	const keyMaterial = await window.crypto.subtle.importKey(
+		'raw',
+		bip39Seed,
+		{ name: 'PBKDF2' },
+		false,
+		['deriveBits']
+	);
+
+	// Add our own stretching with configurable intensity
+	const intensity = intensityOverride ?? get(computationIntensity);
+	const extraStretchedKey = await window.crypto.subtle.deriveBits(
+		{
+			name: 'PBKDF2',
+			salt: new TextEncoder().encode('DeriVault-BIP39-Extra-Stretching'),
+			iterations: ITERATIONS_PER_INTENSITY * intensity,
+			hash: 'SHA-512'
+		},
+		keyMaterial,
+		256
+	);
+
+	return new Uint8Array(extraStretchedKey);
 }
 
 export async function generatePassword(
