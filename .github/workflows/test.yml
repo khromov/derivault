@@ -40,9 +40,3 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run integration tests
         run: npm run test:integration
-      - uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
