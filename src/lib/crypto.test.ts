@@ -135,7 +135,7 @@ describe('generatePassword', () => {
 
 			const password = await generatePassword(masterKey, site);
 			console.log('generated password', password);
-			expect(password).toMatchInlineSnapshot(`"MMA;}1[wc)aP213G"`);
+			expect(password).toMatchInlineSnapshot(`"|J@OE)MPLIW**QCk"`);
 		});
 
 		it('generates expected password for Gmail account', async () => {
@@ -147,7 +147,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"6pSQpU+Gw=NkW|#3"`);
+			expect(password).toMatchInlineSnapshot(`"^G%!-,4f[l0Q!?;0"`);
 		});
 
 		it('generates expected password with high rotation round', async () => {
@@ -159,7 +159,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"Sb2F}u1[HN5IStJE"`);
+			expect(password).toMatchInlineSnapshot(`"d+r[4AHm;[7C8X6E"`);
 		});
 
 		it('generates expected password with special characters in email', async () => {
@@ -171,7 +171,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"t1KA7;tEzH]w}MeD"`);
+			expect(password).toMatchInlineSnapshot(`"8DV9ox!Z&qe{ARS%"`);
 		});
 
 		it('generates expected password with subdomain', async () => {
@@ -183,7 +183,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"Ghjsq54DU,JCJ5v_"`);
+			expect(password).toMatchInlineSnapshot(`"W]$Fv|3)U+|1|ojO"`);
 		});
 
 		it('generates expected password with very long inputs', async () => {
@@ -195,7 +195,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"t%y6ma{xr9ZT?-(8"`);
+			expect(password).toMatchInlineSnapshot(`"!znIhwZjqqP>Gg!C"`);
 		});
 	});
 });

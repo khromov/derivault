@@ -139,7 +139,7 @@
 					</div>
 					<div class="flex flex-col space-y-1.5">
 						<Label for="computationIntensity">
-							Computation Intensity: {$computationIntensity}{$computationIntensity === 5
+							Computation Intensity: {$computationIntensity}{$computationIntensity === 3
 								? ' (default)'
 								: ''}
 						</Label>
@@ -184,7 +184,7 @@
 					</div>
 					<div class="flex flex-col space-y-1.5">
 						<Label for="computationIntensity">
-							Extra Computation Intensity: {$computationIntensity}{$computationIntensity === 5
+							Extra Computation Intensity: {$computationIntensity}{$computationIntensity === 3
 								? ' (default)'
 								: ''}
 						</Label>
