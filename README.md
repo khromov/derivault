@@ -1,8 +1,8 @@
+![Banner](./.github/resources/banner.png)
+
 # DeriVault
 
 > Deterministic, offline-first password manager that runs entirely in your browser. Passwords are derived using PBKDF2 and AES-GCM from either a master passphrase or BIP39 mnemonic. No passwords are ever stored; passwords are generated on-demand using cryptographic, secure hash functions.
-
-![Banner](./.github/resources/banner.png)
 
 ## Development
 
