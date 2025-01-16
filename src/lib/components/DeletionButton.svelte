@@ -58,7 +58,7 @@
 		<div
 			class="absolute bottom-[calc(100%+4px)] left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-black/75 px-2 py-1 text-xs text-white"
 		>
-			Hold to delete ({Math.round(progress * 100)}%)
+			Keep holding to delete
 		</div>
 	{/if}
 	<button
