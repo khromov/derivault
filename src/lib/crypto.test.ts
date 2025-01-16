@@ -77,10 +77,7 @@ describe('deriveBip39MasterKey', () => {
 			.map((b) => b.toString(16).padStart(2, '0'))
 			.join('');
 
-		// This is a snapshot test to ensure the key derivation remains consistent
-		expect(keyHex).toMatchInlineSnapshot(
-			`"fa1d8c30eacbaa40b142ffcfef8fbf1e68e3e8ceeefe64da2eb1e8a9ffac0bbd"`
-		);
+		expect(keyHex).toMatchSnapshot();
 	});
 });
 
@@ -184,7 +181,7 @@ describe('generatePassword', () => {
 				rotationRounds: 1
 			};
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`")7+-bRND*G;_&k0e"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password for Gmail account', async () => {
@@ -196,7 +193,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"r)Bbra:jtVW}.zi-"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with high rotation round', async () => {
@@ -208,7 +205,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"ID2b)_?Eu$%+@OEe"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with special characters in email', async () => {
@@ -220,7 +217,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"$2zd}F5y^S%Mvv6w"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with subdomain', async () => {
@@ -232,7 +229,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"Lt0W%Xe.C?7m6TeD"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with very long inputs', async () => {
@@ -244,7 +241,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"AB#8^#)roL:b4vSU"`);
+			expect(password).toMatchSnapshot();
 		});
 	});
 });
