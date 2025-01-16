@@ -2,7 +2,7 @@ import { get } from 'svelte/store';
 import { computationIntensity } from './stores';
 import { mnemonicToSeed } from 'web-bip39';
 
-const ITERATIONS_PER_INTENSITY = 1000000;
+const ITERATIONS_PER_INTENSITY = 250000; // 250.000 iterations per intensity
 
 export async function deriveMasterKey(
 	passphrase: string,
