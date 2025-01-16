@@ -1,21 +1,19 @@
 <script lang="ts">
-	import { masterPassword, sites, computationIntensity, cachedMasterKey } from '$lib/stores';
+	import { masterPassword, sites, computationIntensity } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
 	import Download from 'lucide-svelte/icons/download';
 	import Upload from 'lucide-svelte/icons/upload';
+	import Bug from 'lucide-svelte/icons/bug';
 	import { base } from '$app/paths';
 
 	function panicButton() {
 		$sites = [];
 		$masterPassword = null;
 		$computationIntensity = 3;
-
 		localStorage.clear();
-
-		cachedMasterKey.set(null);
 		goto(`${base}/`);
 	}
 </script>
@@ -42,6 +40,10 @@
 				<Button on:click={() => goto(`${base}/settings/benchmark`)} variant="outline">
 					<Upload size={16} class="mr-2" />
 					Benchmark cryptographic functions
+				</Button>
+				<Button on:click={() => goto(`${base}/settings/debug`)} variant="outline">
+					<Bug size={16} class="mr-2" />
+					Debug Tools
 				</Button>
 				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Back to Vault</Button>
 			</div>

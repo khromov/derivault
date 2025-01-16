@@ -13,18 +13,18 @@
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 	import { base } from '$app/paths';
-	import { cachedMasterKey } from '$lib/stores';
+	import { generatePassword } from '$lib/crypto';
 
 	export let data;
 
 	let hoveredSite: number | null = null;
 	let searchTerm = '';
 
-	$: sitePasswords = data.sites;
+	$: siteList = data.sites;
 
-	function removeSite(index: number) {
+	async function removeSite(index: number) {
 		$sites = $sites.filter((_, i) => i !== index);
-		sitePasswords = sitePasswords.filter((_, i) => i !== index);
+		siteList = siteList.filter((_, i) => i !== index);
 		toast.success('Site removed successfully');
 	}
 
@@ -32,9 +32,15 @@
 		goto(`${base}/add?edit=${index}`);
 	}
 
-	function copyToClipboard(password: string) {
-		navigator.clipboard.writeText(password);
-		toast.success('Password copied to clipboard!');
+	async function copyToClipboard(site: (typeof siteList)[number]) {
+		try {
+			const password = await generatePassword(data.derivedKey, site);
+			await navigator.clipboard.writeText(password);
+			toast.success('Password copied to clipboard!');
+		} catch (error) {
+			toast.error('Failed to generate or copy password');
+			console.error('Error copying password:', error);
+		}
 	}
 
 	function searchSites(
@@ -43,7 +49,6 @@
 			email: string;
 			comment?: string;
 			rotationRounds: number;
-			password?: string;
 		}>,
 		term: string
 	) {
@@ -61,8 +66,8 @@
 	}
 
 	$: filteredSites = searchTerm
-		? searchSites(sitePasswords, searchTerm)
-		: sitePasswords.map((site, index) => ({ ...site, score: 0, index }));
+		? searchSites(siteList, searchTerm)
+		: siteList.map((site, index) => ({ ...site, score: 0, index }));
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">
@@ -105,7 +110,7 @@
 											<Edit size={16} />
 										</Button>
 										<Button
-											on:click={() => copyToClipboard(site.password ?? '')}
+											on:click={() => copyToClipboard($sites[site.index])}
 											size="sm"
 											on:mouseenter={() => (hoveredSite = site.index)}
 											on:mouseleave={() => (hoveredSite = null)}
@@ -126,8 +131,7 @@
 <div class="fixed bottom-4 right-4 flex space-x-2">
 	<Button
 		on:click={() => {
-			$masterPassword = '';
-			cachedMasterKey.set(null);
+			$masterPassword = null;
 			goto(`${base}/`);
 		}}
 		size="icon"

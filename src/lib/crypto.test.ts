@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { deriveMasterKey, generatePassword } from './crypto';
+import { deriveMasterKey, generatePassword, deriveBip39MasterKey } from './crypto';
 
 describe('deriveMasterKey', () => {
 	it('produces the same key for the same passphrase', async () => {
@@ -30,6 +30,54 @@ describe('deriveMasterKey', () => {
 		const key2 = await deriveMasterKey(passphrase, 2);
 
 		expect(Array.from(key1)).not.toEqual(Array.from(key2));
+	});
+});
+
+describe('deriveBip39MasterKey', () => {
+	it('produces the same key for the same mnemonic', async () => {
+		const mnemonic =
+			'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
+		const intensityOverride = 1; // Use low intensity for faster tests
+
+		const key1 = await deriveBip39MasterKey(mnemonic, intensityOverride);
+		const key2 = await deriveBip39MasterKey(mnemonic, intensityOverride);
+
+		expect(Array.from(key1)).toEqual(Array.from(key2));
+	});
+
+	it('produces different keys for different mnemonics', async () => {
+		const mnemonic1 =
+			'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
+		const mnemonic2 = 'zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo zoo wrong';
+		const intensityOverride = 1;
+
+		const key1 = await deriveBip39MasterKey(mnemonic1, intensityOverride);
+		const key2 = await deriveBip39MasterKey(mnemonic2, intensityOverride);
+
+		expect(Array.from(key1)).not.toEqual(Array.from(key2));
+	});
+
+	it('produces different keys for different intensities', async () => {
+		const mnemonic =
+			'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
+
+		const key1 = await deriveBip39MasterKey(mnemonic, 1);
+		const key2 = await deriveBip39MasterKey(mnemonic, 2);
+
+		expect(Array.from(key1)).not.toEqual(Array.from(key2));
+	});
+
+	it('generates expected key for standard test vector', async () => {
+		const mnemonic =
+			'abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about';
+		const intensityOverride = 1;
+
+		const key = await deriveBip39MasterKey(mnemonic, intensityOverride);
+		const keyHex = Array.from(key)
+			.map((b) => b.toString(16).padStart(2, '0'))
+			.join('');
+
+		expect(keyHex).toMatchSnapshot();
 	});
 });
 
@@ -132,10 +180,8 @@ describe('generatePassword', () => {
 				domain: 'example.com',
 				rotationRounds: 1
 			};
-
 			const password = await generatePassword(masterKey, site);
-			console.log('generated password', password);
-			expect(password).toMatchInlineSnapshot(`"MMA;}1[wc)aP213G"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password for Gmail account', async () => {
@@ -147,7 +193,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"6pSQpU+Gw=NkW|#3"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with high rotation round', async () => {
@@ -159,7 +205,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"Sb2F}u1[HN5IStJE"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with special characters in email', async () => {
@@ -171,7 +217,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"t1KA7;tEzH]w}MeD"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with subdomain', async () => {
@@ -183,7 +229,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"Ghjsq54DU,JCJ5v_"`);
+			expect(password).toMatchSnapshot();
 		});
 
 		it('generates expected password with very long inputs', async () => {
@@ -195,7 +241,7 @@ describe('generatePassword', () => {
 			};
 
 			const password = await generatePassword(masterKey, site);
-			expect(password).toMatchInlineSnapshot(`"t%y6ma{xr9ZT?-(8"`);
+			expect(password).toMatchSnapshot();
 		});
 	});
 });

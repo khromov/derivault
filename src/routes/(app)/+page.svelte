@@ -7,14 +7,15 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Slider } from '$lib/components/ui/slider';
 	import { RadioGroup, RadioGroupItem } from '$lib/components/ui/radio-group';
-	import { validateMnemonic, mnemonicToSeed, generateMnemonic } from 'web-bip39';
+	import { validateMnemonic } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
 	import toast from 'svelte-french-toast';
 	import RefreshCw from 'lucide-svelte/icons/refresh-cw';
 	import Copy from 'lucide-svelte/icons/copy';
 	import { createAvatar } from '@dicebear/core';
 	import { identicon } from '@dicebear/collection';
-	import { deriveMasterKey } from '$lib/crypto';
+	import { deriveMasterKey, deriveBip39MasterKey } from '$lib/crypto';
+	import { generateMnemonic } from 'web-bip39';
 	import { base } from '$app/paths';
 
 	export let data;
@@ -49,14 +50,13 @@
 
 	const handleEnter = async () => {
 		try {
-			let derivedKey: Uint8Array;
-
 			if (currentAuthType === 'password') {
 				if (!passphrase) {
 					toast.error('Please enter a passphrase');
 					return;
 				}
-				derivedKey = await deriveMasterKey(passphrase);
+				const derivedKey = await deriveMasterKey(passphrase);
+				$masterPassword = derivedKey;
 			} else {
 				if (!mnemonic) {
 					toast.error('Please enter a BIP39 mnemonic');
@@ -67,14 +67,10 @@
 					toast.error('Invalid BIP39 mnemonic');
 					return;
 				}
-				derivedKey = await mnemonicToSeed(mnemonic.trim());
+				const derivedKey = await deriveBip39MasterKey(mnemonic.trim());
+				$masterPassword = derivedKey;
 			}
 
-			$masterPassword = Array.from(derivedKey)
-				.map((b) => b.toString(16).padStart(2, '0'))
-				.join('');
-
-			// console.log('$masterPassword', $masterPassword);
 			goto(`${base}/vault`);
 		} catch (error) {
 			toast.error('Error deriving key: ' + (error as Error).message);
@@ -139,7 +135,7 @@
 					</div>
 					<div class="flex flex-col space-y-1.5">
 						<Label for="computationIntensity">
-							Computation Intensity: {$computationIntensity}{$computationIntensity === 5
+							Computation Intensity: {$computationIntensity}{$computationIntensity === 3
 								? ' (default)'
 								: ''}
 						</Label>
@@ -181,6 +177,23 @@
 								</Button>
 							</div>
 						</div>
+					</div>
+					<div class="flex flex-col space-y-1.5">
+						<Label for="computationIntensity">
+							Extra Computation Intensity: {$computationIntensity}{$computationIntensity === 3
+								? ' (default)'
+								: ''}
+						</Label>
+						<Slider
+							id="computationIntensity"
+							min={1}
+							max={10}
+							step={1}
+							value={[$computationIntensity]}
+							onValueChange={(e) => {
+								$computationIntensity = e[0];
+							}}
+						/>
 					</div>
 				{/if}
 

@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`deriveBip39MasterKey > generates expected key for standard test vector 1`] = `"fa1d8c30eacbaa40b142ffcfef8fbf1e68e3e8ceeefe64da2eb1e8a9ffac0bbd"`;
+
+exports[`generatePassword > snapshot tests > generates expected password for Gmail account 1`] = `"r)Bbra:jtVW}.zi-"`;
+
+exports[`generatePassword > snapshot tests > generates expected password for default case 1`] = `")7+-bRND*G;_&k0e"`;
+
+exports[`generatePassword > snapshot tests > generates expected password with high rotation round 1`] = `"ID2b)_?Eu$%+@OEe"`;
+
+exports[`generatePassword > snapshot tests > generates expected password with special characters in email 1`] = `"$2zd}F5y^S%Mvv6w"`;
+
+exports[`generatePassword > snapshot tests > generates expected password with subdomain 1`] = `"Lt0W%Xe.C?7m6TeD"`;
+
+exports[`generatePassword > snapshot tests > generates expected password with very long inputs 1`] = `"AB#8^#)roL:b4vSU"`;
