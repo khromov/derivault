@@ -38,7 +38,7 @@
 			// Ensure the input has a protocol
 			const url = new URL(input.includes('://') ? input : `https://${input}`);
 
-			console.log(url);
+			//console.log(url);
 			// Get the full hostname
 			return url.host;
 		} catch (error) {

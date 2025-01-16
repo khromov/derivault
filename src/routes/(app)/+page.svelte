@@ -50,14 +50,13 @@
 
 	const handleEnter = async () => {
 		try {
-			let derivedKey: Uint8Array;
-
 			if (currentAuthType === 'password') {
 				if (!passphrase) {
 					toast.error('Please enter a passphrase');
 					return;
 				}
-				derivedKey = await deriveMasterKey(passphrase);
+				const derivedKey = await deriveMasterKey(passphrase);
+				$masterPassword = derivedKey;
 			} else {
 				if (!mnemonic) {
 					toast.error('Please enter a BIP39 mnemonic');
@@ -68,12 +67,9 @@
 					toast.error('Invalid BIP39 mnemonic');
 					return;
 				}
-				derivedKey = await deriveBip39MasterKey(mnemonic.trim());
+				const derivedKey = await deriveBip39MasterKey(mnemonic.trim());
+				$masterPassword = derivedKey;
 			}
-
-			$masterPassword = Array.from(derivedKey)
-				.map((b) => b.toString(16).padStart(2, '0'))
-				.join('');
 
 			goto(`${base}/vault`);
 		} catch (error) {

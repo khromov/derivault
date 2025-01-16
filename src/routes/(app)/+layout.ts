@@ -4,11 +4,9 @@ export const prerender = false;
 import type { LayoutLoad } from './$types';
 import { get } from 'svelte/store';
 import { masterPassword } from '$lib/stores';
-import { deriveMasterKey } from '$lib/crypto';
 import { redirect, error } from '@sveltejs/kit';
 import { browser } from '$app/environment';
 import { base } from '$app/paths';
-import { cachedMasterKey } from '$lib/stores';
 
 export const load: LayoutLoad = async ({ route }) => {
 	if (
@@ -22,21 +20,12 @@ export const load: LayoutLoad = async ({ route }) => {
 		);
 	}
 
-	const currentMasterPassword = get(masterPassword);
+	const derivedKey = get(masterPassword);
 
-	if (route.id === '/(app)' && currentMasterPassword) {
+	if (route.id === '/(app)' && derivedKey) {
 		redirect(302, `${base}/vault`);
-	} else if (route.id !== '/(app)' && !currentMasterPassword) {
+	} else if (route.id !== '/(app)' && !derivedKey) {
 		redirect(302, `${base}/`);
-	}
-
-	let derivedKey = null;
-	let cached = get(cachedMasterKey);
-	if (cached) {
-		derivedKey = cached;
-	} else if (currentMasterPassword) {
-		derivedKey = await deriveMasterKey(currentMasterPassword);
-		cachedMasterKey.set(derivedKey);
 	}
 
 	return {

@@ -39,7 +39,7 @@ export async function deriveBip39MasterKey(
 	mnemonic: string,
 	intensityOverride?: number
 ): Promise<Uint8Array> {
-	// First get the BIP39 seed (this already uses PBKDF2 with 2048 iterations)
+	// First get the BIP39 seed
 	const bip39Seed = await mnemonicToSeed(mnemonic.trim());
 
 	// Import the seed for additional key stretching

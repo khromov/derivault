@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { masterPassword, sites, computationIntensity, cachedMasterKey } from '$lib/stores';
+	import { masterPassword, sites, computationIntensity } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
@@ -13,10 +13,7 @@
 		$sites = [];
 		$masterPassword = null;
 		$computationIntensity = 3;
-
 		localStorage.clear();
-
-		cachedMasterKey.set(null);
 		goto(`${base}/`);
 	}
 </script>

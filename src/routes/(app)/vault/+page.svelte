@@ -13,7 +13,6 @@
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 	import { base } from '$app/paths';
-	import { cachedMasterKey } from '$lib/stores';
 	import { generatePassword } from '$lib/crypto';
 
 	export let data;
@@ -132,8 +131,7 @@
 <div class="fixed bottom-4 right-4 flex space-x-2">
 	<Button
 		on:click={() => {
-			$masterPassword = '';
-			cachedMasterKey.set(null);
+			$masterPassword = null;
 			goto(`${base}/`);
 		}}
 		size="icon"
