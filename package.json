@@ -8,6 +8,7 @@
 		"preview": "vite preview",
 		"build:preview": "npm run build && npm run preview",
 		"test": "npm run test:integration && npm run test:unit",
+		"test:update": "npm run test:unit -- -u",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
