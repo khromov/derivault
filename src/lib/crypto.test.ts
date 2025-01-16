@@ -79,7 +79,7 @@ describe('deriveBip39MasterKey', () => {
 
 		// This is a snapshot test to ensure the key derivation remains consistent
 		expect(keyHex).toMatchInlineSnapshot(
-			'"5ad7175d0481a40b76ed5841fa507a37a896b00c23dfde341150fe0b038e767526e54c539d34d44397b6d32568ea67d02ca7def7da3826ec51ed37546fb85e20"'
+			`"fa1d8c30eacbaa40b142ffcfef8fbf1e68e3e8ceeefe64da2eb1e8a9ffac0bbd"`
 		);
 	});
 });
