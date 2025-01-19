@@ -17,7 +17,7 @@
 		{
 			title: 'What happens if I enter the wrong passphrase?',
 			description:
-				'In DeriVault, there are no "right" or "wrong" passphrases. The master passphrase is used to derive a unique password for each of your sites. If you enter the wrong passphrase, DeriVault will generate passwords for your stored sites, but they won\'t be the correct. That\'s why we call DeriVault a "plausible deniability" password manager.',
+				'In DeriVault, there are no "right" or "wrong" passphrases. The master passphrase is used to derive a unique password for each of your sites. If you enter the wrong passphrase, DeriVault will generate passwords for your stored sites, but they won\'t be correct.',
 			icon: Key
 		},
 		{
