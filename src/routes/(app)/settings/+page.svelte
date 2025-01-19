@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { masterPassword, sites, computationIntensity } from '$lib/stores';
+	import { masterPassword, sites, computationIntensity, lastAuthType } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
@@ -11,8 +11,9 @@
 
 	function panicButton() {
 		$sites = [];
-		$masterPassword = null;
 		$computationIntensity = 3;
+		$masterPassword = null;
+		$lastAuthType = 'password';
 		localStorage.clear();
 		goto(`${base}/`);
 	}
