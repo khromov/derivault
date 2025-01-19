@@ -40,7 +40,8 @@
 				</div>
 			{:else}
 				<p class="text-red-600">
-					We apologize for the inconvenience. If the problem persists, please contact support.
+					The route was not found, or there was a client side error. Try refreshing the page or a
+					different browser.
 				</p>
 			{/if}
 		</CardContent>
