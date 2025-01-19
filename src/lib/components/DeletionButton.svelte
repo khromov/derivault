@@ -76,7 +76,7 @@
 			<div
 				class="absolute bottom-0 left-0 right-0 bg-red-700 transition-none"
 				style="height: {progress * 100}%;"
-			/>
+			></div>
 		{/if}
 	</button>
 </div>
