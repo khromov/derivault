@@ -12,6 +12,7 @@
 	import toast from 'svelte-french-toast';
 	import RefreshCw from 'lucide-svelte/icons/refresh-cw';
 	import Copy from 'lucide-svelte/icons/copy';
+	import Loader2 from 'lucide-svelte/icons/loader-2';
 	import { createAvatar } from '@dicebear/core';
 	import { identicon } from '@dicebear/collection';
 	import { deriveMasterKey, deriveBip39MasterKey } from '$lib/crypto';
@@ -25,6 +26,7 @@
 	let currentAuthType: 'password' | 'bip39' = data.authType;
 	let avatarSvg = '';
 	let isMnemonicValid = false;
+	let isLoading = false;
 
 	$: {
 		if (passphrase) {
@@ -49,7 +51,11 @@
 	}
 
 	const handleEnter = async () => {
+		if (isLoading) return;
+
 		try {
+			isLoading = true;
+
 			if (currentAuthType === 'password') {
 				if (!passphrase) {
 					toast.error('Please enter a passphrase');
@@ -74,6 +80,8 @@
 			goto(`${base}/vault`);
 		} catch (error) {
 			toast.error('Error deriving key: ' + (error as Error).message);
+		} finally {
+			isLoading = false;
 		}
 	};
 
@@ -127,6 +135,7 @@
 								placeholder="Enter your passphrase"
 								bind:value={passphrase}
 								class="flex-grow"
+								disabled={isLoading}
 							/>
 							{#if avatarSvg}
 								<img src={avatarSvg} alt="Identicon" class="ml-2 h-8 w-8" />
@@ -148,6 +157,7 @@
 							onValueChange={(e) => {
 								$computationIntensity = e[0];
 							}}
+							disabled={isLoading}
 						/>
 					</div>
 				{:else}
@@ -160,10 +170,17 @@
 								bind:value={mnemonic}
 								rows="3"
 								class="w-full rounded-md border border-input bg-transparent px-3 py-2 pr-20 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+								disabled={isLoading}
 							></textarea>
 							<div class="absolute bottom-2 right-2 flex space-x-1">
 								{#if isMnemonicValid}
-									<Button size="sm" variant="ghost" on:click={copyMnemonic} title="Copy mnemonic">
+									<Button
+										size="sm"
+										variant="ghost"
+										on:click={copyMnemonic}
+										title="Copy mnemonic"
+										disabled={isLoading}
+									>
 										<Copy size={16} />
 									</Button>
 								{/if}
@@ -172,6 +189,7 @@
 									variant="ghost"
 									on:click={createMnemonic}
 									title="Create new mnemonic"
+									disabled={isLoading}
 								>
 									<RefreshCw size={16} />
 								</Button>
@@ -193,6 +211,7 @@
 							onValueChange={(e) => {
 								$computationIntensity = e[0];
 							}}
+							disabled={isLoading}
 						/>
 					</div>
 				{/if}
@@ -200,9 +219,14 @@
 				<div class="flex flex-col space-y-2">
 					<Button
 						on:click={handleEnter}
-						disabled={currentAuthType === 'password' ? !passphrase : !mnemonic}
+						disabled={currentAuthType === 'password' ? !passphrase : !mnemonic || isLoading}
 					>
-						Enter vault
+						{#if isLoading}
+							<Loader2 class="mr-2 h-4 w-4 animate-spin" />
+							Deriving master key...
+						{:else}
+							Enter vault
+						{/if}
 					</Button>
 					<Button
 						on:click={() => {
@@ -210,6 +234,7 @@
 						}}
 						variant="outline"
 						class="mt-4"
+						disabled={isLoading}
 					>
 						How do you use DeriVault?
 					</Button>

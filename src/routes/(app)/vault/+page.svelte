@@ -10,6 +10,7 @@
 	import Edit from 'lucide-svelte/icons/square-pen';
 	import LogOut from 'lucide-svelte/icons/log-out';
 	import Search from 'lucide-svelte/icons/search';
+	import Loader2 from 'lucide-svelte/icons/loader-2';
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 	import { base } from '$app/paths';
@@ -19,6 +20,7 @@
 
 	let hoveredSite: number | null = null;
 	let searchTerm = '';
+	let editingIndex: number | null = null;
 
 	$: siteList = data.sites;
 
@@ -28,8 +30,14 @@
 		toast.success('Site removed successfully');
 	}
 
-	function editSite(index: number) {
-		goto(`${base}/add?edit=${index}`);
+	async function editSite(index: number) {
+		if (editingIndex !== null) return; // Prevent multiple clicks
+		editingIndex = index;
+		try {
+			await goto(`${base}/add?edit=${index}`);
+		} finally {
+			editingIndex = null;
+		}
 	}
 
 	async function copyToClipboard(site: (typeof siteList)[number]) {
@@ -106,8 +114,17 @@
 									</div>
 									<div class="flex items-center justify-end space-x-2">
 										<DeletionButton on:delete={() => removeSite(site.index)} />
-										<Button on:click={() => editSite(site.index)} size="sm" variant="outline">
-											<Edit size={16} />
+										<Button
+											on:click={() => editSite(site.index)}
+											size="sm"
+											variant="outline"
+											disabled={editingIndex === site.index}
+										>
+											{#if editingIndex === site.index}
+												<Loader2 class="h-4 w-4 animate-spin" />
+											{:else}
+												<Edit size={16} />
+											{/if}
 										</Button>
 										<Button
 											on:click={() => copyToClipboard($sites[site.index])}
