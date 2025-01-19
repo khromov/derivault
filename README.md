@@ -8,6 +8,24 @@
 
 Visit https://khromov.github.io/derivault/
 
+## Password derivation algorithm
+
+```mermaid
+flowchart TD
+    A[User Password Input] --> B[PBKDF2]
+    B -- Variable computation intensity --> C[Derived Master Key]
+
+    subgraph Key Generation
+        C --> D[PBKDF2]
+        SiteData[Site Data<br>email + domain + rotationRounds] --> D
+        D -- Variable computation intensity --> E[Site Specific Key]
+        E --> F[Convert to Password]
+    end
+
+    style B fill:#f9f,stroke:#333,stroke-width:2px
+    style D fill:#f9f,stroke:#333,stroke-width:2px
+```
+
 ## Development
 
 This application is built with SvelteKit, TypeScript, and Tailwind CSS using the shadcn-svelte component library. Install dependencies with `npm install`, then start the development server:
