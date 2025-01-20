@@ -50,7 +50,7 @@ Preview the production build with `npm run preview`.
 
 ## Security
 
-Cryptographic operations are performed using the Web Crypto API. All password generation happens client-side - no data is ever transmitted to any server. The vault data (domains and usernames) is stored encrypted in localStorage, with the option to export/import using AES-GCM encryption.
+Cryptographic operations are performed using the Web Crypto API. All password generation happens client-side - no data is ever transmitted to any server. The vault data (domains and usernames) is stored in localStorage, with the option to export/import using AES-GCM encryption.
 
 ## Updating snapshots
 
