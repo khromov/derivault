@@ -110,7 +110,7 @@
 					<Input id="email" placeholder="Enter email or username" bind:value={newSite.email} />
 				</div>
 				<div class="flex flex-col space-y-1.5">
-					<Label for="domain">Domain</Label>
+					<Label for="domain">Domain or URL</Label>
 					<Input id="domain" placeholder="Enter website domain" bind:value={newSite.domain} />
 					<p class="text-sm text-gray-500">Domain: {parsedDomain}</p>
 				</div>
@@ -132,33 +132,34 @@
 						</Button>
 					</div>
 				</div>
-				{#if !data.quickMode}
-					<div>
-						<Button on:click={toggleAdvanced} variant="outline" class="w-full justify-between">
-							Advanced
-							{#if showAdvanced}
-								<ChevronUp size={16} />
-							{:else}
-								<ChevronDown size={16} />
-							{/if}
-						</Button>
+
+				<div>
+					<Button on:click={toggleAdvanced} variant="outline" class="w-full justify-between">
+						Advanced
 						{#if showAdvanced}
-							<div transition:slide={{ duration: 300 }} class="mt-4 space-y-4">
-								<div class="flex flex-col space-y-1.5">
-									<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
-									<div class="px-3 py-4">
-										<Slider
-											id="rotationRounds"
-											min={1}
-											max={10}
-											step={1}
-											value={[newSite.rotationRounds]}
-											onValueChange={(e) => {
-												newSite.rotationRounds = e[0];
-											}}
-										/>
-									</div>
+							<ChevronUp size={16} />
+						{:else}
+							<ChevronDown size={16} />
+						{/if}
+					</Button>
+					{#if showAdvanced}
+						<div transition:slide={{ duration: 300 }} class="mt-4 space-y-4">
+							<div class="flex flex-col space-y-1.5">
+								<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
+								<div class="px-3 py-4">
+									<Slider
+										id="rotationRounds"
+										min={1}
+										max={10}
+										step={1}
+										value={[newSite.rotationRounds]}
+										onValueChange={(e) => {
+											newSite.rotationRounds = e[0];
+										}}
+									/>
 								</div>
+							</div>
+							{#if !data.quickMode}
 								<div class="flex flex-col space-y-1.5">
 									<Label for="comment">Comment</Label>
 									<textarea
@@ -169,9 +170,11 @@
 										placeholder="Add an optional comment (note: this is not encrypted)"
 									></textarea>
 								</div>
-							</div>
-						{/if}
-					</div>
+							{/if}
+						</div>
+					{/if}
+				</div>
+				{#if !data.quickMode}
 					<Button
 						on:click={addOrUpdateSite}
 						disabled={!newSite.email ||
@@ -181,6 +184,7 @@
 						{data.editMode ? 'Update Site' : 'Add Site'}
 					</Button>
 				{/if}
+
 				<Button on:click={() => goto(`${base}/vault`)} variant="outline">
 					{data.quickMode ? 'Go back' : 'Cancel'}
 				</Button>
