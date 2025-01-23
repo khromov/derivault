@@ -7,6 +7,7 @@ import { error } from '@sveltejs/kit';
 export const load: PageLoad = async ({ url, parent }) => {
 	const { derivedKey } = await parent();
 	const editParam = url.searchParams.get('edit');
+	const quickMode = url.searchParams.get('quick') === 'true';
 
 	if (editParam !== null) {
 		const editIndex = parseInt(editParam, 10);
@@ -28,7 +29,8 @@ export const load: PageLoad = async ({ url, parent }) => {
 			editIndex,
 			site: siteToEdit,
 			generatedPassword,
-			derivedKey
+			derivedKey,
+			quickMode
 		};
 	}
 
@@ -37,6 +39,7 @@ export const load: PageLoad = async ({ url, parent }) => {
 		editIndex: null,
 		site: null,
 		generatedPassword: '',
-		derivedKey
+		derivedKey,
+		quickMode
 	};
 };

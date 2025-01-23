@@ -99,7 +99,9 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
-			<CardTitle>DeriVault - {data.editMode ? 'Edit' : 'Add'} Site</CardTitle>
+			<CardTitle
+				>DeriVault - {#if data.quickMode}Quick Lookup{:else}{data.editMode ? 'Edit' : 'Add'} Site{/if}</CardTitle
+			>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
@@ -130,52 +132,58 @@
 						</Button>
 					</div>
 				</div>
-				<div>
-					<Button on:click={toggleAdvanced} variant="outline" class="w-full justify-between">
-						Advanced
+				{#if !data.quickMode}
+					<div>
+						<Button on:click={toggleAdvanced} variant="outline" class="w-full justify-between">
+							Advanced
+							{#if showAdvanced}
+								<ChevronUp size={16} />
+							{:else}
+								<ChevronDown size={16} />
+							{/if}
+						</Button>
 						{#if showAdvanced}
-							<ChevronUp size={16} />
-						{:else}
-							<ChevronDown size={16} />
-						{/if}
-					</Button>
-					{#if showAdvanced}
-						<div transition:slide={{ duration: 300 }} class="mt-4 space-y-4">
-							<div class="flex flex-col space-y-1.5">
-								<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
-								<div class="px-3 py-4">
-									<Slider
-										id="rotationRounds"
-										min={1}
-										max={10}
-										step={1}
-										value={[newSite.rotationRounds]}
-										onValueChange={(e) => {
-											newSite.rotationRounds = e[0];
-										}}
-									/>
+							<div transition:slide={{ duration: 300 }} class="mt-4 space-y-4">
+								<div class="flex flex-col space-y-1.5">
+									<Label for="rotationRounds">Password Rotation: {newSite.rotationRounds}</Label>
+									<div class="px-3 py-4">
+										<Slider
+											id="rotationRounds"
+											min={1}
+											max={10}
+											step={1}
+											value={[newSite.rotationRounds]}
+											onValueChange={(e) => {
+												newSite.rotationRounds = e[0];
+											}}
+										/>
+									</div>
+								</div>
+								<div class="flex flex-col space-y-1.5">
+									<Label for="comment">Comment</Label>
+									<textarea
+										id="comment"
+										bind:value={newSite.comment}
+										rows="3"
+										class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										placeholder="Add an optional comment (note: this is not encrypted)"
+									></textarea>
 								</div>
 							</div>
-							<div class="flex flex-col space-y-1.5">
-								<Label for="comment">Comment</Label>
-								<textarea
-									id="comment"
-									bind:value={newSite.comment}
-									rows="3"
-									class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-									placeholder="Add an optional comment (note: this is not encrypted)"
-								></textarea>
-							</div>
-						</div>
-					{/if}
-				</div>
-				<Button
-					on:click={addOrUpdateSite}
-					disabled={!newSite.email || parsedDomain === 'not entered' || parsedDomain === 'invalid'}
-				>
-					{data.editMode ? 'Update Site' : 'Add Site'}
+						{/if}
+					</div>
+					<Button
+						on:click={addOrUpdateSite}
+						disabled={!newSite.email ||
+							parsedDomain === 'not entered' ||
+							parsedDomain === 'invalid'}
+					>
+						{data.editMode ? 'Update Site' : 'Add Site'}
+					</Button>
+				{/if}
+				<Button on:click={() => goto(`${base}/vault`)} variant="outline">
+					{data.quickMode ? 'Go back' : 'Cancel'}
 				</Button>
-				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Cancel</Button>
 			</div>
 		</CardContent>
 	</Card>
