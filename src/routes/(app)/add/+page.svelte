@@ -29,6 +29,9 @@
 	let showAdvanced = false;
 	let parsedDomain = 'not entered';
 
+	let generationCounter = 0;
+	let isGenerating = false;
+
 	function parseDomain(input: string): string {
 		if (!input) {
 			return 'not entered';
@@ -49,6 +52,7 @@
 	$: parsedDomain = parseDomain(newSite.domain);
 
 	$: {
+		// Only generate if we have valid inputs
 		if (
 			newSite.email &&
 			parsedDomain &&
@@ -56,11 +60,25 @@
 			parsedDomain !== 'invalid' &&
 			data.derivedKey
 		) {
+			// Increment the counter each time we kick off a new generation
+			const currentGen = ++generationCounter;
+
+			// Show "Generating..." while waiting
+			generatedPassword = 'Generating...';
+			isGenerating = true;
+
 			generatePassword(data.derivedKey, { ...newSite, domain: parsedDomain }).then((password) => {
-				generatedPassword = password;
+				// Only set `generatedPassword` if this is still the latest request
+				if (currentGen === generationCounter) {
+					generatedPassword = password;
+					isGenerating = false;
+				} else {
+					console.log('Generation request was outdated, ignoring', currentGen, generationCounter);
+				}
 			});
 		} else {
 			generatedPassword = '';
+			isGenerating = false;
 		}
 	}
 
@@ -127,7 +145,12 @@
 								>
 							{/if}
 						</div>
-						<Button on:click={copyToClipboard} size="sm" class="ml-2" disabled={!generatedPassword}>
+						<Button
+							on:click={copyToClipboard}
+							size="sm"
+							class="ml-2"
+							disabled={!generatedPassword || isGenerating}
+						>
 							<Copy size={16} />
 						</Button>
 					</div>
