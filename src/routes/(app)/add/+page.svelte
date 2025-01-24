@@ -30,6 +30,7 @@
 	let parsedDomain = 'not entered';
 
 	let generationCounter = 0;
+	let isGenerating = false;
 
 	function parseDomain(input: string): string {
 		if (!input) {
@@ -64,17 +65,20 @@
 
 			// Show "Generating..." while waiting
 			generatedPassword = 'Generating...';
+			isGenerating = true;
 
 			generatePassword(data.derivedKey, { ...newSite, domain: parsedDomain }).then((password) => {
 				// Only set `generatedPassword` if this is still the latest request
 				if (currentGen === generationCounter) {
 					generatedPassword = password;
+					isGenerating = false;
 				} else {
 					console.log('Generation request was outdated, ignoring', currentGen, generationCounter);
 				}
 			});
 		} else {
 			generatedPassword = '';
+			isGenerating = false;
 		}
 	}
 
@@ -141,7 +145,12 @@
 								>
 							{/if}
 						</div>
-						<Button on:click={copyToClipboard} size="sm" class="ml-2" disabled={!generatedPassword}>
+						<Button
+							on:click={copyToClipboard}
+							size="sm"
+							class="ml-2"
+							disabled={!generatedPassword || isGenerating}
+						>
 							<Copy size={16} />
 						</Button>
 					</div>
