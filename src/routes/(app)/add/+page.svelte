@@ -99,7 +99,9 @@
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
-			<CardTitle>DeriVault - {data.editMode ? 'Edit' : 'Add'} Site</CardTitle>
+			<CardTitle
+				>DeriVault - {#if data.quickMode}Quick Lookup{:else}{data.editMode ? 'Edit' : 'Add'} Site{/if}</CardTitle
+			>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
@@ -108,7 +110,7 @@
 					<Input id="email" placeholder="Enter email or username" bind:value={newSite.email} />
 				</div>
 				<div class="flex flex-col space-y-1.5">
-					<Label for="domain">Domain</Label>
+					<Label for="domain">Domain or URL</Label>
 					<Input id="domain" placeholder="Enter website domain" bind:value={newSite.domain} />
 					<p class="text-sm text-gray-500">Domain: {parsedDomain}</p>
 				</div>
@@ -130,6 +132,7 @@
 						</Button>
 					</div>
 				</div>
+
 				<div>
 					<Button on:click={toggleAdvanced} variant="outline" class="w-full justify-between">
 						Advanced
@@ -156,26 +159,35 @@
 									/>
 								</div>
 							</div>
-							<div class="flex flex-col space-y-1.5">
-								<Label for="comment">Comment</Label>
-								<textarea
-									id="comment"
-									bind:value={newSite.comment}
-									rows="3"
-									class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-									placeholder="Add an optional comment (note: this is not encrypted)"
-								></textarea>
-							</div>
+							{#if !data.quickMode}
+								<div class="flex flex-col space-y-1.5">
+									<Label for="comment">Comment</Label>
+									<textarea
+										id="comment"
+										bind:value={newSite.comment}
+										rows="3"
+										class="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+										placeholder="Add an optional comment (note: this is not encrypted)"
+									></textarea>
+								</div>
+							{/if}
 						</div>
 					{/if}
 				</div>
-				<Button
-					on:click={addOrUpdateSite}
-					disabled={!newSite.email || parsedDomain === 'not entered' || parsedDomain === 'invalid'}
-				>
-					{data.editMode ? 'Update Site' : 'Add Site'}
+				{#if !data.quickMode}
+					<Button
+						on:click={addOrUpdateSite}
+						disabled={!newSite.email ||
+							parsedDomain === 'not entered' ||
+							parsedDomain === 'invalid'}
+					>
+						{data.editMode ? 'Update Site' : 'Add Site'}
+					</Button>
+				{/if}
+
+				<Button on:click={() => goto(`${base}/vault`)} variant="outline">
+					{data.quickMode ? 'Go back' : 'Cancel'}
 				</Button>
-				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Cancel</Button>
 			</div>
 		</CardContent>
 	</Card>

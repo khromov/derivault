@@ -10,6 +10,7 @@
 	import Edit from 'lucide-svelte/icons/square-pen';
 	import LogOut from 'lucide-svelte/icons/log-out';
 	import Search from 'lucide-svelte/icons/search';
+	import Eye from 'lucide-svelte/icons/eye';
 	import Loader2 from 'lucide-svelte/icons/loader-2';
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
@@ -84,7 +85,15 @@
 			<CardTitle>DeriVault</CardTitle>
 		</CardHeader>
 		<CardContent class="p-4">
-			<div class="mb-4">
+			<div class="mb-4 space-y-2">
+				<Button
+					variant="outline"
+					class="w-full justify-between"
+					on:click={() => goto(`${base}/add?quick=true`)}
+				>
+					<span>Quick Password Lookup</span>
+					<Eye class="h-4 w-4" />
+				</Button>
 				<div class="relative">
 					<Search
 						class="absolute left-2 top-1/2 h-4 w-4 -translate-y-1/2 transform text-gray-400"
