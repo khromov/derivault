@@ -17,7 +17,6 @@
 	import { identicon } from '@dicebear/collection';
 	import { deriveMasterKey, deriveBip39MasterKey } from '$lib/crypto';
 	import { generateMnemonic } from 'web-bip39';
-	import { base } from '$app/paths';
 
 	export let data;
 
@@ -77,7 +76,7 @@
 				$masterPassword = derivedKey;
 			}
 
-			goto(`${base}/vault`);
+			goto(`#/vault`);
 		} catch (error) {
 			toast.error('Error deriving key: ' + (error as Error).message);
 		} finally {
@@ -230,7 +229,7 @@
 					</Button>
 					<Button
 						on:click={() => {
-							goto(`${base}/onboarding`);
+							goto(`#/onboarding`);
 						}}
 						variant="outline"
 						class="mt-4"

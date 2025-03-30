@@ -9,7 +9,6 @@
 	import toast from 'svelte-french-toast';
 	import { validateMnemonic, mnemonicToSeed } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
-	import { base } from '$app/paths';
 
 	let mnemonic = '';
 
@@ -89,7 +88,7 @@
 						} else {
 							toast.error('No new sites to import. All imported sites already exist.');
 						}
-						goto(`${base}/settings`);
+						goto(`#/settings`);
 					} else {
 						throw new Error('Invalid file format');
 					}
@@ -123,7 +122,7 @@
 					<Upload size={16} class="mr-2" />
 					Import Encrypted Vault
 				</Button>
-				<Button on:click={() => goto(`${base}/settings`)} variant="outline">Back</Button>
+				<Button on:click={() => goto(`#/settings`)} variant="outline">Back</Button>
 			</div>
 		</CardContent>
 	</Card>

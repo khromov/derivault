@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import OnboardingCarousel from '$lib/components/OnboardingCarousel.svelte';
-	import { base } from '$app/paths';
 	import Key from 'lucide-svelte/icons/key';
 	import RefreshCw from 'lucide-svelte/icons/refresh-cw';
 	import Copy from 'lucide-svelte/icons/copy';
@@ -61,7 +60,7 @@
 	}
 
 	function handleComplete() {
-		goto(`${base}/`);
+		goto(`#/`);
 	}
 </script>
 
