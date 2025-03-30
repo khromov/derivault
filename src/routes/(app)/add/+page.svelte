@@ -12,7 +12,6 @@
 	import ChevronUp from 'lucide-svelte/icons/chevron-up';
 	import toast from 'svelte-french-toast';
 	import { slide } from 'svelte/transition';
-	import { base } from '$app/paths';
 
 	export let data;
 
@@ -208,7 +207,7 @@
 					</Button>
 				{/if}
 
-				<Button on:click={() => goto(`${base}/vault`)} variant="outline">
+				<Button on:click={() => goto(`#/vault`)} variant="outline">
 					{data.quickMode ? 'Go back' : 'Cancel'}
 				</Button>
 			</div>

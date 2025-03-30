@@ -1,12 +1,8 @@
-export const ssr = false;
-export const prerender = false;
-
 import type { LayoutLoad } from './$types';
 import { get } from 'svelte/store';
 import { masterPassword } from '$lib/stores';
 import { redirect, error } from '@sveltejs/kit';
 import { browser } from '$app/environment';
-import { base } from '$app/paths';
 
 export const load: LayoutLoad = async ({ route }) => {
 	if (
@@ -23,9 +19,9 @@ export const load: LayoutLoad = async ({ route }) => {
 	const derivedKey = get(masterPassword);
 
 	if (route.id === '/(app)' && derivedKey) {
-		redirect(302, `${base}/vault`);
+		redirect(302, `#/vault`);
 	} else if (route.id !== '/(app)' && !derivedKey) {
-		redirect(302, `${base}/`);
+		redirect(302, `#/`);
 	}
 
 	return {

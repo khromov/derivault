@@ -14,7 +14,6 @@
 	import Loader2 from 'lucide-svelte/icons/loader-2';
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
-	import { base } from '$app/paths';
 	import { generatePassword } from '$lib/crypto';
 
 	export let data;
@@ -35,7 +34,7 @@
 		if (editingIndex !== null) return; // Prevent multiple clicks
 		editingIndex = index;
 		try {
-			await goto(`${base}/add?edit=${index}`);
+			await goto(`#/add?edit=${index}`);
 		} finally {
 			editingIndex = null;
 		}
@@ -89,7 +88,7 @@
 				<Button
 					variant="outline"
 					class="w-full justify-between"
-					on:click={() => goto(`${base}/add?quick=true`)}
+					on:click={() => goto(`#/add?quick=true`)}
 				>
 					<span>Quick Password Lookup</span>
 					<Eye class="h-4 w-4" />
@@ -158,7 +157,7 @@
 	<Button
 		on:click={() => {
 			$masterPassword = null;
-			goto(`${base}/`);
+			goto(`#/`);
 		}}
 		size="icon"
 		variant="outline"
@@ -166,10 +165,10 @@
 	>
 		<LogOut size={24} />
 	</Button>
-	<Button on:click={() => goto(`${base}/settings`)} size="icon" variant="outline" title="Settings">
+	<Button on:click={() => goto(`#/settings`)} size="icon" variant="outline" title="Settings">
 		<Settings size={24} />
 	</Button>
-	<Button on:click={() => goto(`${base}/add`)} size="icon" title="Add site">
+	<Button on:click={() => goto(`#/add`)} size="icon" title="Add site">
 		<Plus size={24} />
 	</Button>
 </div>

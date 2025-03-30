@@ -54,3 +54,29 @@ export const flyAndScale = (
 		easing: cubicOut
 	};
 };
+
+/**
+ * Extracts search parameters from a URL's hash fragment
+ * Works with hash patterns like "#/path?param=value&another=123"
+ *
+ * @param url The URL object or string to parse
+ * @returns URLSearchParams object containing the parameters from the hash
+ */
+export function getHashParams(url: URL | string): URLSearchParams {
+	// Convert string to URL object if needed
+	const urlObj = typeof url === 'string' ? new URL(url) : url;
+
+	// Initialize empty params object
+	let hashParams = new URLSearchParams();
+
+	// Check if we have a hash with query parameters
+	if (urlObj.hash && urlObj.hash.includes('?')) {
+		// Extract everything after the ?
+		const queryString = urlObj.hash.substring(urlObj.hash.indexOf('?') + 1);
+		if (queryString) {
+			hashParams = new URLSearchParams(queryString);
+		}
+	}
+
+	return hashParams;
+}

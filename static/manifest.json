@@ -1,0 +1,23 @@
+{
+	"theme_color": "#020817",
+	"background_color": "#f3f4f6",
+	"display": "standalone",
+	"scope": "/derivault",
+	"start_url": "/derivault",
+	"id": "/derivault/",
+	"name": "DeriVault Password Manager",
+	"short_name": "DeriVault",
+	"description": "Secure, deterministic password manager that runs entirely in your browser",
+	"orientation": "portrait",
+	"categories": ["utilities", "security"],
+	"shortcuts": [],
+	"icons": [
+		{
+			"purpose": "maskable",
+			"src": "/derivault/icon-512-maskable.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{ "purpose": "any", "src": "/derivault/icon-512.png", "sizes": "512x512", "type": "image/png" }
+	]
+}

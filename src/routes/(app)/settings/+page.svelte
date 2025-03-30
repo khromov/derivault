@@ -7,7 +7,6 @@
 	import Download from 'lucide-svelte/icons/download';
 	import Upload from 'lucide-svelte/icons/upload';
 	import Bug from 'lucide-svelte/icons/bug';
-	import { base } from '$app/paths';
 
 	function panicButton() {
 		$sites = [];
@@ -15,7 +14,7 @@
 		$masterPassword = null;
 		$lastAuthType = 'password';
 		localStorage.clear();
-		goto(`${base}/`);
+		goto(`#/`);
 	}
 </script>
 
@@ -26,11 +25,11 @@
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
-				<Button on:click={() => goto(`${base}/settings/export`)} variant="outline">
+				<Button on:click={() => goto(`#/settings/export`)} variant="outline">
 					<Download size={16} class="mr-2" />
 					Export Vault
 				</Button>
-				<Button on:click={() => goto(`${base}/settings/import`)} variant="outline">
+				<Button on:click={() => goto(`#/settings/import`)} variant="outline">
 					<Upload size={16} class="mr-2" />
 					Import Vault
 				</Button>
@@ -38,15 +37,15 @@
 					<AlertTriangle size={16} class="mr-2" />
 					Panic Button (Clear All Data)
 				</Button>
-				<Button on:click={() => goto(`${base}/settings/benchmark`)} variant="outline">
+				<Button on:click={() => goto(`#/settings/benchmark`)} variant="outline">
 					<Upload size={16} class="mr-2" />
 					Benchmark cryptographic functions
 				</Button>
-				<Button on:click={() => goto(`${base}/settings/debug`)} variant="outline">
+				<Button on:click={() => goto(`#/settings/debug`)} variant="outline">
 					<Bug size={16} class="mr-2" />
 					Debug Tools
 				</Button>
-				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Back to Vault</Button>
+				<Button on:click={() => goto(`#/vault`)} variant="outline">Back to Vault</Button>
 			</div>
 		</CardContent>
 	</Card>

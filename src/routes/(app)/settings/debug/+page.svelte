@@ -4,7 +4,6 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
-	import { base } from '$app/paths';
 	import toast from 'svelte-french-toast';
 
 	const domains = [
@@ -79,8 +78,7 @@
 
 				<Button on:click={generateTestEntries}>Generate 100 Test Entries</Button>
 				<Button on:click={cleanupTestEntries} variant="destructive">Clean Up Test Entries</Button>
-				<Button on:click={() => goto(`${base}/settings`)} variant="outline">Back to Settings</Button
-				>
+				<Button on:click={() => goto(`#/settings`)} variant="outline">Back to Settings</Button>
 			</div>
 		</CardContent>
 	</Card>

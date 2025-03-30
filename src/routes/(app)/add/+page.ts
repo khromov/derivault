@@ -3,11 +3,13 @@ import { get } from 'svelte/store';
 import { sites } from '$lib/stores';
 import { generatePassword } from '$lib/crypto';
 import { error } from '@sveltejs/kit';
+import { getHashParams } from '$lib/utils';
 
 export const load: PageLoad = async ({ url, parent }) => {
 	const { derivedKey } = await parent();
-	const editParam = url.searchParams.get('edit');
-	const quickMode = url.searchParams.get('quick') === 'true';
+	const searchParams = getHashParams(url);
+	const editParam = searchParams.get('edit');
+	const quickMode = searchParams.get('quick') === 'true';
 
 	if (editParam !== null) {
 		const editIndex = parseInt(editParam, 10);

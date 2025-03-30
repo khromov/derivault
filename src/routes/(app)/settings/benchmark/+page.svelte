@@ -4,7 +4,6 @@
 	import { deriveMasterKey } from '$lib/crypto';
 	import Play from 'lucide-svelte/icons/play';
 	import { goto } from '$app/navigation';
-	import { base } from '$app/paths';
 
 	interface BenchmarkResult {
 		intensity: number;
@@ -87,7 +86,7 @@
 					<Play size={16} class="mr-2" />
 					{isRunning ? 'Running...' : 'Run Benchmark'}
 				</Button>
-				<Button on:click={() => goto(`${base}/vault`)} variant="outline">Back to Vault</Button>
+				<Button on:click={() => goto(`#/vault`)} variant="outline">Back to Vault</Button>
 			</div>
 
 			<div class="mb-4 overflow-x-auto">
