@@ -95,7 +95,7 @@
 			} else {
 				$sites = [...$sites, siteToSave];
 			}
-			goto(`${base}/vault`);
+			goto(`#/vault`);
 		} else {
 			toast.error('Please enter a valid email and domain.');
 		}
