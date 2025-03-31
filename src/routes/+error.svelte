@@ -7,7 +7,7 @@
 	$: isCryptoError = $page.error?.message?.includes('cryptographic functions') ?? false;
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
 	<Card class="m-4 w-full max-w-[600px] border-2 border-red-500">
 		<CardHeader class="bg-red-100 p-4">
 			<CardTitle class="flex items-center text-red-700">

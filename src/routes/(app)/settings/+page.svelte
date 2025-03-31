@@ -7,6 +7,7 @@
 	import Download from 'lucide-svelte/icons/download';
 	import Upload from 'lucide-svelte/icons/upload';
 	import Bug from 'lucide-svelte/icons/bug';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte'; // Import the toggle
 
 	function panicButton() {
 		$sites = [];
@@ -18,10 +19,11 @@
 	}
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
 	<Card class="m-4 w-full max-w-[600px]">
-		<CardHeader>
+		<CardHeader class="flex flex-row items-center justify-between">
 			<CardTitle>DeriVault - Settings</CardTitle>
+			<ThemeToggle />
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
@@ -38,7 +40,8 @@
 					Panic Button (Clear All Data)
 				</Button>
 				<Button on:click={() => goto(`#/settings/benchmark`)} variant="outline">
-					<Upload size={16} class="mr-2" />
+					<!-- Assuming you meant Benchmark icon here, using Play as placeholder -->
+					<!-- <Play size={16} class="mr-2" /> -->
 					Benchmark cryptographic functions
 				</Button>
 				<Button on:click={() => goto(`#/settings/debug`)} variant="outline">

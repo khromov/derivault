@@ -78,7 +78,7 @@
 		: siteList.map((site, index) => ({ ...site, score: 0, index }));
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4 dark:bg-gray-900">
 	<Card class="w-full max-w-[500px]">
 		<CardHeader>
 			<CardTitle>DeriVault</CardTitle>
