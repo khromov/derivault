@@ -15,6 +15,7 @@
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
 	import toast from 'svelte-french-toast';
 	import { generatePassword } from '$lib/crypto';
+	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
 
 	export let data;
 
@@ -78,7 +79,7 @@
 		: siteList.map((site, index) => ({ ...site, score: 0, index }));
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4 dark:bg-gray-900">
 	<Card class="w-full max-w-[500px]">
 		<CardHeader>
 			<CardTitle>DeriVault</CardTitle>
@@ -165,6 +166,7 @@
 	>
 		<LogOut size={24} />
 	</Button>
+	<ThemeToggle />
 	<Button on:click={() => goto(`#/settings`)} size="icon" variant="outline" title="Settings">
 		<Settings size={24} />
 	</Button>

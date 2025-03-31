@@ -12,6 +12,27 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 
+		<!-- Theme initialization to prevent flash -->
+		<script id="theme-init">
+			(function () {
+				const getThemePreference = () => {
+					try {
+						const stored = localStorage.getItem('derivault-theme');
+						return stored ? JSON.parse(stored) : 'system';
+					} catch (e) {
+						return 'system';
+					}
+				};
+
+				const theme = getThemePreference();
+				const isDark =
+					theme === 'dark' ||
+					(theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+				document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+			})();
+		</script>
+
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

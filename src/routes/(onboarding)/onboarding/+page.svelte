@@ -64,7 +64,7 @@
 	}
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 p-4 dark:bg-gray-900">
 	<OnboardingCarousel
 		{steps}
 		{currentStep}

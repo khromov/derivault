@@ -3,10 +3,12 @@
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
+	import ThemeSettings from '$lib/components/ThemeSettings.svelte';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
 	import Download from 'lucide-svelte/icons/download';
 	import Upload from 'lucide-svelte/icons/upload';
 	import Bug from 'lucide-svelte/icons/bug';
+	import Palette from 'lucide-svelte/icons/palette';
 
 	function panicButton() {
 		$sites = [];
@@ -18,13 +20,15 @@
 	}
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100">
+<div class="flex min-h-screen items-center justify-center bg-gray-100 dark:bg-gray-900">
 	<Card class="m-4 w-full max-w-[600px]">
 		<CardHeader>
 			<CardTitle>DeriVault - Settings</CardTitle>
 		</CardHeader>
 		<CardContent>
 			<div class="grid w-full items-center gap-4">
+				<ThemeSettings />
+
 				<Button on:click={() => goto(`#/settings/export`)} variant="outline">
 					<Download size={16} class="mr-2" />
 					Export Vault
