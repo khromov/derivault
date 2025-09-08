@@ -1,408 +1,424 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-08T20:52:10.939Z\n"
+"PO-Revision-Date: 2025-09-08T21:02:37.268Z\n"
+"Last-Translator: \n"
 "Language: sv\n"
-"MIME-Version: 1.0\n"
+"Language-Team: \n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2025-09-08T20:52:10.939Z\n"
-"POT-Creation-Date: 2025-09-08T20:52:10.939Z\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"MIME-Version: 1.0\n"
 
 #: src/lib/components/OnboardingCarousel.svelte
 msgid "<0/> Previous"
-msgstr ""
+msgstr "<0/> Föregående"
 
 #: src/lib/components/OnboardingCarousel.svelte
 msgid "Get Started"
-msgstr ""
+msgstr "Kom igång"
 
 #: src/lib/components/OnboardingCarousel.svelte
 msgid "Next <0/>"
-msgstr ""
+msgstr "Nästa <0/>"
 
 #: src/lib/components/DeletionButton.svelte
 msgid "Keep holding to delete"
-msgstr ""
+msgstr "Håll kvar för att radera"
 
 #: src/routes/+error.svelte
 msgid "<0/> Error"
-msgstr ""
+msgstr "<0/> Fel"
 
 #: src/routes/+error.svelte
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Ett okänt fel inträffade"
 
 #: src/routes/+error.svelte
 msgid ""
 "This application requires modern cryptographic capabilities to function securely. Please\n"
 "try the following:"
 msgstr ""
+"Denna applikation kräver moderna kryptografiska funktioner för att fungera säkert. Vänligen\n"
+"prova följande:"
 
 #: src/routes/+error.svelte
 msgid "Update your browser to the latest version"
-msgstr ""
+msgstr "Uppdatera din webbläsare till senaste versionen"
 
 #: src/routes/+error.svelte
 msgid "Try a different modern browser (Chrome, Firefox, Safari, or Edge)"
-msgstr ""
+msgstr "Prova en annan modern webbläsare (Chrome, Firefox, Safari eller Edge)"
 
 #: src/routes/+error.svelte
 msgid ""
 "If you're using a private/incognito window, try using a regular browsing window\n"
 "instead"
 msgstr ""
+"Om du använder ett privat/inkognito-fönster, prova att använda ett vanligt\n"
+"webbläsarfönster istället"
 
 #: src/routes/+error.svelte
 msgid ""
 "Check if you have any browser extensions or security software that might be blocking\n"
 "access to cryptographic functions"
 msgstr ""
+"Kontrollera om du har några webbläsartillägg eller säkerhetsprogram som kan blockera\n"
+"åtkomst till kryptografiska funktioner"
 
 #: src/routes/+error.svelte
 msgid ""
 "The route was not found, or there was a client side error. Try refreshing the page or a\n"
 "different browser."
 msgstr ""
+"Rutten hittades inte, eller så uppstod ett fel på klientsidan. Prova att uppdatera sidan eller\n"
+"en annan webbläsare."
 
 #: src/routes/(app)/+page.svelte
 #: src/routes/(app)/settings/export/+page.svelte
 msgid "Mnemonic copied to clipboard"
-msgstr ""
+msgstr "Minnesord kopierat till urklipp"
 
 #: src/routes/(app)/+page.svelte
 msgid "Failed to copy mnemonic"
-msgstr ""
+msgstr "Misslyckades att kopiera minnesord"
 
 #: src/routes/(app)/+page.svelte
 #: src/routes/(app)/vault/+page.svelte
 msgid "DeriVault"
-msgstr ""
+msgstr "DeriVault"
 
 #: src/routes/(app)/+page.svelte
 #: src/routes/(app)/+page.svelte
 msgid "Passphrase"
-msgstr ""
+msgstr "Lösenfras"
 
 #: src/routes/(app)/+page.svelte
 #: src/routes/(app)/+page.svelte
 msgid "BIP39 Mnemonic"
-msgstr ""
+msgstr "BIP39 Minnesord"
 
 #: src/routes/(app)/+page.svelte
 msgid "Enter your passphrase"
-msgstr ""
+msgstr "Ange din lösenfras"
 
 #: src/routes/(app)/+page.svelte
 msgid "Identicon"
-msgstr ""
+msgstr "Identikon"
 
 #: src/routes/(app)/+page.svelte
 msgid "Computation Intensity: {0}{1}"
-msgstr ""
+msgstr "Beräkningsintensitet: {0}{1}"
 
 #: src/routes/(app)/+page.svelte
 msgid "Enter your 24 word BIP39 mnemonic"
-msgstr ""
+msgstr "Ange ditt 24-ords BIP39 minnesord"
 
 #: src/routes/(app)/+page.svelte
 msgid "Copy mnemonic"
-msgstr ""
+msgstr "Kopiera minnesord"
 
 #: src/routes/(app)/+page.svelte
 msgid "Create new mnemonic"
-msgstr ""
+msgstr "Skapa nytt minnesord"
 
 #: src/routes/(app)/+page.svelte
 msgid "Extra Computation Intensity: {0}{1}"
-msgstr ""
+msgstr "Extra beräkningsintensitet: {0}{1}"
 
 #: src/routes/(app)/+page.svelte
 msgid "<0/> Deriving master key..."
-msgstr ""
+msgstr "<0/> Härleder huvudnyckel..."
 
 #: src/routes/(app)/+page.svelte
 msgid "Enter vault"
-msgstr ""
+msgstr "Öppna valv"
 
 #: src/routes/(app)/+page.svelte
 msgid "How do you use DeriVault?"
-msgstr ""
+msgstr "Hur använder du DeriVault?"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "DeriVault - Settings"
-msgstr ""
+msgstr "DeriVault - Inställningar"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "<0/> Export Vault"
-msgstr ""
+msgstr "<0/> Exportera valv"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "<0/> Import Vault"
-msgstr ""
+msgstr "<0/> Importera valv"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "<0/> Panic Button (Clear All Data)"
-msgstr ""
+msgstr "<0/> Panikknapp (Rensa all data)"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "<0/> Benchmark cryptographic functions"
-msgstr ""
+msgstr "<0/> Benchmarka kryptografiska funktioner"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "<0/> Debug Tools"
-msgstr ""
+msgstr "<0/> Felsökningsverktyg"
 
 #: src/routes/(app)/settings/+page.svelte
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Back to Vault"
-msgstr ""
+msgstr "Tillbaka till valv"
 
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Password Derivation Benchmark"
-msgstr ""
+msgstr "Benchmark för lösenordshärledning"
 
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid ""
 "This benchmark measures the speed of password derivation at different computation\n"
 "intensities. Higher intensity means better security but slower derivation."
 msgstr ""
+"Detta benchmark mäter hastigheten för lösenordshärledning vid olika beräknings-\n"
+"intensiteter. Högre intensitet betyder bättre säkerhet men långsammare härledning."
 
 #: src/routes/(app)/settings/benchmark/+page.svelte
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Running..."
-msgstr ""
+msgstr "Kör..."
 
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Run Benchmark"
-msgstr ""
+msgstr "Kör benchmark"
 
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Intensity"
-msgstr ""
+msgstr "Intensitet"
 
 #: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Operations/second"
-msgstr ""
+msgstr "Operationer/sekund"
 
 #: src/routes/(app)/settings/export/+page.svelte
 msgid "Failed to copy mnemonic:"
-msgstr ""
+msgstr "Misslyckades att kopiera minnesord:"
 
 #: src/routes/(app)/settings/export/+page.svelte
 msgid "Export Vault"
-msgstr ""
+msgstr "Exportera valv"
 
 #: src/routes/(app)/settings/export/+page.svelte
 msgid ""
 "Here is your encryption key. Please save it securely, as you'll need it to import your\n"
 "vault:"
 msgstr ""
+"Här är din krypteringsnyckel. Vänligen spara den säkert, eftersom du behöver den för att importera ditt\n"
+"valv:"
 
 #: src/routes/(app)/settings/export/+page.svelte
 msgid "<0/> Export Encrypted Vault"
-msgstr ""
+msgstr "<0/> Exportera krypterat valv"
 
 #: src/routes/(app)/settings/export/+page.svelte
 #: src/routes/(app)/settings/import/+page.svelte
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 #: src/routes/(app)/settings/import/+page.svelte
 msgid "Import Vault"
-msgstr ""
+msgstr "Importera valv"
 
 #: src/routes/(app)/settings/import/+page.svelte
 msgid "Encryption Key"
-msgstr ""
+msgstr "Krypteringsnyckel"
 
 #: src/routes/(app)/settings/import/+page.svelte
 msgid "Enter your 24-word encryption key"
-msgstr ""
+msgstr "Ange din 24-ords krypteringsnyckel"
 
 #: src/routes/(app)/settings/import/+page.svelte
 msgid "<0/> Import Encrypted Vault"
-msgstr ""
+msgstr "<0/> Importera krypterat valv"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Please enter a valid email and domain."
-msgstr ""
+msgstr "Vänligen ange en giltig e-post och domän."
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Password copied to clipboard!"
-msgstr ""
+msgstr "Lösenord kopierat till urklipp!"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Quick Lookup"
-msgstr ""
+msgstr "Snabbsökning"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Edit"
-msgstr ""
+msgstr "Redigera"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Add"
-msgstr ""
+msgstr "Lägg till"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "{0} Site"
-msgstr ""
+msgstr "{0} webbplats"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "DeriVault - <0/>"
-msgstr ""
+msgstr "DeriVault - <0/>"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Email/Username"
-msgstr ""
+msgstr "E-post/Användarnamn"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Enter email or username"
-msgstr ""
+msgstr "Ange e-post eller användarnamn"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Domain or URL"
-msgstr ""
+msgstr "Domän eller URL"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Enter website domain"
-msgstr ""
+msgstr "Ange webbplatsdomän"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Domain: {0}"
-msgstr ""
+msgstr "Domän: {0}"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Generated Password"
-msgstr ""
+msgstr "Genererat lösenord"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Generating..."
-msgstr ""
+msgstr "Genererar..."
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Please fill in a valid Email / Username and Domain"
-msgstr ""
+msgstr "Vänligen fyll i en giltig e-post/användarnamn och domän"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Advanced <0/>"
-msgstr ""
+msgstr "Avancerat <0/>"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Password Rotation: {0}"
-msgstr ""
+msgstr "Lösenordsrotation: {0}"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Add an optional comment (note: this is not encrypted)"
-msgstr ""
+msgstr "Lägg till en valfri kommentar (obs: detta är inte krypterat)"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Update Site"
-msgstr ""
+msgstr "Uppdatera webbplats"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Add Site"
-msgstr ""
+msgstr "Lägg till webbplats"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Go back"
-msgstr ""
+msgstr "Gå tillbaka"
 
 #: src/routes/(app)/add/+page.svelte
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Site removed successfully"
-msgstr ""
+msgstr "Webbplats borttagen framgångsrikt"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Quick Password Lookup"
-msgstr ""
+msgstr "Snabb lösenordssökning"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Search sites..."
-msgstr ""
+msgstr "Sök webbplatser..."
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "No matching sites found"
-msgstr ""
+msgstr "Inga matchande webbplatser hittades"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "No sites yet, add one via the bottom right button"
-msgstr ""
+msgstr "Inga webbplatser än, lägg till en via knappen längst ner till höger"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Rotation: {0}"
-msgstr ""
+msgstr "Rotation: {0}"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Comment: {0}"
-msgstr ""
+msgstr "Kommentar: {0}"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Log out"
-msgstr ""
+msgstr "Logga ut"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: src/routes/(app)/vault/+page.svelte
 msgid "Add site"
-msgstr ""
+msgstr "Lägg till webbplats"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Test entry {0} of 100"
-msgstr ""
+msgstr "Testpost {0} av 100"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Generated 100 test entries"
-msgstr ""
+msgstr "Genererade 100 testposter"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Removed {0} test entries"
-msgstr ""
+msgstr "Tog bort {0} testposter"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "This is a test success notification"
-msgstr ""
+msgstr "Detta är en testnotifiering för framgång"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "This is a test error notification"
-msgstr ""
+msgstr "Detta är en testnotifiering för fel"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Debug Tools"
-msgstr ""
+msgstr "Felsökningsverktyg"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "These tools are for testing purposes only. Use with caution."
-msgstr ""
+msgstr "Dessa verktyg är endast för teständamål. Använd med försiktighet."
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Generate 100 Test Entries"
-msgstr ""
+msgstr "Generera 100 testposter"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Clean Up Test Entries"
-msgstr ""
+msgstr "Rensa testposter"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Notification Tests"
-msgstr ""
+msgstr "Notifieringstester"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Test Success Notification"
-msgstr ""
+msgstr "Testa framgångsnotifiering"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Test Error Notification"
-msgstr ""
+msgstr "Testa felnotifiering"
 
 #: src/routes/(app)/settings/debug/+page.svelte
 msgid "Back to Settings"
-msgstr ""
+msgstr "Tillbaka till inställningar"
