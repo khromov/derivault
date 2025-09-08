@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08T20:52:10.936Z\n"
-"PO-Revision-Date: 2025-09-08T21:02:37.268Z\n"
+"PO-Revision-Date: 2025-09-08T21:11:45.380Z\n"
 "Last-Translator: \n"
 "Language: en\n"
 "Language-Team: \n"
@@ -76,8 +76,8 @@ msgstr "Get Started"
 msgid "Next <0/>"
 msgstr "Next <0/>"
 
-#: src/routes/(app)/+page.svelte
 #: src/routes/(app)/settings/export/+page.svelte
+#: src/routes/(app)/+page.svelte
 msgid "Mnemonic copied to clipboard"
 msgstr "Mnemonic copied to clipboard"
 
@@ -85,8 +85,8 @@ msgstr "Mnemonic copied to clipboard"
 msgid "Failed to copy mnemonic"
 msgstr "Failed to copy mnemonic"
 
-#: src/routes/(app)/+page.svelte
 #: src/routes/(app)/vault/+page.svelte
+#: src/routes/(app)/+page.svelte
 msgid "DeriVault"
 msgstr "DeriVault"
 
@@ -256,8 +256,8 @@ msgstr "<0/> Benchmark cryptographic functions"
 msgid "<0/> Debug Tools"
 msgstr "<0/> Debug Tools"
 
-#: src/routes/(app)/settings/+page.svelte
 #: src/routes/(app)/settings/benchmark/+page.svelte
+#: src/routes/(app)/settings/+page.svelte
 msgid "Back to Vault"
 msgstr "Back to Vault"
 
@@ -422,3 +422,19 @@ msgstr "Enter your 24-word encryption key"
 #: src/routes/(app)/settings/import/+page.svelte
 msgid "<0/> Import Encrypted Vault"
 msgstr "<0/> Import Encrypted Vault"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "Language"
+msgstr "Language"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "Select language"
+msgstr "Select language"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "English"
+msgstr "English"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "Svenska (Swedish)"
+msgstr "Svenska (Swedish)"
