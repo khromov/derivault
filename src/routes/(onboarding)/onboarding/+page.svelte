@@ -45,7 +45,7 @@
 		}
 	];
 
-	let currentStep = 0;
+	let currentStep = $state(0);
 
 	function handleNext() {
 		if (currentStep < steps.length - 1) {

@@ -5,10 +5,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import Copy from 'lucide-svelte/icons/copy';
 	import Download from 'lucide-svelte/icons/download';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 	import { mnemonicToSeed } from 'web-bip39';
 
-	export let data;
+	let { data } = $props();
 
 	const { mnemonic } = data;
 

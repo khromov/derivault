@@ -6,11 +6,11 @@
 	import { Button } from '$lib/components/ui/button';
 	import Upload from 'lucide-svelte/icons/upload';
 	import { Label } from '$lib/components/ui/label';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 	import { validateMnemonic, mnemonicToSeed } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
 
-	let mnemonic = '';
+	let mnemonic = $state('');
 
 	function isSiteEqual(site1: Site, site2: Site): boolean {
 		return (

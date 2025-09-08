@@ -4,11 +4,17 @@
 
 	type $$Props = RadioGroupPrimitive.Props;
 
-	let className: $$Props['class'] = undefined;
-	export let value: $$Props['value'] = undefined;
-	export { className as class };
+	interface Props {
+		class?: $$Props['class'];
+		value?: $$Props['value'];
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { class: className = undefined, value = $bindable(undefined), children, ...rest }: Props = $props();
+	
 </script>
 
-<RadioGroupPrimitive.Root bind:value class={cn('grid gap-2', className)} {...$$restProps}>
-	<slot />
+<RadioGroupPrimitive.Root bind:value class={cn('grid gap-2', className)} {...rest}>
+	{@render children?.()}
 </RadioGroupPrimitive.Root>

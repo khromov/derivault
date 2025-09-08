@@ -4,7 +4,7 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 
 	const domains = [
 		'example.com',
@@ -58,6 +58,14 @@
 		const removedCount = initialCount - $sites.length;
 		toast.success(`Removed ${removedCount} test entries`);
 	}
+
+	function testNormalNotification() {
+		toast.success('This is a test success notification');
+	}
+
+	function testErrorNotification() {
+		toast.error('This is a test error notification');
+	}
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100">
@@ -78,6 +86,15 @@
 
 				<Button on:click={generateTestEntries}>Generate 100 Test Entries</Button>
 				<Button on:click={cleanupTestEntries} variant="destructive">Clean Up Test Entries</Button>
+				
+				<div class="border-t pt-4">
+					<p class="mb-3 text-sm font-medium text-gray-700">Notification Tests</p>
+					<div class="flex gap-2">
+						<Button on:click={testNormalNotification} variant="default">Test Success Notification</Button>
+						<Button on:click={testErrorNotification} variant="destructive">Test Error Notification</Button>
+					</div>
+				</div>
+				
 				<Button on:click={() => goto(`#/settings`)} variant="outline">Back to Settings</Button>
 			</div>
 		</CardContent>

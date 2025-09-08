@@ -1,10 +1,14 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { page } from '$app/stores';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
 
-	$: console.warn('Error: ', $page.error?.message);
-	$: isCryptoError = $page.error?.message?.includes('cryptographic functions') ?? false;
+	run(() => {
+		console.warn('Error: ', $page.error?.message);
+	});
+	let isCryptoError = $derived($page.error?.message?.includes('cryptographic functions') ?? false);
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100">

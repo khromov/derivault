@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
 	import '../../app.css';
-	import { Toaster } from 'svelte-french-toast';
+	import { Toaster } from 'svelte-sonner';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
-<Toaster />
-<slot></slot>
+<Toaster position="top-center" />
+{@render children?.()}

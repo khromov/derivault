@@ -1,12 +1,18 @@
 <script lang="ts">
+	import { preventDefault } from 'svelte/legacy';
+
 	import { onMount, createEventDispatcher } from 'svelte';
 	import Trash2 from 'lucide-svelte/icons/trash-2';
 	import { sineInOut } from 'svelte/easing';
 
-	export let duration = 2500; // 2 seconds in milliseconds
+	interface Props {
+		duration?: number; // 2 seconds in milliseconds
+	}
 
-	let pressed = false;
-	let progress = 0;
+	let { duration = 2500 }: Props = $props();
+
+	let pressed = $state(false);
+	let progress = $state(0);
 	let timeoutId: number | null = null;
 	let startTime: number;
 
@@ -63,11 +69,11 @@
 	{/if}
 	<button
 		class="relative overflow-hidden rounded bg-red-500 p-2 text-white transition-colors hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-		on:mousedown={handleMouseDown}
-		on:mouseup={handleMouseUp}
-		on:mouseleave={handleMouseUp}
-		on:touchstart|preventDefault={handleMouseDown}
-		on:touchend|preventDefault={handleMouseUp}
+		onmousedown={handleMouseDown}
+		onmouseup={handleMouseUp}
+		onmouseleave={handleMouseUp}
+		ontouchstart={preventDefault(handleMouseDown)}
+		ontouchend={preventDefault(handleMouseUp)}
 	>
 		<div class="relative z-10">
 			<Trash2 size={16} />

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { sites } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
@@ -10,26 +12,26 @@
 	import Copy from 'lucide-svelte/icons/copy';
 	import ChevronDown from 'lucide-svelte/icons/chevron-down';
 	import ChevronUp from 'lucide-svelte/icons/chevron-up';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 	import { slide } from 'svelte/transition';
 
-	export let data;
+	let { data } = $props();
 
-	let newSite = data.site
+	let newSite = $state(data.site
 		? {
 				email: data.site.email || '',
 				domain: data.site.domain || '',
 				rotationRounds: data.site.rotationRounds || 1,
 				comment: data.site.comment || ''
 			}
-		: { email: '', domain: '', rotationRounds: 1, comment: '' };
+		: { email: '', domain: '', rotationRounds: 1, comment: '' });
 	let editingIndex = data.editIndex;
-	let generatedPassword = data.generatedPassword || '';
-	let showAdvanced = false;
-	let parsedDomain = 'not entered';
+	let generatedPassword = $state(data.generatedPassword || '');
+	let showAdvanced = $state(false);
+	let parsedDomain = $state('not entered');
 
-	let generationCounter = 0;
-	let isGenerating = false;
+	let generationCounter = $state(0);
+	let isGenerating = $state(false);
 
 	function parseDomain(input: string): string {
 		if (!input) {
@@ -48,9 +50,11 @@
 		}
 	}
 
-	$: parsedDomain = parseDomain(newSite.domain);
+	run(() => {
+		parsedDomain = parseDomain(newSite.domain);
+	});
 
-	$: {
+	run(() => {
 		// Only generate if we have valid inputs
 		if (
 			newSite.email &&
@@ -79,7 +83,7 @@
 			generatedPassword = '';
 			isGenerating = false;
 		}
-	}
+	});
 
 	function addOrUpdateSite() {
 		if (
