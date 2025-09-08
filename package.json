@@ -60,7 +60,8 @@
 		},
 		"vitest": {
 			"vite": "^6.0.0"
-		}
+		},
+		"cookie": "^1.0.2"
 	},
 	"type": "module"
 }
