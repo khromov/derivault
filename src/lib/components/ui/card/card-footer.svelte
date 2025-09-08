@@ -7,11 +7,10 @@
 	interface Props {
 		class?: $$Props['class'];
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { class: className = undefined, children, ...rest }: Props = $props();
-	
 </script>
 
 <div class={cn('flex items-center p-6 pt-0', className)} {...rest}>

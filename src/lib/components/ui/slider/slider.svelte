@@ -7,18 +7,16 @@
 	interface Props {
 		class?: $$Props['class'];
 		value?: $$Props['value'];
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { class: className = undefined, value = $bindable([0]), ...rest }: Props = $props();
-	
 </script>
 
 <SliderPrimitive.Root
 	bind:value
 	class={cn('relative flex w-full touch-none select-none items-center', className)}
 	{...rest}
-	
 >
 	{#snippet children({ thumbs })}
 		<span class="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">

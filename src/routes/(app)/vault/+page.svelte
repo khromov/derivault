@@ -73,9 +73,11 @@
 			.sort((a, b) => b.score - a.score);
 	}
 
-	let filteredSites = $derived(searchTerm
-		? searchSites(siteList, searchTerm)
-		: siteList.map((site, index) => ({ ...site, score: 0, index })));
+	let filteredSites = $derived(
+		searchTerm
+			? searchSites(siteList, searchTerm)
+			: siteList.map((site, index) => ({ ...site, score: 0, index }))
+	);
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">

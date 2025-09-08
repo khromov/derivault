@@ -86,15 +86,19 @@
 
 				<Button on:click={generateTestEntries}>Generate 100 Test Entries</Button>
 				<Button on:click={cleanupTestEntries} variant="destructive">Clean Up Test Entries</Button>
-				
+
 				<div class="border-t pt-4">
 					<p class="mb-3 text-sm font-medium text-gray-700">Notification Tests</p>
 					<div class="flex gap-2">
-						<Button on:click={testNormalNotification} variant="default">Test Success Notification</Button>
-						<Button on:click={testErrorNotification} variant="destructive">Test Error Notification</Button>
+						<Button on:click={testNormalNotification} variant="default"
+							>Test Success Notification</Button
+						>
+						<Button on:click={testErrorNotification} variant="destructive"
+							>Test Error Notification</Button
+						>
 					</div>
 				</div>
-				
+
 				<Button on:click={() => goto(`#/settings`)} variant="outline">Back to Settings</Button>
 			</div>
 		</CardContent>

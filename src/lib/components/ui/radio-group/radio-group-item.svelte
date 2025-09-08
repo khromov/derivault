@@ -9,11 +9,10 @@
 	interface Props {
 		class?: $$Props['class'];
 		value: $$Props['value'];
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { class: className = undefined, value, ...rest }: Props = $props();
-	
 </script>
 
 <RadioGroupPrimitive.Item
