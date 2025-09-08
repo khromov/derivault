@@ -1,7 +1,7 @@
 <script>
 	import '../../app.css';
-	import { Toaster } from 'svelte-french-toast';
+	import { Toaster } from 'svelte-sonner';
 </script>
 
-<Toaster />
+<Toaster richColors />
 <slot></slot>

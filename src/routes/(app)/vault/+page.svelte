@@ -13,7 +13,7 @@
 	import Eye from 'lucide-svelte/icons/eye';
 	import Loader2 from 'lucide-svelte/icons/loader-2';
 	import DeletionButton from '$lib/components/DeletionButton.svelte';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 	import { generatePassword } from '$lib/crypto';
 
 	export let data;

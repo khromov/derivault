@@ -9,7 +9,7 @@
 	import { RadioGroup, RadioGroupItem } from '$lib/components/ui/radio-group';
 	import { validateMnemonic } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 	import RefreshCw from 'lucide-svelte/icons/refresh-cw';
 	import Copy from 'lucide-svelte/icons/copy';
 	import Loader2 from 'lucide-svelte/icons/loader-2';

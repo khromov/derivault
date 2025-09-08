@@ -10,7 +10,7 @@
 	import Copy from 'lucide-svelte/icons/copy';
 	import ChevronDown from 'lucide-svelte/icons/chevron-down';
 	import ChevronUp from 'lucide-svelte/icons/chevron-up';
-	import toast from 'svelte-french-toast';
+	import { toast } from 'svelte-sonner';
 	import { slide } from 'svelte/transition';
 
 	export let data;
