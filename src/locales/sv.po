@@ -425,16 +425,16 @@ msgstr "Tillbaka till inställningar"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "Select language"
-msgstr ""
+msgstr "Välj språk"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "English"
-msgstr ""
+msgstr "Engelska"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "Svenska (Swedish)"
-msgstr ""
+msgstr "Svenska"
