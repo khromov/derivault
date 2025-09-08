@@ -3,7 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
-	import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '$lib/components/ui/select';
 	import { Label } from '$lib/components/ui/label';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
 	import Download from 'lucide-svelte/icons/download';
@@ -30,15 +29,14 @@
 			<div class="grid w-full items-center gap-4">
 				<div class="flex flex-col space-y-2">
 					<Label for="language-select">Language</Label>
-					<Select bind:value={$userLanguage}>
-						<SelectTrigger>
-							<SelectValue placeholder="Select language" />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="en">English</SelectItem>
-							<SelectItem value="sv">Svenska (Swedish)</SelectItem>
-						</SelectContent>
-					</Select>
+					<select 
+						id="language-select"
+						bind:value={$userLanguage}
+						class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+					>
+						<option value="en">English</option>
+						<option value="sv">Svenska (Swedish)</option>
+					</select>
 				</div>
 				<Button on:click={() => goto(`#/settings/export`)} variant="outline">
 					<Download size={16} class="mr-2" />
