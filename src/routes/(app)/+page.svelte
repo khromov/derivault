@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { masterPassword, computationIntensity, lastAuthType } from '$lib/stores';
 	import { goto } from '$app/navigation';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
@@ -18,16 +20,16 @@
 	import { deriveMasterKey, deriveBip39MasterKey } from '$lib/crypto';
 	import { generateMnemonic } from 'web-bip39';
 
-	export let data;
+	let { data } = $props();
 
-	let passphrase = '';
-	let mnemonic = '';
-	let currentAuthType: 'password' | 'bip39' = data.authType;
-	let avatarSvg = '';
-	let isMnemonicValid = false;
-	let isLoading = false;
+	let passphrase = $state('');
+	let mnemonic = $state('');
+	let currentAuthType: 'password' | 'bip39' = $state(data.authType);
+	let avatarSvg = $state('');
+	let isMnemonicValid = $state(false);
+	let isLoading = $state(false);
 
-	$: {
+	run(() => {
 		if (passphrase) {
 			const avatar = createAvatar(identicon, {
 				seed: `${passphrase}-${$computationIntensity}`, // Include computation intensity in the seed
@@ -37,13 +39,13 @@
 		} else {
 			avatarSvg = '';
 		}
-	}
+	});
 
-	$: {
+	run(() => {
 		validateMnemonic(mnemonic.trim(), wordlist).then((valid) => {
 			isMnemonicValid = valid;
 		});
-	}
+	});
 
 	function handleAuthTypeChange(newType: 'password' | 'bip39') {
 		$lastAuthType = newType;

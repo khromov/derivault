@@ -16,13 +16,13 @@
 	import { toast } from 'svelte-sonner';
 	import { generatePassword } from '$lib/crypto';
 
-	export let data;
+	let { data } = $props();
 
-	let hoveredSite: number | null = null;
-	let searchTerm = '';
-	let editingIndex: number | null = null;
+	let hoveredSite: number | null = $state(null);
+	let searchTerm = $state('');
+	let editingIndex: number | null = $state(null);
 
-	$: siteList = data.sites;
+	let siteList = $derived(data.sites);
 
 	async function removeSite(index: number) {
 		$sites = $sites.filter((_, i) => i !== index);
@@ -73,9 +73,9 @@
 			.sort((a, b) => b.score - a.score);
 	}
 
-	$: filteredSites = searchTerm
+	let filteredSites = $derived(searchTerm
 		? searchSites(siteList, searchTerm)
-		: siteList.map((site, index) => ({ ...site, score: 0, index }));
+		: siteList.map((site, index) => ({ ...site, score: 0, index })));
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-gray-100 p-4">

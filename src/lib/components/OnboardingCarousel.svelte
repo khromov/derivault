@@ -5,18 +5,29 @@
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import { cn } from '$lib/utils';
 
-	export let steps: string | any[] = [];
-	export let currentStep: number = 0;
-	export let onNext: () => void = () => {};
-	export let onPrevious: () => void = () => {};
-	export let onComplete: () => void = () => {};
+	interface Props {
+		steps?: string | any[];
+		currentStep?: number;
+		onNext?: () => void;
+		onPrevious?: () => void;
+		onComplete?: () => void;
+	}
 
-	$: isLastStep = currentStep === steps.length - 1;
-	$: isFirstStep = currentStep === 0;
+	let {
+		steps = [],
+		currentStep = 0,
+		onNext = () => {},
+		onPrevious = () => {},
+		onComplete = () => {}
+	}: Props = $props();
+
+	let isLastStep = $derived(currentStep === steps.length - 1);
+	let isFirstStep = $derived(currentStep === 0);
 </script>
 
 <Card class="w-full max-w-[600px]">
 	<CardContent class="p-6">
+		{@const SvelteComponent = steps[currentStep].icon}
 		<div class="mb-8">
 			<div class="mb-6 flex justify-center">
 				{#each steps as _, index}
@@ -31,7 +42,7 @@
 
 			<div class="text-center">
 				<div class="mb-3 flex justify-center">
-					<svelte:component this={steps[currentStep].icon} class="h-10 w-10" />
+					<SvelteComponent class="h-10 w-10" />
 				</div>
 				<h2 class="mb-2 text-2xl font-semibold">{steps[currentStep].title}</h2>
 				<p class="text-muted-foreground">{steps[currentStep].description}</p>

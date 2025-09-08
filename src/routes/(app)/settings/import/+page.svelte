@@ -10,7 +10,7 @@
 	import { validateMnemonic, mnemonicToSeed } from 'web-bip39';
 	import wordlist from 'web-bip39/wordlists/english';
 
-	let mnemonic = '';
+	let mnemonic = $state('');
 
 	function isSiteEqual(site1: Site, site2: Site): boolean {
 		return (

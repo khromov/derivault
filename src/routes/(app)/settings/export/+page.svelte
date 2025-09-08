@@ -8,7 +8,7 @@
 	import { toast } from 'svelte-sonner';
 	import { mnemonicToSeed } from 'web-bip39';
 
-	export let data;
+	let { data } = $props();
 
 	const { mnemonic } = data;
 

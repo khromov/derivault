@@ -15,14 +15,14 @@
 	const TEST_PASSWORD = 'benchmark-test-password';
 	const ITERATIONS = 100;
 
-	let results: BenchmarkResult[] = Array.from({ length: 10 }, (_, i) => ({
+	let results: BenchmarkResult[] = $state(Array.from({ length: 10 }, (_, i) => ({
 		intensity: i + 1,
 		opsPerSecond: 0,
 		isRunning: false,
 		isDone: false
-	}));
+	})));
 
-	let isRunning = false;
+	let isRunning = $state(false);
 
 	async function runBenchmark() {
 		if (isRunning) return;
