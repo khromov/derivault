@@ -4,10 +4,18 @@
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 	import { Button } from '$lib/components/ui/button';
 	import { Label } from '$lib/components/ui/label';
+	import { loadLocale } from 'wuchale/load-utils';
+	import { browser } from '$app/environment';
 	import AlertTriangle from 'lucide-svelte/icons/triangle-alert';
 	import Download from 'lucide-svelte/icons/download';
 	import Upload from 'lucide-svelte/icons/upload';
 	import Bug from 'lucide-svelte/icons/bug';
+
+	$effect(() => {
+		if (browser) {
+			loadLocale($userLanguage);
+		}
+	});
 
 	function panicButton() {
 		$sites = [];
