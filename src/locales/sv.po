@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08T20:52:10.939Z\n"
-"PO-Revision-Date: 2025-09-08T21:11:45.381Z\n"
+"PO-Revision-Date: 2025-09-08T21:29:02.959Z\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: \n"
@@ -76,8 +76,8 @@ msgstr ""
 "Rutten hittades inte, eller så uppstod ett fel på klientsidan. Prova att uppdatera sidan eller\n"
 "en annan webbläsare."
 
-#: src/routes/(app)/settings/export/+page.svelte
 #: src/routes/(app)/+page.svelte
+#: src/routes/(app)/settings/export/+page.svelte
 msgid "Mnemonic copied to clipboard"
 msgstr "Minnesord kopierat till urklipp"
 
@@ -164,8 +164,8 @@ msgstr "<0/> Benchmarka kryptografiska funktioner"
 msgid "<0/> Debug Tools"
 msgstr "<0/> Felsökningsverktyg"
 
-#: src/routes/(app)/settings/benchmark/+page.svelte
 #: src/routes/(app)/settings/+page.svelte
+#: src/routes/(app)/settings/benchmark/+page.svelte
 msgid "Back to Vault"
 msgstr "Tillbaka till valv"
 
@@ -428,13 +428,22 @@ msgid "Language"
 msgstr "Språk"
 
 #: src/routes/(app)/settings/+page.svelte
-msgid "Select language"
-msgstr "Välj språk"
-
-#: src/routes/(app)/settings/+page.svelte
 msgid "English"
 msgstr "Engelska"
 
 #: src/routes/(app)/settings/+page.svelte
 msgid "Svenska (Swedish)"
 msgstr "Svenska"
+
+#: src/routes/(app)/+layout.ts
+msgid "Required cryptographic functions are not available in this browser. Keep in mind that web crypto APIs require a secure origin, so the page has to be served over SSL."
+msgstr ""
+
+#: src/routes/(app)/add/+page.ts
+msgid "Site not found"
+msgstr ""
+
+#: src/routes/(app)/add/+page.ts
+#: src/routes/(app)/vault/+page.ts
+msgid "Encryption key not available"
+msgstr ""

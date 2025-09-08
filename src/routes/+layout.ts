@@ -16,4 +16,6 @@ export const load: LayoutLoad = async () => {
 	if (browser) {
 		await loadLocale(locale);
 	}
+
+	return { string: 'Hello World' };
 };

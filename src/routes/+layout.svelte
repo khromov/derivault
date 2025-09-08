@@ -3,7 +3,8 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let { children }: Props = $props();
+	let { children, data }: Props = $props();
 </script>
 
+{data.string}
 {@render children?.()}
