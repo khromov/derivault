@@ -1,0 +1,408 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2025-09-08T20:52:10.939Z\n"
+"POT-Creation-Date: 2025-09-08T20:52:10.939Z\n"
+
+#: src/lib/components/OnboardingCarousel.svelte
+msgid "<0/> Previous"
+msgstr ""
+
+#: src/lib/components/OnboardingCarousel.svelte
+msgid "Get Started"
+msgstr ""
+
+#: src/lib/components/OnboardingCarousel.svelte
+msgid "Next <0/>"
+msgstr ""
+
+#: src/lib/components/DeletionButton.svelte
+msgid "Keep holding to delete"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid "<0/> Error"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid "An unknown error occurred"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid ""
+"This application requires modern cryptographic capabilities to function securely. Please\n"
+"try the following:"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid "Update your browser to the latest version"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid "Try a different modern browser (Chrome, Firefox, Safari, or Edge)"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid ""
+"If you're using a private/incognito window, try using a regular browsing window\n"
+"instead"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid ""
+"Check if you have any browser extensions or security software that might be blocking\n"
+"access to cryptographic functions"
+msgstr ""
+
+#: src/routes/+error.svelte
+msgid ""
+"The route was not found, or there was a client side error. Try refreshing the page or a\n"
+"different browser."
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "Mnemonic copied to clipboard"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Failed to copy mnemonic"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/vault/+page.svelte
+msgid "DeriVault"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/+page.svelte
+msgid "Passphrase"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/+page.svelte
+msgid "BIP39 Mnemonic"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Enter your passphrase"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Identicon"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Computation Intensity: {0}{1}"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Enter your 24 word BIP39 mnemonic"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Copy mnemonic"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Create new mnemonic"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Extra Computation Intensity: {0}{1}"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "<0/> Deriving master key..."
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "Enter vault"
+msgstr ""
+
+#: src/routes/(app)/+page.svelte
+msgid "How do you use DeriVault?"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "DeriVault - Settings"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Export Vault"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Import Vault"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Panic Button (Clear All Data)"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Benchmark cryptographic functions"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Debug Tools"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Back to Vault"
+msgstr ""
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Password Derivation Benchmark"
+msgstr ""
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid ""
+"This benchmark measures the speed of password derivation at different computation\n"
+"intensities. Higher intensity means better security but slower derivation."
+msgstr ""
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Running..."
+msgstr ""
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Run Benchmark"
+msgstr ""
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Intensity"
+msgstr ""
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Operations/second"
+msgstr ""
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "Failed to copy mnemonic:"
+msgstr ""
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "Export Vault"
+msgstr ""
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid ""
+"Here is your encryption key. Please save it securely, as you'll need it to import your\n"
+"vault:"
+msgstr ""
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "<0/> Export Encrypted Vault"
+msgstr ""
+
+#: src/routes/(app)/settings/export/+page.svelte
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Back"
+msgstr ""
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Import Vault"
+msgstr ""
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Encryption Key"
+msgstr ""
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Enter your 24-word encryption key"
+msgstr ""
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "<0/> Import Encrypted Vault"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Please enter a valid email and domain."
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Password copied to clipboard!"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Quick Lookup"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Edit"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Add"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "{0} Site"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "DeriVault - <0/>"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Email/Username"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Enter email or username"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Domain or URL"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Enter website domain"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Domain: {0}"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Generated Password"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Generating..."
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Please fill in a valid Email / Username and Domain"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Advanced <0/>"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Password Rotation: {0}"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Comment"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Add an optional comment (note: this is not encrypted)"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Update Site"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Add Site"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Go back"
+msgstr ""
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Cancel"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Site removed successfully"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Quick Password Lookup"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Search sites..."
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "No matching sites found"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "No sites yet, add one via the bottom right button"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Rotation: {0}"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Comment: {0}"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Log out"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Settings"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Add site"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Test entry {0} of 100"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Generated 100 test entries"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Removed {0} test entries"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "This is a test success notification"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "This is a test error notification"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Debug Tools"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "These tools are for testing purposes only. Use with caution."
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Generate 100 Test Entries"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Clean Up Test Entries"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Notification Tests"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Test Success Notification"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Test Error Notification"
+msgstr ""
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Back to Settings"
+msgstr ""
