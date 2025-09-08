@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-08T20:52:10.939Z\n"
-"PO-Revision-Date: 2025-09-08T21:29:02.959Z\n"
+"PO-Revision-Date: 2025-09-08T21:31:36.440Z\n"
 "Last-Translator: \n"
 "Language: sv\n"
 "Language-Team: \n"
@@ -437,13 +437,17 @@ msgstr "Svenska"
 
 #: src/routes/(app)/+layout.ts
 msgid "Required cryptographic functions are not available in this browser. Keep in mind that web crypto APIs require a secure origin, so the page has to be served over SSL."
-msgstr ""
+msgstr "Nödvändiga kryptografiska funktioner är inte tillgängliga i denna webbläsare. Kom ihåg att web crypto API:er kräver en säker källa, så sidan måste serveras över SSL."
 
 #: src/routes/(app)/add/+page.ts
 msgid "Site not found"
-msgstr ""
+msgstr "Webbplats hittades inte"
 
 #: src/routes/(app)/add/+page.ts
 #: src/routes/(app)/vault/+page.ts
 msgid "Encryption key not available"
-msgstr ""
+msgstr "Krypteringsnyckel inte tillgänglig"
+
+#: src/routes/+layout.ts
+msgid "Hello World"
+msgstr "Hej världen"
