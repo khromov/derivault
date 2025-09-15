@@ -12,6 +12,7 @@ export const load: PageLoad = async ({ parent }) => {
 	}
 
 	return {
-		sites: allSites
+		sites: allSites,
+		errorMessage: 'hello world'
 	};
 };

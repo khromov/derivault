@@ -1,0 +1,449 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-09T20:42:13.099Z\n"
+"PO-Revision-Date: 2025-09-09T21:27:38.599Z\n"
+"Last-Translator: \n"
+"Language: sv\n"
+"Language-Team: \n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"MIME-Version: 1.0\n"
+
+#: src/lib/components/DeletionButton.svelte
+msgid "Keep holding to delete"
+msgstr "Fortsätt hålla för att radera"
+
+#: src/routes/+error.svelte
+msgid "<0/> Error"
+msgstr "<0/> Fel"
+
+#: src/routes/+error.svelte
+msgid "An unknown error occurred"
+msgstr "Ett okänt fel uppstod"
+
+#: src/routes/+error.svelte
+msgid ""
+"This application requires modern cryptographic capabilities to function securely. Please\n"
+"try the following:"
+msgstr ""
+"Denna applikation kräver moderna kryptografiska funktioner för att fungera säkert. Vänligen\n"
+"prova följande:"
+
+#: src/routes/+error.svelte
+msgid "Update your browser to the latest version"
+msgstr "Uppdatera din webbläsare till den senaste versionen"
+
+#: src/routes/+error.svelte
+msgid "Try a different modern browser (Chrome, Firefox, Safari, or Edge)"
+msgstr "Prova en annan modern webbläsare (Chrome, Firefox, Safari eller Edge)"
+
+#: src/routes/+error.svelte
+msgid ""
+"If you're using a private/incognito window, try using a regular browsing window\n"
+"instead"
+msgstr ""
+"Om du använder ett privat/inkognito-fönster, prova att använda ett vanligt webbläsarfönster\n"
+"istället"
+
+#: src/routes/+error.svelte
+msgid ""
+"Check if you have any browser extensions or security software that might be blocking\n"
+"access to cryptographic functions"
+msgstr ""
+"Kontrollera om du har några webbläsartillägg eller säkerhetsprogram som kan blockera\n"
+"åtkomst till kryptografiska funktioner"
+
+#: src/routes/+error.svelte
+msgid ""
+"The route was not found, or there was a client side error. Try refreshing the page or a\n"
+"different browser."
+msgstr ""
+"Sidan kunde inte hittas, eller så uppstod ett fel på klientsidan. Prova att uppdatera sidan eller\n"
+"använda en annan webbläsare."
+
+#: src/lib/components/OnboardingCarousel.svelte
+msgid "<0/> Previous"
+msgstr "<0/> Föregående"
+
+#: src/lib/components/OnboardingCarousel.svelte
+msgid "Get Started"
+msgstr "Kom igång"
+
+#: src/lib/components/OnboardingCarousel.svelte
+msgid "Next <0/>"
+msgstr "Nästa <0/>"
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "Mnemonic copied to clipboard"
+msgstr "Minnesfras kopierad till urklipp"
+
+#: src/routes/(app)/+page.svelte
+msgid "Failed to copy mnemonic"
+msgstr "Misslyckades med att kopiera minnesfras"
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/vault/+page.svelte
+msgid "DeriVault"
+msgstr "DeriVault"
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/+page.svelte
+msgid "Passphrase"
+msgstr "Lösenordsfras"
+
+#: src/routes/(app)/+page.svelte
+#: src/routes/(app)/+page.svelte
+msgid "BIP39 Mnemonic"
+msgstr "BIP39-minnesfras"
+
+#: src/routes/(app)/+page.svelte
+msgid "Enter your passphrase"
+msgstr "Ange din lösenordsfras"
+
+#: src/routes/(app)/+page.svelte
+msgid "Identicon"
+msgstr "Identikon"
+
+#: src/routes/(app)/+page.svelte
+msgid "Computation Intensity: {0}{1}"
+msgstr "Beräkningsintensitet: {0}{1}"
+
+#: src/routes/(app)/+page.svelte
+msgid "Enter your 24 word BIP39 mnemonic"
+msgstr "Ange din 24-ords BIP39-minnesfras"
+
+#: src/routes/(app)/+page.svelte
+msgid "Copy mnemonic"
+msgstr "Kopiera minnesfras"
+
+#: src/routes/(app)/+page.svelte
+msgid "Create new mnemonic"
+msgstr "Skapa ny minnesfras"
+
+#: src/routes/(app)/+page.svelte
+msgid "Extra Computation Intensity: {0}{1}"
+msgstr "Extra beräkningsintensitet: {0}{1}"
+
+#: src/routes/(app)/+page.svelte
+msgid "<0/> Deriving master key..."
+msgstr "<0/> Härledar huvudnyckel..."
+
+#: src/routes/(app)/+page.svelte
+msgid "Enter vault"
+msgstr "Öppna valv"
+
+#: src/routes/(app)/+page.svelte
+msgid "How do you use DeriVault?"
+msgstr "Hur använder du DeriVault?"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Please enter a valid email and domain."
+msgstr "Vänligen ange en giltig e-postadress och domän."
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Password copied to clipboard!"
+msgstr "Lösenord kopierat till urklipp!"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Quick Lookup"
+msgstr "Snabbsökning"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Edit"
+msgstr "Redigera"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Add"
+msgstr "Lägg till"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "{0} Site"
+msgstr "{0} webbplats"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "DeriVault - <0/>"
+msgstr "DeriVault - <0/>"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Email/Username"
+msgstr "E-post/Användarnamn"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Enter email or username"
+msgstr "Ange e-post eller användarnamn"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Domain or URL"
+msgstr "Domän eller URL"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Enter website domain"
+msgstr "Ange webbplatsdomän"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Domain: {0}"
+msgstr "Domän: {0}"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Generated Password"
+msgstr "Genererat lösenord"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Generating..."
+msgstr "Genererar..."
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Please fill in a valid Email / Username and Domain"
+msgstr "Vänligen fyll i en giltig e-post/användarnamn och domän"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Advanced <0/>"
+msgstr "Avancerat <0/>"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Password Rotation: {0}"
+msgstr "Lösenordsrotation: {0}"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Comment"
+msgstr "Kommentar"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Add an optional comment (note: this is not encrypted)"
+msgstr "Lägg till en valfri kommentar (obs: denna krypteras inte)"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Update Site"
+msgstr "Uppdatera webbplats"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Add Site"
+msgstr "Lägg till webbplats"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Go back"
+msgstr "Gå tillbaka"
+
+#: src/routes/(app)/add/+page.svelte
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Site removed successfully"
+msgstr "Webbplats borttagen framgångsrikt"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Quick Password Lookup"
+msgstr "Snabb lösenordssökning"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Search sites..."
+msgstr "Sök webbplatser..."
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "No matching sites found"
+msgstr "Inga matchande webbplatser hittades"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "No sites yet, add one via the bottom right button"
+msgstr "Inga webbplatser ännu, lägg till en via knappen nere till höger"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Rotation: {0}"
+msgstr "Rotation: {0}"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Comment: {0}"
+msgstr "Kommentar: {0}"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Log out"
+msgstr "Logga ut"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Settings"
+msgstr "Inställningar"
+
+#: src/routes/(app)/vault/+page.svelte
+msgid "Add site"
+msgstr "Lägg till webbplats"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "DeriVault - Settings"
+msgstr "DeriVault - Inställningar"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Export Vault"
+msgstr "<0/> Exportera valv"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Import Vault"
+msgstr "<0/> Importera valv"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Panic Button (Clear All Data)"
+msgstr "<0/> Panikknapp (Rensa all data)"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Benchmark cryptographic functions"
+msgstr "<0/> Testa kryptografiska funktioner"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "<0/> Debug Tools"
+msgstr "<0/> Felsökningsverktyg"
+
+#: src/routes/(app)/settings/+page.svelte
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Back to Vault"
+msgstr "Tillbaka till valv"
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Import Vault"
+msgstr "Importera valv"
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Encryption Key"
+msgstr "Krypteringsnyckel"
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Enter your 24-word encryption key"
+msgstr "Ange din 24-ords krypteringsnyckel"
+
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "<0/> Import Encrypted Vault"
+msgstr "<0/> Importera krypterat valv"
+
+#: src/routes/(app)/settings/export/+page.svelte
+#: src/routes/(app)/settings/import/+page.svelte
+msgid "Back"
+msgstr "Tillbaka"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Test entry {0} of 100"
+msgstr "Testpost {0} av 100"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Generated 100 test entries"
+msgstr "Genererade 100 testposter"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Removed {0} test entries"
+msgstr "Tog bort {0} testposter"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "This is a test success notification"
+msgstr "Detta är en testnotifiering för lyckad åtgärd"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "This is a test error notification"
+msgstr "Detta är en testnotifiering för fel"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Debug Tools"
+msgstr "Felsökningsverktyg"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "These tools are for testing purposes only. Use with caution."
+msgstr "Dessa verktyg är endast för testning. Använd med försiktighet."
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Generate 100 Test Entries"
+msgstr "Generera 100 testposter"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Clean Up Test Entries"
+msgstr "Rensa testposter"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Notification Tests"
+msgstr "Notifieringstester"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Test Success Notification"
+msgstr "Testa framgångsnotifiering"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Test Error Notification"
+msgstr "Testa felnotifiering"
+
+#: src/routes/(app)/settings/debug/+page.svelte
+msgid "Back to Settings"
+msgstr "Tillbaka till inställningar"
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "Failed to copy mnemonic:"
+msgstr "Misslyckades med att kopiera minnesfras:"
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "Export Vault"
+msgstr "Exportera valv"
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid ""
+"Here is your encryption key. Please save it securely, as you'll need it to import your\n"
+"vault:"
+msgstr ""
+"Här är din krypteringsnyckel. Vänligen spara den säkert, då du behöver den för att importera ditt\n"
+"valv:"
+
+#: src/routes/(app)/settings/export/+page.svelte
+msgid "<0/> Export Encrypted Vault"
+msgstr "<0/> Exportera krypterat valv"
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Password Derivation Benchmark"
+msgstr "Prestandatest för lösenordshärledning"
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid ""
+"This benchmark measures the speed of password derivation at different computation\n"
+"intensities. Higher intensity means better security but slower derivation."
+msgstr ""
+"Detta prestandatest mäter hastigheten för lösenordshärledning vid olika beräknings-\n"
+"intensiteter. Högre intensitet innebär bättre säkerhet men långsammare härledning."
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Running..."
+msgstr "Kör..."
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Run Benchmark"
+msgstr "Kör prestandatest"
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Intensity"
+msgstr "Intensitet"
+
+#: src/routes/(app)/settings/benchmark/+page.svelte
+msgid "Operations/second"
+msgstr "Operationer/sekund"
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "Language"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "English"
+msgstr ""
+
+#: src/routes/(app)/settings/+page.svelte
+msgid "Svenska"
+msgstr ""
+
+#: src/routes/(app)/vault/+page.ts
+#: src/routes/(app)/add/+page.ts
+msgid "Encryption key not available"
+msgstr ""
+
+#: src/routes/(app)/+layout.ts
+msgid "Required cryptographic functions are not available in this browser. Keep in mind that web crypto APIs require a secure origin, so the page has to be served over SSL."
+msgstr ""
+
+#: src/routes/(app)/add/+page.ts
+msgid "Site not found"
+msgstr ""
