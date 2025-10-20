@@ -19,7 +19,7 @@
 	"devDependencies": {
 		"@dicebear/collection": "^9.2.4",
 		"@dicebear/core": "^9.2.4",
-		"@playwright/test": "^1.55.0",
+		"@playwright/test": "^1.56.1",
 		"@sveltejs/adapter-static": "^3.0.9",
 		"@sveltejs/kit": "^2.37.1",
 		"@sveltejs/vite-plugin-svelte": "^6.1.4",
