@@ -21,7 +21,7 @@
 		"@dicebear/core": "^9.2.4",
 		"@playwright/test": "^1.55.0",
 		"@sveltejs/adapter-static": "^3.0.9",
-		"@sveltejs/kit": "^2.37.1",
+		"@sveltejs/kit": "^2.49.5",
 		"@sveltejs/vite-plugin-svelte": "^6.1.4",
 		"@types/eslint": "^9.6.1",
 		"@types/web-app-manifest": "^1.0.9",
