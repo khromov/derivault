@@ -1,9 +1,11 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vitest/config';
 import { visualizer } from 'rollup-plugin-visualizer';
+import { wuchale } from '@wuchale/vite-plugin';
 
 export default defineConfig({
 	plugins: [
+		wuchale(),
 		sveltekit(),
 		visualizer({
 			emitFile: true,
